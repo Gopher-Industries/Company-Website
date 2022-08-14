@@ -8,14 +8,14 @@ namespace ProjectX.WebAPI.Controllers
     [ApiController]
     [Authorize]
     [Route("api/v1/auth")]
-    public class Authentication : ControllerBase
+    public class AuthenticationController : ControllerBase
     {
 
         private readonly ITokenService tokenService;
         private readonly INoSqlDatabaseService database;
         private readonly IPasswordEncryptionService passwordService;
 
-        public Authentication(ITokenService TokenService, 
+        public AuthenticationController(ITokenService TokenService, 
                               INoSqlDatabaseService Database,
                               IPasswordEncryptionService PasswordService)
         {
