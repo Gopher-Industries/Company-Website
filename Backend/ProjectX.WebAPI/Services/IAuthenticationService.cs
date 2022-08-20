@@ -8,19 +8,26 @@ using System.Text;
 namespace ProjectX.WebAPI.Services
 {
 
-    public interface IPasswordEncryptionService
+    public interface IAuthenticationService
     {
 
-        public UserAuthenticationModel EncryptPassword(string PlainTextPassword);
+        public UserAuthenticationModel GenerateAuthenticationModel(string PlainTextPassword);
 
-        public bool MatchingPassword(string PlainTextPassword, UserAuthenticationModel AuthModel);
+        public bool MatchingPassword(string PlainTextPassword, UserAuthenticationModel? AuthModel);
 
     }
 
-    public class BCryptPasswordEncryptionService : IPasswordEncryptionService
+    public class BCryptAuthenticationService : IAuthenticationService
     {
-        
-        public UserAuthenticationModel EncryptPassword(string PlainTextPassword)
+
+        private readonly ITokenService tokenService;
+
+        public BCryptAuthenticationService(ITokenService TokenService)
+        {
+            tokenService = TokenService;
+        }
+
+        public UserAuthenticationModel GenerateAuthenticationModel(string PlainTextPassword)
         {
 
             var UserAuth = new UserAuthenticationModel()
@@ -33,20 +40,23 @@ namespace ProjectX.WebAPI.Services
                 inputKey: UserAuth.Salt + PlainTextPassword + UserAuth.Pepper, 
                 salt: BCrypt.Net.BCrypt.GenerateSalt(workFactor: 10), // Work factor: Between 1 and 31
                 enhancedEntropy: true, 
-                hashType: BCrypt.Net.HashType.SHA384);
+                hashType: BCrypt.Net.HashType.SHA512);
 
             return UserAuth;
             
         }
 
-        public bool MatchingPassword(string PlainTextPassword, UserAuthenticationModel AuthModel)
+        public bool MatchingPassword(string PlainTextPassword, UserAuthenticationModel? AuthModel)
         {
+
+            if (AuthModel == null)
+                return false;
 
             return BCrypt.Net.BCrypt.Verify(
                 text: AuthModel.Salt + PlainTextPassword + AuthModel.Pepper,
                 hash: AuthModel.HashedPassword,
                 enhancedEntropy: true,
-                hashType: BCrypt.Net.HashType.SHA384);
+                hashType: BCrypt.Net.HashType.SHA512);
 
         }
 

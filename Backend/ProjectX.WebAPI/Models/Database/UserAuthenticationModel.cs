@@ -1,4 +1,6 @@
 ﻿using Google.Cloud.Firestore;
+using System.Linq;
+using System.Text.Json;
 
 namespace ProjectX.WebAPI.Models.Database
 {
@@ -9,6 +11,9 @@ namespace ProjectX.WebAPI.Models.Database
     [FirestoreData]
     public class UserAuthenticationModel
     {
+
+        [FirestoreProperty]
+        public string Version { get; set; } = "0.0.1";
 
         [FirestoreProperty]
         public string HashedPassword { get; set; }

@@ -1,51 +1,125 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using ProjectX.WebAPI.Models;
+using ProjectX.WebAPI.Models.Rest;
 using ProjectX.WebAPI.Services;
-using System.Security.Claims;
+using ProjectX.WebAPI.Swagger;
+using Swashbuckle.AspNetCore.Annotations;
+using Swashbuckle.AspNetCore.Filters;
 
 namespace ProjectX.WebAPI.Controllers
 {
     [ApiController]
     [Authorize]
     [Route("api/v1/auth")]
+    [SwaggerTag(description: "<h3>Authentication Management Endpoint</h3>")]
     public class AuthenticationController : ControllerBase
     {
 
         private readonly ITokenService tokenService;
-        private readonly INoSqlDatabaseService database;
-        private readonly IPasswordEncryptionService passwordService;
+        private readonly IDatabaseService database;
+        private readonly IAuthenticationService authService;
 
         public AuthenticationController(ITokenService TokenService, 
-                              INoSqlDatabaseService Database,
-                              IPasswordEncryptionService PasswordService)
+                                        IDatabaseService Database,
+                                        IAuthenticationService AuthService)
         {
             tokenService = TokenService;
             database = Database;
-            passwordService = PasswordService;
+            authService = AuthService;
         }
 
         /// <summary>
         /// This is where users can login to their account
         /// </summary>
-        /// <param name="userId"></param>
-        /// <returns>A JWT Token used for authentication for all API services. Bearer token schema.</returns>
+        /// <returns></returns>
         [HttpPost("login")]
         [AllowAnonymous]
-        public async Task<string> Login([FromQuery] string Username, [FromQuery] string Password)
+        [SwaggerResponse(StatusCodes.Status202Accepted, description: "The user was registered successfully", typeof(LoginResponse))]
+        [SwaggerResponse(StatusCodes.Status401Unauthorized, description: "The user already exists within the service", typeof(LoginResponseFail))]
+        [SwaggerResponseExample(StatusCodes.Status202Accepted, typeof(AuthenticationExamples))]
+        public async Task<ObjectResult> Login([FromBody] LoginRequest Request)
         {
 
-            var UserAuth = await database.GetUserAuthentication(Username).ConfigureAwait(false);
-            return passwordService.MatchingPassword(Password, UserAuth) ? 
-                tokenService.BuildToken(await database.GetUser(Username).ConfigureAwait(false)) : String.Empty;
+            var User = await database.GetUser(new FindUserRequest { Username = Request.Username }).ConfigureAwait(false);
+
+            if (User is null)
+                return Unauthorized(value: new LoginResponse { Successful = false });
+
+            var UserAuth = await database.GetUserAuthentication(User).ConfigureAwait(false);
+
+            if (authService.MatchingPassword(Request.Password, UserAuth) == false)
+                return Unauthorized(value: new LoginResponse { Successful = false });
+
+            var RefreshToken = tokenService.BuildRefreshToken(User);
+
+            // Continue without waiting to update the refresh token in the database.
+            _ = this.database.UpdateRefreshToken(User, RefreshToken).ConfigureAwait(false);
+
+            return Accepted(value: new LoginResponse
+            {
+                Successful = true,
+                AccessToken = tokenService.BuildAccessToken(User),
+                RefreshToken = RefreshToken.Token
+            });
+            
+        }
+
+        /// <summary>
+        /// This is where users can use their refresh tokens to generate a new access token
+        /// </summary>
+        /// <returns>A JWT Token used for authentication for all API services. Bearer token schema.</returns>
+        [HttpPost("refresh")]
+        [AllowAnonymous]
+        [SwaggerResponse(StatusCodes.Status200OK, description: "The authentication refresh was successful!", typeof(LoginResponse))]
+        [SwaggerResponse(StatusCodes.Status401Unauthorized, description: "The refresh token was invalid or has been revoked.", typeof(LoginResponseFail))]
+        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(AuthenticationExamples))]
+        public async Task<ObjectResult> Refresh([FromBody] RefreshAccessTokenRequest Request)
+        {
+
+            //
+            // Because we use a different JWT secret to sign refresh tokens, we have to manually validate it.
+            // Ew.
+            // Not too much work doe.
+
+            var InputRefreshToken = tokenService.ReadRefreshToken(Request.RefreshToken);
+
+            var NewRefreshToken = tokenService.BuildRefreshToken(InputRefreshToken);
+
+            var User = await database.GetUser(new FindUserRequest { UserId = InputRefreshToken.UserId }).ConfigureAwait(false);
+            var UserAuth = await database.GetUserAuthentication(User).ConfigureAwait(false);
+
+            //
+            // Lets check if the JWT signatures match the database
+            var DatabaseRefreshTokenEntry = await this.database.GetRefreshToken(User, InputRefreshToken.TokenId).ConfigureAwait(false);
+            if (DatabaseRefreshTokenEntry is null)
+                return Unauthorized(value: "Refresh token invalid.");
+
+            if (DatabaseRefreshTokenEntry.Secret != InputRefreshToken.Secret)
+                return Unauthorized(value: "Refresh token invalid.");
+
+            _ = this.database.UpdateRefreshToken(User, NewRefreshToken).ConfigureAwait(false);
+
+            return Accepted(value: new LoginResponse
+            {
+                Successful = true,
+                AccessToken = tokenService.BuildAccessToken(NewRefreshToken),
+                RefreshToken = NewRefreshToken.Token
+            });
 
         }
 
+        /// <summary>
+        /// An endpoint to validate the JWT token.
+        /// </summary>
+        /// <returns></returns>
         [HttpPost("validate")]
-        public async Task<string> Validate()
+        [SwaggerResponse(StatusCodes.Status200OK, description: "The JWT token in use is valid and accepted by the server")]
+        [SwaggerResponse(StatusCodes.Status401Unauthorized, description: "Failed to validate your token.")]
+        public async Task<ObjectResult> Validate()
         {
-            var x = this.User.Identities;
-            var user = this.User.Claims.Where(x => x.Type == ClaimTypes.NameIdentifier).First();
-            return $"Your user id is: { user.Value}";
+            // Just list their claims, debug code really.
+            return Ok(value: $"Here are your valid claims: \n{string.Join('\n', this.User.Claims.Select(x => $"\"{ x.Type }\": \"{ x.Value }\"").ToList())}");
         }
 
     }

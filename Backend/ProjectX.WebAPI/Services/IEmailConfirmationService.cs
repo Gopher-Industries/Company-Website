@@ -49,6 +49,11 @@ namespace ProjectX.WebAPI.Services
 
         }
 
+        /// <summary>
+        /// The old way of sending confirmation emails
+        /// </summary>
+        /// <param name="User"></param>
+        /// <returns></returns>
         public async Task SendConfirmationEmailOld(UserModel User)
         {
             try
