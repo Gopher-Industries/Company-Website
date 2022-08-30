@@ -60,7 +60,7 @@ namespace ProjectX.WebAPI.Controllers
         /// <summary>
         /// This is where callbacks come to validate the email address.
         /// </summary>
-        /// <param name="userId"></param>
+        /// <param name="UserId"></param>
         /// <returns></returns>
         [HttpGet("validate")]
         [AllowAnonymous]
@@ -73,7 +73,7 @@ namespace ProjectX.WebAPI.Controllers
         {
 
             // Try and validate the user email, and if it fails, return BadRequest
-            return await this.databaseService.ValidateUserEmail(UserId)
+            return await this.databaseService.VerifyUserEmail(UserId)
                                              .ConfigureAwait(false) 
                                              ? StatusCode(StatusCodes.Status202Accepted) : BadRequest();
 

@@ -25,7 +25,7 @@ namespace ProjectX.WebAPI.Controllers
         }
 
         /// <summary>
-        /// Users can send messages to our medi chatbot through this endpoint
+        /// Users can send messages to our medi chatbot through this endpoint.
         /// </summary>
         /// <returns></returns>
         [HttpPost("send")]
@@ -38,7 +38,7 @@ namespace ProjectX.WebAPI.Controllers
 
             //var User = await database.GetUser(new FindUserRequest { Username = Request.Username }).ConfigureAwait(false);
 
-            Message.UserId = "7967625";
+            Message.UserId = "DotelerX";
 
             await botService.SendMessage(Message);
 

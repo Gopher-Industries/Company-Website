@@ -24,5 +24,8 @@ namespace ProjectX.WebAPI.Models.Database
         [FirestoreProperty]
         public string Pepper { get; set; }
 
+        [FirestoreProperty]
+        public UserRole Role { get; set; }
+
     }
 }

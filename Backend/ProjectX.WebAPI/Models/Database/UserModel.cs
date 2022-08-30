@@ -9,6 +9,27 @@ namespace ProjectX.WebAPI.Models.Database
     [FirestoreData]
     public class UserModel
     {
+        
+        private UserModel()
+        {
+
+        }
+
+        public UserModel(string UserId, 
+                         string Username, 
+                         string Email,
+                         string Organisation,
+                         DateTime DateOfBirth)
+        {
+            this.UserId = UserId;
+            this.Username = Username;
+            this.Email = Email;
+            this.Organisation = Organisation;
+            this.EmailVerified = false;
+            this.Created = DateTime.UtcNow;
+            this.DateOfBirth = DateOfBirth;
+            ExistsInDatabase = false;
+        }
 
         [FirestoreProperty]
         public string UserId { get; set; }
@@ -18,6 +39,9 @@ namespace ProjectX.WebAPI.Models.Database
 
         [FirestoreProperty]
         public string Email { get; set; }
+
+        [FirestoreProperty]
+        public string Organisation { get; }
 
         [FirestoreProperty]
         public bool EmailVerified { get; set; }
@@ -32,6 +56,8 @@ namespace ProjectX.WebAPI.Models.Database
         /// Calculate the users age from their date of birth
         /// </summary>
         public TimeSpan Age => DateTime.Now - DateOfBirth;
+
+        internal bool ExistsInDatabase { get; } = true;
 
     }
 }

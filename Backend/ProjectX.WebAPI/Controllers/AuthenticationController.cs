@@ -59,8 +59,8 @@ namespace ProjectX.WebAPI.Controllers
             return Accepted(value: new LoginResponse
             {
                 Successful = true,
-                AccessToken = tokenService.BuildAccessToken(User),
-                RefreshToken = RefreshToken.Token
+                AccessToken = tokenService.BuildAccessToken(User).SignedJWT,
+                RefreshToken = RefreshToken.SignedJWT
             });
             
         }
@@ -103,8 +103,8 @@ namespace ProjectX.WebAPI.Controllers
             return Accepted(value: new LoginResponse
             {
                 Successful = true,
-                AccessToken = tokenService.BuildAccessToken(NewRefreshToken),
-                RefreshToken = NewRefreshToken.Token
+                AccessToken = tokenService.BuildAccessToken(NewRefreshToken).SignedJWT,
+                RefreshToken = NewRefreshToken.SignedJWT
             });
 
         }

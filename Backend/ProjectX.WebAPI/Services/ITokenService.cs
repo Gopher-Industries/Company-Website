@@ -3,6 +3,7 @@ using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Linq;
 using ProjectX.WebAPI.Models;
 using ProjectX.WebAPI.Models.Database;
+using ProjectX.WebAPI.Models.Rest;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -19,14 +20,14 @@ namespace ProjectX.WebAPI.Services
         /// </summary>
         /// <param name="User"></param>
         /// <returns></returns>
-        public string BuildAccessToken(UserModel User);
+        public AccessToken BuildAccessToken(UserModel User);
 
         /// <summary>
         /// Build an access token using the users refresh token
         /// </summary>
         /// <param name="Token"></param>
         /// <returns></returns>
-        public string BuildAccessToken(RefreshToken Token);
+        public AccessToken BuildAccessToken(RefreshToken Token);
 
         /// <summary>
         /// Build a brand new refresh token for the first time
@@ -41,6 +42,13 @@ namespace ProjectX.WebAPI.Services
         /// <param name="Token"></param>
         /// <returns></returns>
         public RefreshToken BuildRefreshToken(RefreshToken Token);
+
+        /// <summary>
+        /// Read a refresh token from the current session
+        /// </summary>
+        /// <param name="Claims"></param>
+        /// <returns></returns>
+        public AccessToken? ReadAccessToken(ClaimsPrincipal Claims);
 
         /// <summary>
         /// Read refresh token from encoded string format.
@@ -75,7 +83,7 @@ namespace ProjectX.WebAPI.Services
             this.appIdentitySettings = appIdentitySettings;
         }
 
-        public string BuildAccessToken(UserModel User)
+        public AccessToken BuildAccessToken(UserModel User)
         {
 
             return this.BuildAccessToken(
@@ -85,7 +93,7 @@ namespace ProjectX.WebAPI.Services
 
         }
 
-        public string BuildAccessToken(RefreshToken Token)
+        public AccessToken BuildAccessToken(RefreshToken Token)
         {
 
             return this.BuildAccessToken(
@@ -122,7 +130,7 @@ namespace ProjectX.WebAPI.Services
 
         }
 
-        private string BuildAccessToken(string UserId, string Username, string Role)
+        private AccessToken BuildAccessToken(string UserId, string Username, string Role)
         {
             var Claims = new[] {
                 new Claim(ClaimTypes.Name, Username),
@@ -139,7 +147,14 @@ namespace ProjectX.WebAPI.Services
                 expires: DateTime.Now.Add(AccessTokenExpiery),
                 signingCredentials: credentials);
 
-            return new JwtSecurityTokenHandler().WriteToken(tokenDescriptor);
+            return new AccessToken
+            {
+                UserId = UserId,
+                Username = Username,
+                Role = Role,
+                SignedJWT = new JwtSecurityTokenHandler().WriteToken(tokenDescriptor)
+            };
+
         }
 
         private RefreshToken BuildRefreshToken(string UserId, string Username, string RefreshTokenId)
@@ -171,7 +186,17 @@ namespace ProjectX.WebAPI.Services
                 Username = Username,
                 Secret = RefreshTokenSecret,
                 ValidUntil = DateTime.UtcNow.Add(RefreshTokenExpiery),
-                Token = new JwtSecurityTokenHandler().WriteToken(tokenDescriptor)
+                SignedJWT = new JwtSecurityTokenHandler().WriteToken(tokenDescriptor)
+            };
+        }
+
+        public AccessToken? ReadAccessToken(ClaimsPrincipal Claims)
+        {
+            return new AccessToken
+            {
+                UserId = Claims.FindFirstValue(ClaimTypes.NameIdentifier),
+                Username = Claims.FindFirstValue(ClaimTypes.Name),
+                Role = Claims.FindFirstValue(ClaimTypes.Role)
             };
         }
 
@@ -193,7 +218,7 @@ namespace ProjectX.WebAPI.Services
                 Username = RefreshTokenId.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name)?.Value,
                 TokenId = RefreshTokenId.Claims.FirstOrDefault(x => x.Type == "RefreshTokenId")?.Value,
                 Secret = RefreshTokenId.Claims.FirstOrDefault(x => x.Type == "RefreshTokenSecret")?.Value,
-                Token = RefreshToken 
+                SignedJWT = RefreshToken 
             }; 
 
         }

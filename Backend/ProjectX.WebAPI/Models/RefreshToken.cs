@@ -45,7 +45,7 @@ namespace ProjectX.WebAPI.Models
         /// <summary>
         /// The JWT refresh token itself.
         /// </summary>
-        public string Token { get; init; }
+        public string SignedJWT { get; init; }
 
     }
 }

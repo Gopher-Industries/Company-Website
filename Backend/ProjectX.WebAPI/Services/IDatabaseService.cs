@@ -4,6 +4,8 @@ using Microsoft.Extensions.Caching.Memory;
 using ProjectX.WebAPI.Models;
 using ProjectX.WebAPI.Models.Database;
 using ProjectX.WebAPI.Models.Rest;
+using System.Runtime.Serialization.Formatters.Binary;
+using static Google.Rpc.Context.AttributeContext.Types;
 
 namespace ProjectX.WebAPI.Services
 {
@@ -34,13 +36,6 @@ namespace ProjectX.WebAPI.Services
         public Task<UserAuthenticationModel> GetUserAuthentication(UserModel User);
 
         /// <summary>
-        /// Get the authentication information of a user using query parameters to find the user
-        /// </summary>
-        /// <param name="Request"></param>
-        /// <returns></returns>
-        public Task<UserAuthenticationModel> GetUserAuthentication(FindUserRequest Request);
-
-        /// <summary>
         /// Validates all refresh tokens against the user. AKA clear out old tokens.
         /// </summary>
         /// <param name="User">The user that the refresh tokens belongs to</param>
@@ -51,7 +46,7 @@ namespace ProjectX.WebAPI.Services
         /// Retrieves a refresh token for a user 
         /// </summary>
         /// <param name="User">The user that the refresh token belongs to</param>
-        /// <param name="NewRefreshToken">The refresh token to update</param>
+        /// <param name="TokenId">The token id to search the database for</param>
         /// <returns></returns>
         public Task<RefreshTokenDatabaseEntry?> GetRefreshToken(UserModel User, string TokenId);
 
@@ -68,7 +63,7 @@ namespace ProjectX.WebAPI.Services
         /// </summary>
         /// <param name="UserId"></param>
         /// <returns></returns>
-        public Task<bool> ValidateUserEmail(string UserId);
+        public Task<bool> VerifyUserEmail(string UserId);
 
     }
 
@@ -83,15 +78,20 @@ namespace ProjectX.WebAPI.Services
         private readonly FirestoreDb Database;
         private readonly IMemoryCache cache;
         private readonly ITokenService tokenService;
-        private readonly MemoryCacheEntryOptions _defaultUserModelCacheOptions = new MemoryCacheEntryOptions()
+        private readonly MemoryCacheEntryOptions _userModelCacheOptions = new MemoryCacheEntryOptions()
         {
-            Size = 500, // I did some very basic investigation and found UserModel's usually ~224 bytes in memory. 500 is buffer.
-            AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(5)
+            Size = 500, // I did some very basic investigation and found UserModel's usually ~272 bytes in memory. 500 is buffer.
+            AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(60)
         };
-        private readonly MemoryCacheEntryOptions _defaultUserModelCopyCacheOptions = new MemoryCacheEntryOptions()
+        private readonly MemoryCacheEntryOptions _userAuthModelCacheOptions = new MemoryCacheEntryOptions()
+        {
+            Size = 400, // I did some very basic investigation and found UserModel's usually ~350 bytes in memory. 400 is buffer.
+            AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(6)
+        };
+        private readonly MemoryCacheEntryOptions _userModelCopyCacheOptions = new MemoryCacheEntryOptions()
         {
             Size = 0, // We store copies pointing to the same block of memory so all good size is 0
-            AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(5)
+            AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(60)
         };
 
         public FirestoreDatabase(IMemoryCache Cache, ITokenService TokenService)
@@ -126,21 +126,20 @@ namespace ProjectX.WebAPI.Services
         public async Task<UserModel> CreateUser(CreateUserRequest Request, UserAuthenticationModel Authentication)
         {
 
-            var NewUser = new UserModel()
-            {
-                UserId = Guid.NewGuid().ToString(),
-                Username = Request.Username,
-                DateOfBirth = Request.DateOfBirth,
-                Created = DateTime.UtcNow,
-                Email = Request.Email,
-            };
+            var NewUser = new UserModel(
+            
+                UserId: Guid.NewGuid().ToString(),
+                Username: Request.Username,
+                DateOfBirth: Request.DateOfBirth,
+                Email: Request.Email
+            );
 
             await this.Database.Collection("Users").Document(NewUser.UserId).CreateAsync(NewUser).ConfigureAwait(false);
             await this.Database.Collection("UsersAuthentication").Document(NewUser.UserId).CreateAsync(Authentication).ConfigureAwait(false);
 
             // Insert into cache
-            cache.Set(NewUser.UserId, NewUser, _defaultUserModelCacheOptions);
-            cache.Set(NewUser.Username, NewUser, _defaultUserModelCacheOptions);
+            cache.Set(NewUser.UserId, NewUser, _userModelCacheOptions);
+            cache.Set(NewUser.Username, NewUser, _userModelCacheOptions);
 
             return NewUser;
 
@@ -172,8 +171,8 @@ namespace ProjectX.WebAPI.Services
                     return null;
 
                 // Cache the user for later
-                cache.Set(user.UserId, user, _defaultUserModelCacheOptions);
-                cache.Set(user.Username, user, _defaultUserModelCopyCacheOptions);
+                cache.Set(user.UserId, user, _userModelCacheOptions);
+                cache.Set(user.Username, user, _userModelCopyCacheOptions);
 
             }
 
@@ -196,8 +195,8 @@ namespace ProjectX.WebAPI.Services
                     return null;
 
                 // Cache the user for later
-                cache.Set(user.UserId, user, _defaultUserModelCacheOptions);
-                cache.Set(user.Username, user, _defaultUserModelCopyCacheOptions);
+                cache.Set(user.UserId, user, _userModelCacheOptions);
+                cache.Set(user.Username, user, _userModelCopyCacheOptions);
             }
 
             //
@@ -216,8 +215,8 @@ namespace ProjectX.WebAPI.Services
                     return null;
 
                 // Cache the user for later
-                cache.Set(user.UserId, user, _defaultUserModelCacheOptions);
-                cache.Set(user.Username, user, _defaultUserModelCopyCacheOptions);
+                cache.Set(user.UserId, user, _userModelCacheOptions);
+                cache.Set(user.Username, user, _userModelCopyCacheOptions);
 
             }
 
@@ -228,26 +227,21 @@ namespace ProjectX.WebAPI.Services
         public async Task<UserAuthenticationModel> GetUserAuthentication(UserModel User)
         {
 
-            // Retrieve the users authentication from the database
-            return (await Database.Collection("UsersAuthentication")
-                                  .Document(User.UserId)
-                                  .GetSnapshotAsync()
-                                  .ConfigureAwait(false))
-                                  .ConvertTo<UserAuthenticationModel>();
-
-        }
-
-        public async Task<UserAuthenticationModel> GetUserAuthentication(FindUserRequest UserQuery)
-        {
-
-            var User = await this.GetUser(UserQuery).ConfigureAwait(false);
+            //
+            // Check if we have the auth
+            if (cache.TryGetValue(User.UserId + "-Auth", out UserAuthenticationModel UserAuth))
+                return UserAuth;
 
             // Retrieve the users authentication from the database
-            return (await Database.Collection("UsersAuthentication")
-                                  .Document(User.UserId)
-                                  .GetSnapshotAsync()
-                                  .ConfigureAwait(false))
-                                  .ConvertTo<UserAuthenticationModel>();
+            UserAuth = (await Database.Collection("UsersAuthentication")
+                                      .Document(User.UserId)
+                                      .GetSnapshotAsync()
+                                      .ConfigureAwait(false))
+                                      .ConvertTo<UserAuthenticationModel>();
+
+            cache.Set(User.UserId + "-Auth", UserAuth, _userAuthModelCacheOptions);
+
+            return UserAuth;
 
         }
 
@@ -311,7 +305,7 @@ namespace ProjectX.WebAPI.Services
 
         }
 
-        public async Task<bool> ValidateUserEmail(string UserId)
+        public async Task<bool> VerifyUserEmail(string UserId)
         {
 
             // Update cached value of user
