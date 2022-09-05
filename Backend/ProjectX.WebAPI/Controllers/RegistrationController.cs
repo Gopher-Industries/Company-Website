@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using ProjectX.WebAPI.Models.Rest;
+using ProjectX.WebAPI.Models.RestRequests.Request;
 using ProjectX.WebAPI.Services;
 using Swashbuckle.AspNetCore.Annotations;
 

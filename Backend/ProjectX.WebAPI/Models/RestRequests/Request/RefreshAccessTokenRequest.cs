@@ -1,4 +1,4 @@
-﻿namespace ProjectX.WebAPI.Models.Rest
+﻿namespace ProjectX.WebAPI.Models.RestRequests.Request
 {
     public record RefreshAccessTokenRequest
     {

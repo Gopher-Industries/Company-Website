@@ -1,8 +1,7 @@
 ﻿using Google.LongRunning;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.AspNetCore.Identity;
-using ProjectX.WebAPI.Models;
-using ProjectX.WebAPI.Models.Database;
+using ProjectX.WebAPI.Models.Database.Authentication;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -41,13 +40,6 @@ namespace ProjectX.WebAPI.Services
     public class BCryptAuthenticationService : IAuthenticationService
     {
 
-        private readonly ITokenService tokenService;
-
-        public BCryptAuthenticationService(ITokenService TokenService)
-        {
-            tokenService = TokenService;
-        }
-
         public UserAuthenticationModel GenerateAuthenticationModel(string PlainTextPassword)
         {
 
@@ -84,11 +76,11 @@ namespace ProjectX.WebAPI.Services
         public bool HasPermission(UserAuthenticationModel AuthModel, UserRole MinimumAuthorization)
         {
 
-            if (MinimumAuthorization == UserRole.User)
+            if (MinimumAuthorization == UserRole.Patient)
                 return true;
 
             if (MinimumAuthorization == UserRole.Caregiver)
-                return AuthModel.Role != UserRole.User;
+                return AuthModel.Role != UserRole.Patient;
 
             if (MinimumAuthorization == UserRole.Admin)
                 return AuthModel.Role == UserRole.Admin;

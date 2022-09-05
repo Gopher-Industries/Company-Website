@@ -1,6 +1,6 @@
 ﻿using Google.Cloud.Firestore;
 
-namespace ProjectX.WebAPI.Models
+namespace ProjectX.WebAPI.Models.Database.Authentication
 {
 
     [FirestoreData]
@@ -28,7 +28,7 @@ namespace ProjectX.WebAPI.Models
 
     }
 
-    
+
     public record RefreshToken : RefreshTokenDatabaseEntry
     {
 

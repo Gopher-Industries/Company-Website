@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ProjectX.WebAPI.Models;
-using ProjectX.WebAPI.Models.Rest;
+using ProjectX.WebAPI.Models.RestRequests.Request;
+using ProjectX.WebAPI.Models.RestRequests.Response;
 using ProjectX.WebAPI.Services;
 using ProjectX.WebAPI.Swagger;
 using Swashbuckle.AspNetCore.Annotations;
@@ -36,7 +37,7 @@ namespace ProjectX.WebAPI.Controllers
         [HttpPost("login")]
         [AllowAnonymous]
         [SwaggerResponse(StatusCodes.Status202Accepted, description: "The user was registered successfully", typeof(LoginResponse))]
-        [SwaggerResponse(StatusCodes.Status401Unauthorized, description: "The user already exists within the service", typeof(LoginResponseFail))]
+        [SwaggerResponse(StatusCodes.Status401Unauthorized, description: "Login credentials failed")]
         [SwaggerResponseExample(StatusCodes.Status202Accepted, typeof(AuthenticationExamples))]
         public async Task<ObjectResult> Login([FromBody] LoginRequest Request)
         {
@@ -44,12 +45,12 @@ namespace ProjectX.WebAPI.Controllers
             var User = await database.GetUser(new FindUserRequest { Username = Request.Username }).ConfigureAwait(false);
 
             if (User is null)
-                return Unauthorized(value: new LoginResponse { Successful = false });
+                return Unauthorized(value: "Username or password was wrong.");
 
             var UserAuth = await database.GetUserAuthentication(User).ConfigureAwait(false);
 
             if (authService.MatchingPassword(Request.Password, UserAuth) == false)
-                return Unauthorized(value: new LoginResponse { Successful = false });
+                return Unauthorized(value: "Username or password was wrong.");
 
             var RefreshToken = tokenService.BuildRefreshToken(User);
 
@@ -58,7 +59,6 @@ namespace ProjectX.WebAPI.Controllers
 
             return Accepted(value: new LoginResponse
             {
-                Successful = true,
                 AccessToken = tokenService.BuildAccessToken(User).SignedJWT,
                 RefreshToken = RefreshToken.SignedJWT
             });
@@ -72,7 +72,7 @@ namespace ProjectX.WebAPI.Controllers
         [HttpPost("refresh")]
         [AllowAnonymous]
         [SwaggerResponse(StatusCodes.Status200OK, description: "The authentication refresh was successful!", typeof(LoginResponse))]
-        [SwaggerResponse(StatusCodes.Status401Unauthorized, description: "The refresh token was invalid or has been revoked.", typeof(LoginResponseFail))]
+        [SwaggerResponse(StatusCodes.Status401Unauthorized, description: "The refresh token was invalid or has been revoked.")]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(AuthenticationExamples))]
         public async Task<ObjectResult> Refresh([FromBody] RefreshAccessTokenRequest Request)
         {
@@ -102,7 +102,6 @@ namespace ProjectX.WebAPI.Controllers
 
             return Accepted(value: new LoginResponse
             {
-                Successful = true,
                 AccessToken = tokenService.BuildAccessToken(NewRefreshToken).SignedJWT,
                 RefreshToken = NewRefreshToken.SignedJWT
             });

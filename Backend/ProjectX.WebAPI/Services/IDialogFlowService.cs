@@ -1,21 +1,26 @@
 ﻿using Google.Cloud.Dialogflow.V2;
-using ProjectX.WebAPI.Models.Rest;
 using System.Text.Json;
 using SessionsClient = Google.Cloud.Dialogflow.V2.SessionsClient;
 using ContextsClient = Google.Cloud.Dialogflow.V2.ContextsClient;
 using AgentClient = Google.Cloud.Dialogflow.V2.AgentsClient;
 using Microsoft.Extensions.Caching.Memory;
 using static Google.Cloud.Dialogflow.V2.Contexts;
+using ProjectX.WebAPI.Models.Chatbot;
 
 namespace ProjectX.WebAPI.Services
 {
     public interface IDialogFlowService
     {
-        public Task SendMessage(ChatbotMessage Message);
+        public Task<string> SendMessage(ChatbotMessage Message);
     }
 
     public class DialogFlowService : IDialogFlowService
     {
+
+        /// <summary>
+        /// Values come from https://cloud.google.com/dialogflow/es/docs/reference/rest/v2-overview
+        /// </summary>
+        private const string Region = "global";
 
         /// <summary>
         /// A way to store conversations with users for 24 hours. 
@@ -75,19 +80,19 @@ namespace ProjectX.WebAPI.Services
             var ConversationClient = new ConversationsClientBuilder()
             {
                 CredentialsPath = Path.Combine("Credentials", "dialogflow-access.json"),
-                Endpoint = "australia-southeast1-dialogflow.googleapis.com:443"
+                Endpoint = $"{Region}-dialogflow.googleapis.com:443"
             }.BuildAsync();
 
             var SessionClient = new SessionsClientBuilder
             {
                 CredentialsPath = Path.Combine("Credentials", "dialogflow-access.json"),
-                Endpoint = "australia-southeast1-dialogflow.googleapis.com:443"
+                Endpoint = $"{Region}-dialogflow.googleapis.com:443"
             }.BuildAsync();
 
             var ContextClient = new ContextsClientBuilder
             {
                 CredentialsPath = Path.Combine("Credentials", "dialogflow-access.json"),
-                Endpoint = "australia-southeast1-dialogflow.googleapis.com:443"
+                Endpoint = $"{Region}-dialogflow.googleapis.com:443"
             }.BuildAsync();
 
             Task.WaitAll(new Task[] { ConversationClient, SessionClient, ContextClient });
@@ -111,7 +116,7 @@ namespace ProjectX.WebAPI.Services
                 // See if the session exists in google cloud
 
                 var ServerContext = await this.ContextAgent.GetContextAsync(
-                $"projects/{this.ProjectId}/locations/australia-southeast1/agent/sessions/{Session}/contexts/4928d617-8d8d-491f-80a4-36dc7226446f_id_dialog_context")
+                $"projects/{this.ProjectId}/locations/{Region}/agent/sessions/{Session}/contexts/4928d617-8d8d-491f-80a4-36dc7226446f_id_dialog_context")
                 .ConfigureAwait(false);
 
                 this.Cache.Set(Session, ServerContext, _sessionCacheOptions);
@@ -127,7 +132,7 @@ namespace ProjectX.WebAPI.Services
         }
 
 
-        public async Task SendMessage(ChatbotMessage Message)
+        public async Task<string> SendMessage(ChatbotMessage Message)
         {
 
             //
@@ -136,41 +141,9 @@ namespace ProjectX.WebAPI.Services
 
             var Context = await this.GetSessionContext(Message.Session).ConfigureAwait(false);
 
-            //
-            // We always initiate the conversation with saying "ID: u689198n986hf9u" 
-            //
-
-            if (Context is null)
-            {
-                var HeaderPayload = new DetectIntentRequest()
-                {
-                    Session = $"projects/{this.ProjectId}/locations/australia-southeast1/agent/sessions/{Message.Session}",
-                    QueryInput = new QueryInput()
-                    {
-                        Text = new TextInput()
-                        {
-                            Text = "My name is " + Message.UserId,
-                            LanguageCode = "en-US",
-                        }
-                    }
-                };
-
-                // Send off the first message as an identifying message
-                // to tell dialogflow who they're dealing with.
-                var CreateConversation = await this.SessionAgent.DetectIntentAsync(HeaderPayload).ConfigureAwait(false);
-
-                this.Cache.Set(Message.Session, CreateConversation.QueryResult.OutputContexts.First(), _sessionCacheOptions);
-
-                //foreach (var context in c.QueryResult.OutputContexts)
-                //    this.
-
-                Console.WriteLine(CreateConversation.QueryResult.FulfillmentText);
-
-            }
-
             var Payload = new DetectIntentRequest()
             {
-                Session = $"projects/{this.ProjectId}/locations/australia-southeast1/agent/sessions/{Message.Session}",
+                Session = $"projects/{this.ProjectId}/locations/{Region}/agent/sessions/{Message.Session}",
                 QueryInput = new QueryInput()
                 {
                     Text = new TextInput()
@@ -178,8 +151,57 @@ namespace ProjectX.WebAPI.Services
                         Text = Message.Message,
                         LanguageCode = "en-US",
                     }
-                }
+                },
+                QueryParams = new QueryParameters()
             };
+
+            var FirstMessage = await this.SessionAgent.DetectIntentAsync(Payload).ConfigureAwait(false);
+
+            var ResultResponse = String.Join(System.Environment.NewLine, FirstMessage.QueryResult.FulfillmentMessages.SelectMany(x => x.Text.Text_.ToList()).ToList());
+
+            if (ResultResponse.Contains("your patient id", StringComparison.OrdinalIgnoreCase))
+            {
+
+                var HeaderPayload = new DetectIntentRequest()
+                {
+                    Session = $"projects/{this.ProjectId}/locations/{Region}/agent/sessions/{Message.Session}",
+                    QueryInput = new QueryInput()
+                    {
+                        Text = new TextInput()
+                        {
+                            Text = Message.UserId,
+                            LanguageCode = "en-US",
+                        }
+                    }
+                };
+
+                // Send off the first message as an identifying message
+                // to tell dialogflow who they're dealing with.
+                var SecondMessage = await this.SessionAgent.DetectIntentAsync(HeaderPayload).ConfigureAwait(false);
+
+                this.Cache.Set(Message.Session, SecondMessage.QueryResult.Action, _sessionCacheOptions);
+
+                return String.Join(System.Environment.NewLine, SecondMessage.QueryResult.FulfillmentMessages.SelectMany(x => x.Text.Text_.ToList()).ToList()); ;
+
+            }
+
+            return ResultResponse;
+
+            //var EventPayload = new EventInput()
+            //{
+            //    Name = "Login",
+            //    Parameters = new Google.Protobuf.WellKnownTypes.Struct
+            //    {
+
+            //    }
+            //};
+
+            //EventPayload.Parameters.Fields.Add("UserId", new Google.Protobuf.WellKnownTypes.Value
+            //{
+            //    StringValue = Message.UserId
+            //});
+
+
 
             //Payload.QueryParams.Payload.Fields.Add(new Dictionary<string, Google.Protobuf.WellKnownTypes.Value>()
             //{
@@ -194,7 +216,7 @@ namespace ProjectX.WebAPI.Services
 
             //Payload.QueryParams.Contexts.Add(new Context()
             //{
-            //    Name = $"projects/appointment-scheduler-med-gbwq/locations/australia-southeast1/agent/sessions/{Message.Session}/contexts/pain_assesment_dialog_params_user_name",
+            //    Name = $"projects/appointment-scheduler-med-gbwq/locations/{Region}/agent/sessions/{Message.Session}/contexts/eb9bec53-6a98-401a-baec-2247ccdb1a10_id_dialog_context",
             //    LifespanCount = 2,
             //    Parameters = new Google.Protobuf.WellKnownTypes.Struct()
             //    {
@@ -205,7 +227,7 @@ namespace ProjectX.WebAPI.Services
             //Payload.QueryParams.Contexts.First().Parameters.Fields.Add(new Dictionary<string, Google.Protobuf.WellKnownTypes.Value>()
             //{
             //    {
-            //        "User_name",
+            //        "Patient_ID",
             //        new Google.Protobuf.WellKnownTypes.Value()
             //        {
             //            StringValue = Message.UserId
@@ -213,13 +235,23 @@ namespace ProjectX.WebAPI.Services
             //    }
             //});
 
-            var Result = await this.SessionAgent.DetectIntentAsync(Payload).ConfigureAwait(false);
+            //Payload.QueryParams.Contexts.First().Parameters.Fields.Add(new Dictionary<string, Google.Protobuf.WellKnownTypes.Value>()
+            //{
+            //    {
+            //        "Patient_ID.original",
+            //        new Google.Protobuf.WellKnownTypes.Value()
+            //        {
+            //            StringValue = Message.UserId
+            //        }
+            //    }
+            //});
 
-            var j1 = JsonSerializer.Serialize(Result);
+            //var Query = new QueryInput()
+            //{
+            //    Event = EventPayload
+            //};
 
-            // Check if the Patient_ID field is empty, meaning this is a new session. Then fill the 
 
-            Console.WriteLine(String.Join(',', Result.QueryResult.Parameters.Fields.ToArray()));
 
         }
 

@@ -3,11 +3,11 @@ using Google.Apis.Gmail.v1;
 using Google.Apis.Gmail.v1.Data;
 using Google.Apis.Services;
 using Google.Apis.Util.Store;
-using ProjectX.WebAPI.Models.Database;
 using System.Net.Mail;
 using System.Net;
 using SendGrid.Helpers.Mail;
 using SendGrid;
+using ProjectX.WebAPI.Models.Database.Authentication;
 
 namespace ProjectX.WebAPI.Services
 {

@@ -2,8 +2,7 @@
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Linq;
 using ProjectX.WebAPI.Models;
-using ProjectX.WebAPI.Models.Database;
-using ProjectX.WebAPI.Models.Rest;
+using ProjectX.WebAPI.Models.Database.Authentication;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -89,7 +88,7 @@ namespace ProjectX.WebAPI.Services
             return this.BuildAccessToken(
                 UserId: User.UserId,
                 Username: User.Username,
-                Role: "User");
+                Role: UserRole.Patient);
 
         }
 
@@ -99,7 +98,7 @@ namespace ProjectX.WebAPI.Services
             return this.BuildAccessToken(
                 UserId: Token.UserId,
                 Username: Token.Username,
-                Role: "User");
+                Role: UserRole.Patient);
 
         }
 

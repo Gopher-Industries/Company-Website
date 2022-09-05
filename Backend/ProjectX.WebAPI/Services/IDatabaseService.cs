@@ -1,9 +1,10 @@
 ﻿using Google.Cloud.Firestore;
 using Google.Cloud.Firestore.V1;
 using Microsoft.Extensions.Caching.Memory;
-using ProjectX.WebAPI.Models;
-using ProjectX.WebAPI.Models.Database;
-using ProjectX.WebAPI.Models.Rest;
+using ProjectX.WebAPI.Models.Database.Authentication;
+using ProjectX.WebAPI.Models.Database.Timeline;
+using ProjectX.WebAPI.Models.RestRequests.Request;
+using ProjectX.WebAPI.Models.RestRequests.Response;
 using System.Runtime.Serialization.Formatters.Binary;
 using static Google.Rpc.Context.AttributeContext.Types;
 
@@ -65,6 +66,13 @@ namespace ProjectX.WebAPI.Services
         /// <returns></returns>
         public Task<bool> VerifyUserEmail(string UserId);
 
+        /// <summary>
+        /// Get a list of timelines
+        /// </summary>
+        /// <param name="Request"></param>
+        /// <returns></returns>
+        public Task<List<CompanyTeamRestModel>> GetTimeline(TimelineRequest Request);
+
     }
 
 
@@ -93,6 +101,11 @@ namespace ProjectX.WebAPI.Services
             Size = 0, // We store copies pointing to the same block of memory so all good size is 0
             AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(60)
         };
+        private readonly MemoryCacheEntryOptions _timelineCache = new MemoryCacheEntryOptions()
+        {
+            Size = 500, // I did some very basic investigation and found UserModel's usually ~200 bytes in memory. 500 is buffer.
+            AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(60)
+        };
 
         public FirestoreDatabase(IMemoryCache Cache, ITokenService TokenService)
         {
@@ -118,7 +131,7 @@ namespace ProjectX.WebAPI.Services
             var CredentialsJson = File.ReadAllText(Path.Combine("Credentials", "prototypeprojectx-access.json"));
             var builder = new FirestoreClientBuilder { JsonCredentials = CredentialsJson };
 
-            // Connect to the 
+            // Connect to the firestore database
             return await FirestoreDb.CreateAsync(projectId: "prototypeprojectx", client: builder.Build()).ConfigureAwait(false);
 
         }
@@ -131,15 +144,17 @@ namespace ProjectX.WebAPI.Services
                 UserId: Guid.NewGuid().ToString(),
                 Username: Request.Username,
                 DateOfBirth: Request.DateOfBirth,
-                Email: Request.Email
+                Email: Request.Email,
+                Organisation: Request.OrganisationName
             );
 
             await this.Database.Collection("Users").Document(NewUser.UserId).CreateAsync(NewUser).ConfigureAwait(false);
             await this.Database.Collection("UsersAuthentication").Document(NewUser.UserId).CreateAsync(Authentication).ConfigureAwait(false);
 
-            // Insert into cache
+            // Insert user into cache
             cache.Set(NewUser.UserId, NewUser, _userModelCacheOptions);
             cache.Set(NewUser.Username, NewUser, _userModelCacheOptions);
+            cache.Set(NewUser.UserId + "-Auth", Authentication);
 
             return NewUser;
 
@@ -228,7 +243,7 @@ namespace ProjectX.WebAPI.Services
         {
 
             //
-            // Check if we have the auth
+            // Check if we have the auth cached
             if (cache.TryGetValue(User.UserId + "-Auth", out UserAuthenticationModel UserAuth))
                 return UserAuth;
 
@@ -315,6 +330,68 @@ namespace ProjectX.WebAPI.Services
                 return User.EmailVerified = true;
 
             return false;
+
+        }
+
+        public async Task<List<CompanyTeamRestModel>> GetTimeline(TimelineRequest Request)
+        {
+
+            var Teams = new List<CompanyTeamRestModel>();
+
+            var FilteredTeamNames = Request.TeamName?
+                                           .Split(',')
+                                           .Select(x => x.Trim());
+
+            var FilteredStudentIds = Request.StudentId?
+                                            .Split(',')
+                                            .Select(x => x.Trim());
+
+            if (Request.StudentId is not null)
+            {
+
+                var StudentQuery = (await this.Database.Collection("Timeline")
+                                                       .Document("Collections")
+                                                       .Collection("Students")
+                                                       .WhereIn(FieldPath.DocumentId, FilteredStudentIds)
+                                                       .GetSnapshotAsync().ConfigureAwait(false))
+                                                       .Select(x => x.ConvertTo<TeamStudent>()).ToList();
+
+                // Filter the team names by the teams that the students belong to
+                if (FilteredTeamNames is not null)
+                {
+                    FilteredTeamNames = StudentQuery.SelectMany(x =>
+                                                        x.TeamId.Split(',').Select(id => id.Trim()))
+                                                    .Distinct()
+                                                    .Where(x => FilteredTeamNames is null || FilteredTeamNames.Contains(x)).ToList();
+
+                    if (FilteredTeamNames.Any() is false)
+                        return Teams;
+
+                }
+
+            }
+
+            var TeamQuery = this.Database.Collection("Timeline")
+                                         .Document("Collections")
+                                         .Collection("Teams")
+                                         .WhereIn(FieldPath.DocumentId, FilteredTeamNames)
+                                         .WhereEqualTo(nameof(CompanyTeam.Trimester), Request.Trimester)
+                                         as Query;
+
+            // No filter on Team Name. Return all teams.
+            if (FilteredTeamNames is not null)
+            {
+                // Select only teams with specific team names
+                TeamQuery = TeamQuery.WhereIn(nameof(CompanyTeam.TeamName), FilteredTeamNames);
+            }
+
+            Teams = (await TeamQuery.GetSnapshotAsync().ConfigureAwait(false))
+                                .Select(x => x.ConvertTo<CompanyTeamRestModel>())
+                                .ToList();
+
+            
+
+            return Teams;
 
         }
 

@@ -1,6 +1,6 @@
 ﻿using Google.Cloud.Firestore;
 
-namespace ProjectX.WebAPI.Models.Database
+namespace ProjectX.WebAPI.Models.Database.Authentication
 {
 
     /// <summary>
@@ -9,14 +9,14 @@ namespace ProjectX.WebAPI.Models.Database
     [FirestoreData]
     public class UserModel
     {
-        
+
         private UserModel()
         {
 
         }
 
-        public UserModel(string UserId, 
-                         string Username, 
+        public UserModel(string UserId,
+                         string Username,
                          string Email,
                          string Organisation,
                          DateTime DateOfBirth)
@@ -25,8 +25,8 @@ namespace ProjectX.WebAPI.Models.Database
             this.Username = Username;
             this.Email = Email;
             this.Organisation = Organisation;
-            this.EmailVerified = false;
-            this.Created = DateTime.UtcNow;
+            EmailVerified = false;
+            Created = DateTime.UtcNow;
             this.DateOfBirth = DateOfBirth;
             ExistsInDatabase = false;
         }

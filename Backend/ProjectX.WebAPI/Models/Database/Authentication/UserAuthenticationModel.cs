@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text.Json;
 
-namespace ProjectX.WebAPI.Models.Database
+namespace ProjectX.WebAPI.Models.Database.Authentication
 {
 
     /// <summary>
@@ -24,7 +24,7 @@ namespace ProjectX.WebAPI.Models.Database
         [FirestoreProperty]
         public string Pepper { get; set; }
 
-        [FirestoreProperty]
+        [FirestoreProperty(ConverterType = typeof(UserRoleFirestoreConverter))]
         public UserRole Role { get; set; }
 
     }

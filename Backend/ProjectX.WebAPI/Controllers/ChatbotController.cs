@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using ProjectX.WebAPI.Models.Rest;
+using ProjectX.WebAPI.Models.Chatbot;
 using ProjectX.WebAPI.Services;
 using ProjectX.WebAPI.Swagger;
 using Swashbuckle.AspNetCore.Annotations;
@@ -17,11 +17,15 @@ namespace ProjectX.WebAPI.Controllers
 
         private readonly IDatabaseService database;
         private readonly IDialogFlowService botService;
+        private readonly ITokenService tokenService;
 
-        public ChatbotController(IDatabaseService database, IDialogFlowService BotService)
+        public ChatbotController(IDatabaseService database, 
+                                 IDialogFlowService BotService,
+                                 ITokenService TokenService)
         {
             this.database = database;
             botService = BotService;
+            tokenService = TokenService;
         }
 
         /// <summary>
@@ -29,21 +33,24 @@ namespace ProjectX.WebAPI.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost("send")]
-        [AllowAnonymous]
-        [SwaggerResponse(StatusCodes.Status202Accepted, description: "The user was registered successfully", typeof(LoginResponse))]
-        [SwaggerResponse(StatusCodes.Status401Unauthorized, description: "The user already exists within the service", typeof(LoginResponseFail))]
-        [SwaggerResponseExample(StatusCodes.Status202Accepted, typeof(AuthenticationExamples))]
         public async Task<ObjectResult> Send([FromBody] ChatbotMessage Message)
         {
 
+            var AccessToken = this.tokenService.ReadAccessToken(this.HttpContext.User);
+
             //var User = await database.GetUser(new FindUserRequest { Username = Request.Username }).ConfigureAwait(false);
 
-            Message.UserId = "DotelerX";
+            Message.Session ??= Guid.NewGuid().ToString();
+            Message.UserId = AccessToken.UserId;
 
-            await botService.SendMessage(Message);
+            var ResponseMessage = await botService.SendMessage(Message);
 
-
-            return Ok(value: "We did it cheif");
+            return Ok(value: new ChatbotMessage
+            {
+                Session = Message.Session,
+                Message = ResponseMessage,
+                UserId = Message.UserId
+            });
 
         }
     }

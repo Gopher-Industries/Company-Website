@@ -25,6 +25,7 @@ builder.Services.AddSingleton<IDatabaseService, FirestoreDatabase>();
 builder.Services.AddSingleton<IEmailConfirmationService, GmailConfirmationService>();
 builder.Services.AddSingleton<IAuthenticationService, BCryptAuthenticationService>();
 builder.Services.AddSingleton<IDialogFlowService, DialogFlowService>();
+builder.Services.AddSingleton<ITimelineService, TimelineService>();
 builder.Services.AddMemoryCache(builder =>
 {
     builder.SizeLimit = 50000000;

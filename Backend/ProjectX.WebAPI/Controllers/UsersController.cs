@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using ProjectX.WebAPI.Models.Database.Authentication;
+using ProjectX.WebAPI.Models.RestRequests.Request;
 using ProjectX.WebAPI.Services;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -33,10 +35,14 @@ namespace ProjectX.WebAPI.Controllers
         [HttpGet("{UserId}", Name = "Get User")]
         public async Task<ObjectResult> GetUser([FromQuery] string UserId)
         {
-
+            
             var AccessToken = this.tokenService.ReadAccessToken(this.HttpContext.User);
 
-            var UserAcc = await this.database.GetUser(new Models.Rest.FindUserRequest { UserId = UserId }).ConfigureAwait(false);
+            // If they try and access someone elses account as a standard user
+            if (AccessToken.UserId != UserId && AccessToken.Role != UserRole.Admin)
+                return Unauthorized(value: "You are not an admin user and therefore cannot access other peoples accounts.");
+
+            var UserAcc = await this.database.GetUser(new FindUserRequest { UserId = UserId }).ConfigureAwait(false);
 
             return UserAcc is null ? 
                    Ok(UserAcc) : 

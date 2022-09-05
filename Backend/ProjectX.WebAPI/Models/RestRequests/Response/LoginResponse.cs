@@ -1,15 +1,8 @@
-﻿namespace ProjectX.WebAPI.Models.Rest
+﻿namespace ProjectX.WebAPI.Models.RestRequests.Response
 {
 
     public record LoginResponse
     {
-
-        /// <summary>
-        /// Whether or not the login attempt was successful
-        /// </summary>
-        /// <example name="Success">true</example>
-        /// <example name="Fail">false</example>
-        public bool Successful { get; init; }
 
         /// <summary>
         /// The JWT login token to use as a bearer authorization header for other API requests.
@@ -23,18 +16,6 @@
         /// <example>eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiRG90ZWxlclgiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjJhY2JmNjY0LTM5MTUtNDNhZS1iOTg4LTYzMWE5YmMxNjU4MCIsIlJlZnJlc2hUb2tlbklkIjoiNTE2YTFjNTEtOTY1Zi00ZDliLThlNTEtNzQyZDJhZDIxMDNiNGNiYjM1M2QtYjMxNS00MDRkLWExZDUtMWM2ODAzMGY3OWIzIiwiZXhwIjoxNjYxMTgyNTE3LCJpc3MiOiJodHRwczovL2FwaS5nb3BoZXJpbmR1c3RyaWVzLm5ldCIsImF1ZCI6Imh0dHBzOi8vYXBpLmdvcGhlcmluZHVzdHJpZXMubmV0In0.nfGeHZ7DolmAnovcp70miWP6h3kL5OYZM6ZMIOejOKePrsiUNZSokaJu49YV-rmR_mbXGG_xZZQA8AQWUQjrjw</example>
         public string RefreshToken { get; init; }
 
-    }
-
-    /// <summary>
-    /// An example response of how
-    /// </summary>
-    public record LoginResponseFail
-    {
-        /// <summary>
-        /// Whether or not the login attempt was successful
-        /// </summary>
-        /// <example>false</example>
-        public bool Successful { get; init; } 
     }
 
 }
