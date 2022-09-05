@@ -6,6 +6,7 @@ namespace ProjectX.WebAPI.Models.RestRequests.Response
 {
 
     [DisplayName("Company Team")]
+    [FirestoreData]
     public class CompanyTeamRestModel : CompanyTeam
     {
 

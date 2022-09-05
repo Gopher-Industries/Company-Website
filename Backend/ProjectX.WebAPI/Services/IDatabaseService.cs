@@ -346,15 +346,17 @@ namespace ProjectX.WebAPI.Services
                                             .Split(',')
                                             .Select(x => x.Trim());
 
+            List<TeamStudent>? StudentQuery = null;
+
             if (Request.StudentId is not null)
             {
 
-                var StudentQuery = (await this.Database.Collection("Timeline")
-                                                       .Document("Collections")
-                                                       .Collection("Students")
-                                                       .WhereIn(FieldPath.DocumentId, FilteredStudentIds)
-                                                       .GetSnapshotAsync().ConfigureAwait(false))
-                                                       .Select(x => x.ConvertTo<TeamStudent>()).ToList();
+                StudentQuery = (await this.Database.Collection("Timeline")
+                                                   .Document("Collections")
+                                                   .Collection("Students")
+                                                   .WhereIn(FieldPath.DocumentId, FilteredStudentIds)
+                                                   .GetSnapshotAsync().ConfigureAwait(false))
+                                                   .Select(x => x.ConvertTo<TeamStudent>()).ToList();
 
                 // Filter the team names by the teams that the students belong to
                 if (FilteredTeamNames is not null)
@@ -374,9 +376,10 @@ namespace ProjectX.WebAPI.Services
             var TeamQuery = this.Database.Collection("Timeline")
                                          .Document("Collections")
                                          .Collection("Teams")
-                                         .WhereIn(FieldPath.DocumentId, FilteredTeamNames)
                                          .WhereEqualTo(nameof(CompanyTeam.Trimester), Request.Trimester)
                                          as Query;
+
+            
 
             // No filter on Team Name. Return all teams.
             if (FilteredTeamNames is not null)
@@ -389,7 +392,15 @@ namespace ProjectX.WebAPI.Services
                                 .Select(x => x.ConvertTo<CompanyTeamRestModel>())
                                 .ToList();
 
-            
+            StudentQuery ??= (await this.Database.Collection("Timeline")
+                                                 .Document("Collections")
+                                                 .Collection("Students")
+                                                 .WhereIn(nameof(TeamStudent.TeamId), Teams.Select(x => x.TeamId))
+                                                 .GetSnapshotAsync().ConfigureAwait(false))
+                                                 .Select(x => x.ConvertTo<TeamStudent>()).ToList();
+
+            foreach (var Team in Teams)
+                Team.Students = StudentQuery.Where(x => x.TeamId == Team.TeamId).ToList();
 
             return Teams;
 
