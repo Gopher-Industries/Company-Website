@@ -15,15 +15,12 @@ namespace ProjectX.WebAPI.Controllers
     public class ChatbotController : ControllerBase
     {
 
-        private readonly IDatabaseService database;
         private readonly IDialogFlowService botService;
         private readonly ITokenService tokenService;
 
-        public ChatbotController(IDatabaseService database, 
-                                 IDialogFlowService BotService,
+        public ChatbotController(IDialogFlowService BotService,
                                  ITokenService TokenService)
         {
-            this.database = database;
             botService = BotService;
             tokenService = TokenService;
         }

@@ -17,17 +17,17 @@ namespace ProjectX.WebAPI.Controllers
     public class AuthenticationController : ControllerBase
     {
 
-        private readonly ITokenService tokenService;
-        private readonly IDatabaseService database;
-        private readonly IAuthenticationService authService;
+        private readonly IUserService UserService;
+        private readonly ITokenService TokenService;
+        private readonly IAuthenticationService AuthService;
 
-        public AuthenticationController(ITokenService TokenService, 
-                                        IDatabaseService Database,
+        public AuthenticationController(IUserService UserService,
+                                        ITokenService TokenService, 
                                         IAuthenticationService AuthService)
         {
-            tokenService = TokenService;
-            database = Database;
-            authService = AuthService;
+            this.UserService = UserService;
+            this.TokenService = TokenService;
+            this.AuthService = AuthService;
         }
 
         /// <summary>
@@ -42,24 +42,24 @@ namespace ProjectX.WebAPI.Controllers
         public async Task<ObjectResult> Login([FromBody] LoginRequest Request)
         {
 
-            var User = await database.GetUser(new FindUserRequest { Username = Request.Username }).ConfigureAwait(false);
+            var User = await this.UserService.GetUser(new FindUserRequest { Username = Request.Username }).ConfigureAwait(false);
 
             if (User is null)
                 return Unauthorized(value: "Username or password was wrong.");
 
-            var UserAuth = await database.GetUserAuthentication(User).ConfigureAwait(false);
+            var UserAuth = await this.AuthService.TryLogin(User, Request.Password).ConfigureAwait(false);
 
-            if (authService.MatchingPassword(Request.Password, UserAuth) == false)
+            if (UserAuth is null)
                 return Unauthorized(value: "Username or password was wrong.");
 
-            var RefreshToken = tokenService.BuildRefreshToken(User);
+            var RefreshToken = TokenService.BuildRefreshToken(User);
 
-            // Continue without waiting to update the refresh token in the database.
-            _ = this.database.UpdateRefreshToken(User, RefreshToken).ConfigureAwait(false);
+            // Continue without waiting to add the refresh token in the database.
+            _ = this.AuthService.AddRefreshToken(User, RefreshToken).ConfigureAwait(false);
 
             return Accepted(value: new LoginResponse
             {
-                AccessToken = tokenService.BuildAccessToken(User).SignedJWT,
+                AccessToken = TokenService.BuildAccessToken(User).SignedJWT,
                 RefreshToken = RefreshToken.SignedJWT
             });
             
@@ -82,27 +82,26 @@ namespace ProjectX.WebAPI.Controllers
             // Ew.
             // Not too much work doe.
 
-            var InputRefreshToken = tokenService.ReadRefreshToken(Request.RefreshToken);
+            var InputRefreshToken = TokenService.ReadRefreshToken(Request.RefreshToken);
 
-            var NewRefreshToken = tokenService.BuildRefreshToken(InputRefreshToken);
+            var NewRefreshToken = TokenService.BuildRefreshToken(InputRefreshToken);
 
-            var User = await database.GetUser(new FindUserRequest { UserId = InputRefreshToken.UserId }).ConfigureAwait(false);
-            var UserAuth = await database.GetUserAuthentication(User).ConfigureAwait(false);
-
+            var User = await UserService.GetUser(new FindUserRequest { UserId = InputRefreshToken.UserId }).ConfigureAwait(false);
+            
             //
             // Lets check if the JWT signatures match the database
-            var DatabaseRefreshTokenEntry = await this.database.GetRefreshToken(User, InputRefreshToken.TokenId).ConfigureAwait(false);
+            var DatabaseRefreshTokenEntry = await this.AuthService.GetRefreshToken(User, InputRefreshToken.TokenId).ConfigureAwait(false);
             if (DatabaseRefreshTokenEntry is null)
                 return Unauthorized(value: "Refresh token invalid.");
 
             if (DatabaseRefreshTokenEntry.Secret != InputRefreshToken.Secret)
                 return Unauthorized(value: "Refresh token invalid.");
 
-            _ = this.database.UpdateRefreshToken(User, NewRefreshToken).ConfigureAwait(false);
+            _ = this.AuthService.AddRefreshToken(User, NewRefreshToken).ConfigureAwait(false);
 
             return Accepted(value: new LoginResponse
             {
-                AccessToken = tokenService.BuildAccessToken(NewRefreshToken).SignedJWT,
+                AccessToken = TokenService.BuildAccessToken(NewRefreshToken).SignedJWT,
                 RefreshToken = NewRefreshToken.SignedJWT
             });
 
@@ -112,7 +111,7 @@ namespace ProjectX.WebAPI.Controllers
         /// An endpoint to validate the JWT token.
         /// </summary>
         /// <returns></returns>
-        [HttpPost("validate")]
+        [HttpGet("validate")]
         [SwaggerResponse(StatusCodes.Status200OK, description: "The JWT token in use is valid and accepted by the server")]
         [SwaggerResponse(StatusCodes.Status401Unauthorized, description: "Failed to validate your token.")]
         public async Task<ObjectResult> Validate()

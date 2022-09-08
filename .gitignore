@@ -4,5 +4,3 @@ bin
 /Backend/ProjectX.WebAPI/Credentials/rsa.private
 /Backend/ProjectX.WebAPI/Credentials/gopherindustries_net.crt
 /Backend/ProjectX.WebAPI/Credentials/Certificate Request.txt
-/Backend/ProjectX.WebAPI/Credentials
-/Backend/ProjectX.WebAPI/appsettings.json

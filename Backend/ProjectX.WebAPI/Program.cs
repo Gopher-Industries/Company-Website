@@ -1,9 +1,14 @@
 using Google.Api;
+using Google.Cloud.Firestore;
+using Google.Cloud.Firestore.V1;
+using Google.Protobuf.WellKnownTypes;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json.Linq;
 using ProjectX.WebAPI.Models;
+using ProjectX.WebAPI.Models.Config;
 using ProjectX.WebAPI.Services;
 using Swashbuckle.AspNetCore.Filters;
 using System.Reflection;
@@ -18,14 +23,17 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Configuration.AddEnvironmentVariables();
+builder.Configuration.AddUserSecrets("b796c1c3-d396-4390-be1d-786f1923b588");
+builder.Configuration.AddJsonFile("appsettings.json");
 builder.Services.Configure<ApplicationHostSettings>(builder.Configuration.GetSection("ApplicationHosting"));
 builder.Services.Configure<ApplicationIdentitySettings>(builder.Configuration.GetSection("ApplicationIdentity"));
 builder.Services.AddSingleton<ITokenService, TokenService>();
-builder.Services.AddSingleton<IDatabaseService, FirestoreDatabase>();
-builder.Services.AddSingleton<IEmailConfirmationService, GmailConfirmationService>();
+builder.Services.AddSingleton<IEmailService, GmailService>();
 builder.Services.AddSingleton<IAuthenticationService, BCryptAuthenticationService>();
 builder.Services.AddSingleton<IDialogFlowService, DialogFlowService>();
+builder.Services.AddSingleton<IDatabaseService, FirestoreDatabase>();
 builder.Services.AddSingleton<ITimelineService, TimelineService>();
+builder.Services.AddSingleton<IUserService, UserService>();
 builder.Services.AddMemoryCache(builder =>
 {
     builder.SizeLimit = 50000000;
@@ -37,6 +45,30 @@ builder.Services.AddSwaggerGen(options =>
     {
         Title = "ProjectX API",
         Version = "v1"
+    });
+
+    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Name = "Bearer",
+        BearerFormat = "JWT",
+        Scheme = "bearer",
+        Description = "Add the access token to be identified as a user.",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.Http,
+    });
+
+    options.AddSecurityRequirement(new OpenApiSecurityRequirement {
+    {
+        new OpenApiSecurityScheme
+        {
+        Reference = new OpenApiReference
+        {
+            Type = ReferenceType.SecurityScheme,
+            Id = "Bearer"
+        }
+        },
+        new string[] { }
+    }
     });
 
     options.EnableAnnotations();
@@ -71,7 +103,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 });
 
 // If we're not in development mode, startup the kesteral server and use our certificates!
-if (builder.Environment.IsDevelopment() == false)
+if (builder.Environment.IsDevelopment() is false)
 {
 
     // Remove default URL's
@@ -81,7 +113,10 @@ if (builder.Environment.IsDevelopment() == false)
     {
         serverOptions.Listen(System.Net.IPAddress.Parse("0.0.0.0"), 443, listenOptions =>
         {
-            listenOptions.UseHttps(Path.Combine(Environment.CurrentDirectory, "Credentials", "api_gopherindustries_net.pfx"), "G%9mZ#T&&lB&q0r#6wa10Nfg");
+            listenOptions.UseHttps(
+                builder.Configuration["SSL:CertificatePath"],
+                builder.Configuration["SSL:CertificatePassword"]
+            );
         });
     });
 }
@@ -95,7 +130,7 @@ var app = builder.Build();
 //}
 
 app.MapSwagger();
-app.UseSwagger(options => options.SerializeAsV2 = true);
+app.UseSwagger();
 app.UseSwaggerUI();
 
 app.UseHttpsRedirection();

@@ -25,7 +25,7 @@ namespace ProjectX.WebAPI.Models.Database.Authentication
         /// </summary>
         [FirestoreProperty]
         public DateTime ValidUntil { get; init; }
-
+        
     }
 
 

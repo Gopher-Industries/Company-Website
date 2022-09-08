@@ -12,17 +12,17 @@ namespace ProjectX.WebAPI.Controllers
     [SwaggerTag(description: "<h3>User registration management endpoint</h3>")]
     public class RegistrationController : ControllerBase
     {
-        private readonly IDatabaseService databaseService;
-        private readonly IEmailConfirmationService emailConfirmationService;
-        private readonly IAuthenticationService authService;
+        private readonly IUserService UserService;
+        private readonly IEmailService EmailService;
+        private readonly IAuthenticationService AuthService;
 
-        public RegistrationController(IDatabaseService DatabaseService, 
-                                      IEmailConfirmationService EmailConfirmationService,
+        public RegistrationController(IUserService UserService, 
+                                      IEmailService EmailConfirmationService,
                                       IAuthenticationService AuthenticationService)
         {
-            databaseService = DatabaseService;
-            emailConfirmationService = EmailConfirmationService;
-            authService = AuthenticationService;
+            this.UserService = UserService;
+            EmailService = EmailConfirmationService;
+            AuthService = AuthenticationService;
         }
 
         /// <summary>
@@ -42,15 +42,15 @@ namespace ProjectX.WebAPI.Controllers
 
             // Ensure that the user doesn't already exist
 
-            if (await this.databaseService.GetUser(new FindUserRequest { Username = Request.Username }) != null)
+            if (await this.UserService.GetUser(new FindUserRequest { Username = Request.Username }) != null)
                 return StatusCode(StatusCodes.Status409Conflict, value: "User already exists.");
 
-            var Auth = authService.GenerateAuthenticationModel(Request.Password);
+            var CreatedUser = await this.UserService.CreateUser(Request).ConfigureAwait(false);
 
-            var CreatedUser = await this.databaseService.CreateUser(Request, Auth).ConfigureAwait(false);
+            var Auth = await AuthService.CreateUserAuthentication(CreatedUser, Request.Password).ConfigureAwait(false);
 
             // Queue the sending of the confirmation email, but just return OK without waiting for sendgrid to respond.
-            _ = emailConfirmationService.SendConfirmationEmail(CreatedUser).ConfigureAwait(false);
+            _ = EmailService.SendConfirmationEmail(CreatedUser).ConfigureAwait(false);
 
             return StatusCode(StatusCodes.Status201Created, value: "Created user successfully!");
 
@@ -71,10 +71,14 @@ namespace ProjectX.WebAPI.Controllers
         public async Task<StatusCodeResult> ValidateEmail([FromQuery] string UserId)
         {
 
+            var User = await this.UserService.GetUser(new FindUserRequest { UserId = UserId }).ConfigureAwait(false);
+
+            User.EmailVerified = true;
+
             // Try and validate the user email, and if it fails, return BadRequest
-            return await this.databaseService.VerifyUserEmail(UserId)
-                                             .ConfigureAwait(false) 
-                                             ? StatusCode(StatusCodes.Status202Accepted) : BadRequest();
+            return await this.UserService.UpdateUser(User)
+                                         .ConfigureAwait(false) 
+                                         ? StatusCode(StatusCodes.Status202Accepted) : BadRequest();
 
         }
 

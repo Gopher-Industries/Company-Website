@@ -6,6 +6,7 @@ using AgentClient = Google.Cloud.Dialogflow.V2.AgentsClient;
 using Microsoft.Extensions.Caching.Memory;
 using static Google.Cloud.Dialogflow.V2.Contexts;
 using ProjectX.WebAPI.Models.Chatbot;
+using ProjectX.WebAPI.Models.Config;
 
 namespace ProjectX.WebAPI.Services
 {
@@ -55,18 +56,17 @@ namespace ProjectX.WebAPI.Services
             AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(30) // Sessions last for 30 minutes in google cloud.
         };
 
-        public DialogFlowService(IMemoryCache Cache)
+        public DialogFlowService(IMemoryCache Cache,
+                                 IConfiguration Config)
         {
 
             this.Cache = Cache;
 
-            var config = new ConfigurationBuilder()
-                            .AddJsonFile(Path.Combine("Credentials", "dialogflow-access.json"))
-                            .Build();
+            var config = Config.GetJson("Credentials:DialogflowAccess");
 
-            this.ProjectId = config["project_id"];
+            this.ProjectId = Config["Credentials:DialogflowAccess:project_id"];
 
-            (this.ConversationAgent, this.SessionAgent, this.ContextAgent) = this.InitializeDialogflowConnection().ConfigureAwait(false).GetAwaiter().GetResult();
+            (this.ConversationAgent, this.SessionAgent, this.ContextAgent) = this.InitializeDialogflowConnection(config).ConfigureAwait(false).GetAwaiter().GetResult();
             
         }
 
@@ -74,24 +74,24 @@ namespace ProjectX.WebAPI.Services
         /// Builds the three dialogflow endpoint clients 
         /// </summary>
         /// <returns></returns>
-        private async Task<(ConversationsClient, SessionsClient, ContextsClient)> InitializeDialogflowConnection()
+        private async Task<(ConversationsClient, SessionsClient, ContextsClient)> InitializeDialogflowConnection(string DialogflowAccessJson)
         {
 
             var ConversationClient = new ConversationsClientBuilder()
             {
-                CredentialsPath = Path.Combine("Credentials", "dialogflow-access.json"),
+                JsonCredentials = DialogflowAccessJson,
                 Endpoint = $"{Region}-dialogflow.googleapis.com:443"
             }.BuildAsync();
 
             var SessionClient = new SessionsClientBuilder
             {
-                CredentialsPath = Path.Combine("Credentials", "dialogflow-access.json"),
+                JsonCredentials = DialogflowAccessJson,
                 Endpoint = $"{Region}-dialogflow.googleapis.com:443"
             }.BuildAsync();
 
             var ContextClient = new ContextsClientBuilder
             {
-                CredentialsPath = Path.Combine("Credentials", "dialogflow-access.json"),
+                JsonCredentials = DialogflowAccessJson,
                 Endpoint = $"{Region}-dialogflow.googleapis.com:443"
             }.BuildAsync();
 

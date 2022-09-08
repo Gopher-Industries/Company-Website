@@ -8,23 +8,20 @@ using ProjectX.WebAPI.Services;
 
 namespace ProjectX.WebAPI.Controllers
 {
-    [Route("api/users")]
+    [Route("api/v1/users")]
     [ApiController]
     [Authorize]
     public class UsersController : ControllerBase
     {
 
-        private readonly IDatabaseService database;
-        private readonly IAuthenticationService authService;
-        private readonly ITokenService tokenService;
+        private readonly IUserService UserService;
+        private readonly ITokenService TokenService;
 
-        public UsersController(IDatabaseService Database, 
-                               IAuthenticationService AuthService,
+        public UsersController(IUserService UserService,
                                ITokenService TokenService)
         {
-            database = Database;
-            authService = AuthService;
-            tokenService = TokenService;
+            this.UserService = UserService;
+            this.TokenService = TokenService;
         }
 
         /// <summary>
@@ -36,13 +33,13 @@ namespace ProjectX.WebAPI.Controllers
         public async Task<ObjectResult> GetUser([FromQuery] string UserId)
         {
             
-            var AccessToken = this.tokenService.ReadAccessToken(this.HttpContext.User);
+            var AccessToken = this.TokenService.ReadAccessToken(this.HttpContext.User);
 
             // If they try and access someone elses account as a standard user
             if (AccessToken.UserId != UserId && AccessToken.Role != UserRole.Admin)
                 return Unauthorized(value: "You are not an admin user and therefore cannot access other peoples accounts.");
 
-            var UserAcc = await this.database.GetUser(new FindUserRequest { UserId = UserId }).ConfigureAwait(false);
+            var UserAcc = await this.UserService.GetUser(new FindUserRequest { UserId = UserId }).ConfigureAwait(false);
 
             return UserAcc is null ? 
                    Ok(UserAcc) : 

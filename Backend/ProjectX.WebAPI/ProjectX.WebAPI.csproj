@@ -7,16 +7,11 @@
     <PlatformTarget>x64</PlatformTarget>
 	<GenerateDocumentationFile>true</GenerateDocumentationFile>
 	<NoWarn>$(NoWarn);1591</NoWarn>
+	<UserSecretsId>b796c1c3-d396-4390-be1d-786f1923b588</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Credentials\api_gopherindustries_net.pfx" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Credentials\api_gopherindustries_net.pfx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Remove="appsettings.Development.json" />
   </ItemGroup>
 
   <ItemGroup>

@@ -12,6 +12,9 @@ namespace ProjectX.WebAPI.Models.Database.Authentication
     public class UserAuthenticationModel
     {
 
+        [FirestoreDocumentId]
+        public string UserId { get; set; }
+
         [FirestoreProperty]
         public string Version { get; set; } = "0.0.1";
 

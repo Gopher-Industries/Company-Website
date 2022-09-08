@@ -11,17 +11,17 @@ using ProjectX.WebAPI.Models.Database.Authentication;
 
 namespace ProjectX.WebAPI.Services
 {
-    public interface IEmailConfirmationService
+    public interface IEmailService
     {
 
         public Task SendConfirmationEmail(UserModel User);
 
     }
 
-    public class GmailConfirmationService : IEmailConfirmationService
+    public class GmailService : IEmailService
     {
 
-        static string[] Scopes = { GmailService.Scope.GmailSend };
+        static string[] Scopes = { Google.Apis.Gmail.v1.GmailService.Scope.GmailSend };
         static string ApplicationName = "Gmail API .NET Quickstart";
 
         public async Task SendConfirmationEmail(UserModel User)
@@ -78,7 +78,7 @@ namespace ProjectX.WebAPI.Services
                 }
 
                 // Create Gmail API service.
-                var service = new GmailService(new BaseClientService.Initializer
+                var service = new Google.Apis.Gmail.v1.GmailService(new BaseClientService.Initializer
                 {
                     HttpClientInitializer = credential,
                     ApplicationName = ApplicationName
