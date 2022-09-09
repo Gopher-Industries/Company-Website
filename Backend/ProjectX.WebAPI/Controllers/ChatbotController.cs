@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ProjectX.WebAPI.Models.Chatbot;
 using ProjectX.WebAPI.Services;
-using ProjectX.WebAPI.Swagger;
 using Swashbuckle.AspNetCore.Annotations;
 using Swashbuckle.AspNetCore.Filters;
 

@@ -1,17 +1,11 @@
-using Google.Api;
-using Google.Cloud.Firestore;
-using Google.Cloud.Firestore.V1;
-using Google.Protobuf.WellKnownTypes;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using Newtonsoft.Json.Linq;
 using ProjectX.WebAPI.Models;
-using ProjectX.WebAPI.Models.Config;
 using ProjectX.WebAPI.Services;
 using Swashbuckle.AspNetCore.Filters;
 using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,7 +17,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Configuration.AddEnvironmentVariables();
-builder.Configuration.AddUserSecrets("b796c1c3-d396-4390-be1d-786f1923b588");
+builder.Configuration.AddUserSecrets<Program>(true, false);
 builder.Configuration.AddJsonFile("appsettings.json");
 builder.Services.Configure<ApplicationHostSettings>(builder.Configuration.GetSection("ApplicationHosting"));
 builder.Services.Configure<ApplicationIdentitySettings>(builder.Configuration.GetSection("ApplicationIdentity"));
@@ -102,6 +96,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     };
 });
 
+var Cert = new X509Certificate2(builder.Configuration.GetValue<byte[]>("WebsiteApiSSL"), builder.Configuration["ProjectXAPIConfiguration:SSL:CertificatePassword"], X509KeyStorageFlags.MachineKeySet);
+
 // If we're not in development mode, startup the kesteral server and use our certificates!
 if (builder.Environment.IsDevelopment() is false)
 {
@@ -113,10 +109,11 @@ if (builder.Environment.IsDevelopment() is false)
     {
         serverOptions.Listen(System.Net.IPAddress.Parse("0.0.0.0"), 443, listenOptions =>
         {
-            listenOptions.UseHttps(
-                builder.Configuration["SSL:CertificatePath"],
-                builder.Configuration["SSL:CertificatePassword"]
-            );
+            listenOptions.UseHttps();
+            //listenOptions.UseHttps(
+            //    builder.Configuration["SSL:CertificatePath"],
+            //    builder.Configuration["SSL:CertificatePassword"]
+            //);
         });
     });
 }

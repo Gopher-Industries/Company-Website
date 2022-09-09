@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Google.Cloud.SecretManager.V1;
+using Newtonsoft.Json.Linq;
 
 namespace ProjectX.WebAPI.Models.Config
 {
@@ -12,6 +13,16 @@ namespace ProjectX.WebAPI.Models.Config
                 JsonObject[child.Key] = child.Value;
 
             return JsonObject.ToString();
+        }
+
+        public static IConfigurationBuilder AddGoogleCloudSecrets(this IConfigurationBuilder Configuration, string GoogleCloudProject)
+        {
+            var client = SecretManagerServiceClient.Create();
+            var Config = client.GetSecretVersion(new GetSecretVersionRequest
+            {
+                SecretVersionName = SecretVersionName.FromProjectSecretSecretVersion(GoogleCloudProject, "ProjectXAPIConfiguration", "1")
+            });
+            var Certificate = 
         }
 
     }

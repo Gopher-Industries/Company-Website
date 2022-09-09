@@ -4,7 +4,6 @@ using ProjectX.WebAPI.Models;
 using ProjectX.WebAPI.Models.RestRequests.Request;
 using ProjectX.WebAPI.Models.RestRequests.Response;
 using ProjectX.WebAPI.Services;
-using ProjectX.WebAPI.Swagger;
 using Swashbuckle.AspNetCore.Annotations;
 using Swashbuckle.AspNetCore.Filters;
 
@@ -38,7 +37,6 @@ namespace ProjectX.WebAPI.Controllers
         [AllowAnonymous]
         [SwaggerResponse(StatusCodes.Status202Accepted, description: "The user was registered successfully", typeof(LoginResponse))]
         [SwaggerResponse(StatusCodes.Status401Unauthorized, description: "Login credentials failed")]
-        [SwaggerResponseExample(StatusCodes.Status202Accepted, typeof(AuthenticationExamples))]
         public async Task<ObjectResult> Login([FromBody] LoginRequest Request)
         {
 
@@ -73,7 +71,6 @@ namespace ProjectX.WebAPI.Controllers
         [AllowAnonymous]
         [SwaggerResponse(StatusCodes.Status200OK, description: "The authentication refresh was successful!", typeof(LoginResponse))]
         [SwaggerResponse(StatusCodes.Status401Unauthorized, description: "The refresh token was invalid or has been revoked.")]
-        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(AuthenticationExamples))]
         public async Task<ObjectResult> Refresh([FromBody] RefreshAccessTokenRequest Request)
         {
 

@@ -8,7 +8,7 @@ using ProjectX.WebAPI.Services;
 namespace ProjectX.WebAPI.Controllers
 {
     [ApiController]
-    [Authorize]
+    [AllowAnonymous]
     [Route("api/v1/timeline")]
     public class TimelineController : ControllerBase
     {
@@ -25,9 +25,25 @@ namespace ProjectX.WebAPI.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet()]
-        [AllowAnonymous]
         public async Task<ObjectResult> Get([FromQuery] TimelineRequest Request)
         {
+
+            return Ok(value: await TimelineService.GetTimeline(Request));
+
+        }
+
+        /// <summary>
+        /// Users can send messages to our medi chatbot through this endpoint.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("/students/{StudentId}")]
+        public async Task<ObjectResult> Get([FromQuery] string StudentId)
+        {
+
+            var Request = new TimelineRequest
+            {
+                StudentId = StudentId
+            };
 
             return Ok(value: await TimelineService.GetTimeline(Request));
 
