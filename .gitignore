@@ -1,7 +1,0 @@
-.vs
-obj
-bin
-/Backend/ProjectX.WebAPI/Credentials/rsa.private
-/Backend/ProjectX.WebAPI/Credentials/gopherindustries_net.crt
-/Backend/ProjectX.WebAPI/Credentials/Certificate Request.txt
-*.pfx
