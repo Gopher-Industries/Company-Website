@@ -82,14 +82,14 @@ export const Link = styled(NavLink)`
   font-size: 14px;
   font-weight: bold;
   font-family: "Open Sans", sans-serif;
-  color: ${(props) => (props.$visible ? "#5c768d" : "white")};
+  color: ${(props) => (props.$isVisible ? "#5c768d" : "white")};
 
   &:hover {
-    color: ${(props) => (props.$visible ? "#1ab4fc" : "#1ab4fc")};
+    color: ${(props) => (props.$isVisible ? "#1ab4fc" : "#1ab4fc")};
   }
 
   &.active {
-    color: ${(props) => (props.$visible ? "#1ab4fc" : "#1ab4fc")};
+    color: ${(props) => (props.$isVisible ? "#1ab4fc" : "#1ab4fc")};
   }
 
   @media (max-width: 768px) {
@@ -104,14 +104,14 @@ export const ExternalLink = styled.a`
   font-size: 14px;
   font-weight: bold;
   font-family: "Open Sans", sans-serif;
-  color: ${(props) => (props.$visible ? "#5c768d" : "white")};
+  color: ${(props) => (props.$isVisible ? "#5c768d" : "white")};
 
   &:hover {
-    color: ${(props) => (props.$visible ? "#1ab4fc" : "#1ab4fc")};
+    color: ${(props) => (props.$isVisible ? "#1ab4fc" : "#1ab4fc")};
   }
 
   &.active {
-    color: ${(props) => (props.$visible ? "#1ab4fc" : "#1ab4fc")};
+    color: ${(props) => (props.$isVisible ? "#1ab4fc" : "#1ab4fc")};
   }
 
   @media (max-width: 768px) {
@@ -121,8 +121,8 @@ export const ExternalLink = styled.a`
 `;
 
 export const HeaderContainer = styled.div`
-background-color: ${(props) => (props.$visible ? "white" : "transparent")};
-box-shadow: ${(props) => (props.$visible ? "0 6px 10px -2px rgb(0 0 0 / 30%)" : "")};
+background-color: ${(props) => (props.$isVisible ? "white" : "transparent")};
+box-shadow: ${(props) => (props.$isVisible ? "0 6px 10px -2px rgb(0 0 0 / 30%)" : "")};
 position: sticky;
   top: 0;
   height: 70px;
@@ -136,8 +136,8 @@ position: sticky;
   transition: all 0.2s ease;
 
   @media (max-width: 768px) {
-    background-color: ${(props) => (!props.$isOpen && props.$visible ? "white" : "transparent")};
-    box-shadow: ${(props) => (!props.$isOpen && props.$visible ? "0 6px 10px -2px rgb(0 0 0 / 30%)" : "0 0 0 0")};
+    background-color: ${(props) => (!props.$isOpen && props.$isVisible ? "white" : "transparent")};
+    box-shadow: ${(props) => (!props.$isOpen && props.$isVisible ? "0 6px 10px -2px rgb(0 0 0 / 30%)" : "0 0 0 0")};
   }
 `;
 
