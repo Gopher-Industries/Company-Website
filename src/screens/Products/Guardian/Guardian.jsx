@@ -3,7 +3,7 @@ import * as s from "./Guardian.style";
 import HomeVideo from "@Assets/videos/connections.mp4";
 import ProductVideoSrc from "@Assets/videos/guardian.mp4";
 import ProductImage from "@Components/ProductImage/ProductImage";
-
+import {Container, Row, Col} from 'react-grid-system';
 import Pic1 from "@Assets/images/products/guardian/Guardians-1.jpg";
 import Pic2 from "@Assets/images/products/guardian/Guardians-2.jpg";
 import Pic3 from "@Assets/images/products/guardian/Guardians-3.jpg";
@@ -23,6 +23,97 @@ const Guardian = () => {
                     </s.ProductRow>
                     <s.PageVideo src={HomeVideo} width="100%" controls={false} autoPlay={true} loop={true} muted={true}/>
                 </s.ProductTop>
+            </s.ProductInnerContainer>
+
+            <s.ProductDescGradient>
+                <Container>
+                    <Row>
+                        <Col xxl={6} xl={5} lg={12}>
+                            <s.ProductTitle>
+                                <span style={{fontSize: '70px'}}>Product</span> <br/> <span style={{fontSize: '65px', color:"white"}}>Overview</span>
+                            </s.ProductTitle>
+                            <s.ProductText>
+                                Many health conditions go unnoticed until it is too late, particularly in the elderly population, where a decline in health is sometimes associated with ageing and thus ignored. Guardian aims to provide a solution to this ongoing problem.<br/><br/>
+                                Guardian is an activity monitoring and profiling system for the aged care sector with plans to expand to residential homes. Guardian uses a non-invasive radar technology to record a user’s activity and classify these activities over time. Guardian utilises the classified data to predict possible physical and mental health conditions associated with that behaviour. Guardian alerts the elderly person and their family members to see a health professional. Additionally, Guardian detects more urgent incidents such as fall detection.<br/><br/>
+                                Guardian’s primary customer is aged care facilities with a plan to expand our scope to carers of elderly persons in residential settings.
+                            </s.ProductText>
+                            </Col>
+                            <Col xxl={6} xl={7} lg={12}>
+                                <s.ProductVideo src={ProductVideoSrc} controls={true} />
+                        </Col>
+                    </Row>
+                </Container>
+            </s.ProductDescGradient>
+
+            <s.ProductContentRow>
+                <Container>
+                    <Row>
+                        <Col>
+                            <s.ProductTitle style={{fontSize: '70px', color:"rgb(92, 118, 141)"}}>
+                                Product <span style={{fontSize: '70px', color:"rgb(26, 180, 252)"}}>Features</span>
+                            </s.ProductTitle>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col xl={4}>
+                            <s.FeatureText>Monitoring and profiling patient activities</s.FeatureText>
+                        </Col>
+                        <Col xl={4}>
+                            <s.FeatureText>Ability to define a baseline for a patient</s.FeatureText>
+                        </Col>
+                        <Col xl={4}>
+                            <s.FeatureText>Encouraging positive activities</s.FeatureText>
+                        </Col>
+                        <Col xl={4}>
+                            <s.FeatureText>User management allowing for defining Patient, Carer, and Admin users</s.FeatureText>
+                        </Col>
+                        <Col xl={4}>
+                            <s.FeatureText>Providing access to accurate real-time visualisation and position of patient(s)</s.FeatureText>
+                        </Col>
+                        <Col xl={4}>
+                            <s.FeatureText>Alerting caregivers and supervisors during an emergency</s.FeatureText>
+                        </Col>
+                        <Col xl={4}>
+                            <s.FeatureText>Predicting potential physical and mental health conditions at an early stage</s.FeatureText>
+                        </Col>
+                        <Col xl={4}>
+                            <s.FeatureText>User management allowing for defining Patient, Carer, and Admin users</s.FeatureText>
+                        </Col>
+                        <Col xl={4}>
+                            <s.FeatureText>Providing suggestions to see a health professional based on health issue detected</s.FeatureText>
+                        </Col>
+                    </Row>
+                </Container>
+            </s.ProductContentRow>
+
+            <s.ProductContentRow style={{backgroundColor:"rgb(10,30,56)"}}>
+                <Container>
+                    <Row>
+                        <Col>
+                            <s.ProductTitle style={{fontSize: '70px', color:"white"}}>
+                                Product Benefits
+                            </s.ProductTitle>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col xl={4} md={6}>
+                            <s.BenefitsText>Early detection of physical and mental health conditions</s.BenefitsText>
+                        </Col>
+                        <Col xl={4}  md={6}>
+                            <s.BenefitsText>Easy for caregivers to monitor multiple patient activities</s.BenefitsText>
+                        </Col>
+                        <Col xl={4} md={6}>
+                            <s.BenefitsText>Peace of mind for both users and family members who cannot physically keep an eye on their elderly family members</s.BenefitsText>
+                        </Col>
+                        <Col xl={4} md={6}>
+                            <s.BenefitsText>Elderly people can live at home independently for longer</s.BenefitsText>
+                        </Col>
+                    </Row>
+                    <hr style={{marginTop:'60px'}} />
+                </Container>
+            </s.ProductContentRow>
+
+            {/* 
                 <s.ProductContentRowGradient>
                     <s.ProductContentRowInner>
                         <s.ProductContentLeft>
@@ -114,7 +205,7 @@ const Guardian = () => {
                         </s.ProductContent>
                     </s.ProductContentRowInner>
                 </s.ProductContentRow>
-            </s.ProductInnerContainer>
+            */}
         </s.ProductContainer>
 
     );

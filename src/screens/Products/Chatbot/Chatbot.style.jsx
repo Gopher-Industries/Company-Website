@@ -2,12 +2,13 @@ import styled from "styled-components";
 
 export const ProductContainer = styled.div`
   width:100%;
-  display:flex;
+  align-items: center;
   justify-content: center;
 `
 
 export const ProductInnerContainer = styled.div`
   width:100%;
+  height: 320px;
 `
 
 export const ProductRow = styled.div`
@@ -25,7 +26,7 @@ export const ProductPageHeader = styled.h2`
   font-weight: 700;
   font-family: "Poppins ExtraBold", sans-serif;
   margin:0;
-  font-size:40px;
+  font-size:60px;
   line-height:60px;
   letter-spacing: -2px;
   text-align: center;
@@ -33,6 +34,10 @@ export const ProductPageHeader = styled.h2`
 
 export const ProductPageText = styled.div`
   color:white;
+  margin-top: 20px;
+  margin-right: 15px;
+  margin-left: 15px;
+  font-size: 20px;
   font-family: "Open Sans",sans-serif;
   text-align: center;
 `
@@ -47,8 +52,8 @@ export const ProductTop = styled.div`
 
 export const PageVideo = styled.video`
   width: 100%;
-  height:420px;
-  object-fit: unset;
+  height:320px;
+  object-fit: cover;
   position: fixed;
   left: 0;
   right: 0;
@@ -57,13 +62,10 @@ export const PageVideo = styled.video`
   z-index: -1;
 `
 
-export const ProductContentRowGradient = styled.div`
-  background: linear-gradient(225deg,rgba(63,184,175,1) 0%,rgba(20,157,215,1) 100%);
-  padding: 30px 0 30px 0;
-  justify-content: space-around;
-  display: flex;
-  flex-direction: row;
-  margin:0 auto;
+export const ProductDescGradient = styled.div`
+  background: linear-gradient(225deg,rgba(63,184,175,1),rgba(20,157,215,1));
+  width: 100%;
+  justify-content: center;
 `
 
 export const ProductContentRow = styled.div`
@@ -75,6 +77,66 @@ export const ProductContentRow = styled.div`
   background-color: white;
 `
 
+export const ProductTitle = styled.h1`
+  font-family: "Poppins ExtraBold", sans-serif;
+  line-height:60px;
+  letter-spacing: -3px;
+  text-align: left;
+  color: rgb(10, 30, 56);
+  margin-top: 50px;
+  text-transform: uppercase;
+  @ media only screen and (max-width: 576px) {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+`
+
+export const ProductText = styled.div`
+  color:black;
+  font-family: "Open Sans",sans-serif;
+  margin-bottom: 100px;
+  @media only screen and (max-width: 1600px) {
+    margin-bottom: 50px;
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+  @media only screen and (max-width: 1200px) {
+    margin-bottom: -50px;
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+`
+
+export const ProductVideo = styled.video`
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+  box-shadow: 5px 5px 24px -1px #5e5e5e;
+  display: flex;
+  margin-top: 150px;
+  margin-bottom: 150px;
+  @media only screen and (max-width: 1600px) {
+    margin-top: 250px;
+  }
+  @media only screen and (max-width: 1200px) {
+    margin-top: 120px;
+  }
+`
+
+export const FeatureText = styled.li`
+  margin-top: 20px;
+  margin-right: 30px;
+  font-weight:500;
+  list-style-type: none;
+
+  @media only screen and (max-width: 992px) {
+    list-style-type: disc;
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+`
+
+{/* 
 export const ProductContentRowBlue = styled(ProductContentRow)`
   background-color: rgb(10,30,56);
 `
@@ -101,19 +163,9 @@ export const ProductContentRight = styled.div`
 
 export const ProductContent = styled.div`
 `
+*/}
 
-export const ProductTitle = styled.h1`
-  font-weight: 700;
-  font-family: "Poppins ExtraBold", sans-serif;
-  font-size:70px;
-  line-height:60px;
-  letter-spacing: -3px;
-  text-align: left;
-  color: rgb(10, 30, 56);
-  margin-bottom: 20px;
-  text-transform: uppercase;
-`
-
+{/* 
 export const ProductTitleWhite = styled(ProductTitle)`
   color:white;
   padding-bottom: 50px;;
@@ -123,12 +175,6 @@ export const ProductText = styled.div`
   color:black;
   font-family: "Open Sans",sans-serif;
   padding-bottom: 40px;
-`
-
-export const ProductVideo = styled.video`
-  width:80%;
-  border-radius: 5px;
-  box-shadow: 5px 5px 24px -1px #5e5e5e;
 `
 
 export const ProductSubColumns = styled.div`
@@ -185,3 +231,4 @@ export const FeatureListWhite = styled.ul`
     margin-left: -1em;
   }
 `
+*/}

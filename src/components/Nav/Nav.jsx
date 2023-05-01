@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import * as s from "./Nav.style";
-import logoSrc from "@Assets/images/full-white-2.png";
+import logoSrc from "./../../assets/images/full-white-2.png";
 import logoSrcBlack from "@Assets/images/full-black-2.png";
 
 const Nav = (props) => {

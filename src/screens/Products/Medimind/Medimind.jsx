@@ -1,5 +1,6 @@
 import React from "react";
 import * as s from "./Medimind.style";
+import {Container, Row, Col} from 'react-grid-system';
 import HomeVideo from "@Assets/videos/connections.mp4";
 import ProductVideoSrc from "@Assets/videos/medimind.mp4";
 import ProductImage from "@Components/ProductImage/ProductImage";
@@ -21,14 +22,115 @@ const Medimind = () => {
                     </s.ProductRow>
                     <s.PageVideo src={HomeVideo} width="100%" controls={false} autoPlay={true} loop={true} muted={true}/>
                 </s.ProductTop>
+            </s.ProductInnerContainer>
+                <s.ProductDescGradient>
+                    <Container>
+                        <Row>
+                            <Col xxl={6} xl={7} lg={12}>
+                                <s.ProductTitle>
+                                    <span style={{fontSize: '70px'}}>Product</span> <br/> <span style={{fontSize: '65px', color:"white"}}>Overview</span>
+                                </s.ProductTitle>
+                                <s.ProductText>
+                                At Gopher Industries we are creating a medication management and reminder application that aims 
+                                to assist those disadvantaged and disabled to access to a higher degree of healthcare. Our app, 
+                                ‘MediMind’ allows patients to adhere to routine and to promote the self-management of their 
+                                condition without constant doctor or nurse supervision, in the hopes of preventing unnecessary 
+                                relapses and potential complications.<br/><br/> Our app will assist those suffering from the 
+                                three most prevalent conditions within Australia currently, Arthritis, Diabetes and Mental 
+                                Health. In order to accommodate our elderly demographic, our app utilises several features 
+                                which comply with their accessibility requirements. Such as, large block writing, minimal 
+                                colours, simple wireframe design and more to not overstimulate our patients.
+                            </s.ProductText>
+                            </Col>
+                            <Col xxl={6} xl={5} lg={12}>
+                                <s.ProductVideo src={ProductVideoSrc} controls={true} />
+                            </Col>
+                        </Row>
+                    </Container>
+                </s.ProductDescGradient>
+
+                <s.ProductContentRow>
+                    <Container>
+                        <Row>
+                            <Col>
+                                <s.ProductTitle style={{fontSize: '70px', color:"rgb(92, 118, 141)"}}>
+                                    Product <span style={{fontSize: '70px', color:"rgb(26, 180, 252)"}}>Features</span>
+                                </s.ProductTitle>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col xxl={3} xl={4} lg={6}>
+                                <s.FeatureText>Authentication/authorisation log in page to keep patient profile confidential</s.FeatureText>
+                            </Col>
+                            <Col xxl={3} xl={4} lg={6}>
+                                <s.FeatureText>Reminders/notifications at the prescribed time to take medications</s.FeatureText>
+                            </Col>
+                            <Col xxl={3} xl={4} lg={6}>
+                                <s.FeatureText>A point system allowing patients to claim rewards such as discounts for abiding by their schedule</s.FeatureText>
+                            </Col>
+                            <Col xxl={3} xl={4} lg={6}>
+                                <s.FeatureText>Monthly reports including a graph of completion tracking their medication intakes and treatment results</s.FeatureText>
+                            </Col>
+                            <Col xxl={3} xl={4} lg={6}>
+                                <s.FeatureText>Patient profile which consists of patient’s personal details and current medications + dosages</s.FeatureText>
+                            </Col>
+                            <Col xxl={3} xl={4} lg={6}>
+                                <s.FeatureText>Interaction with the app confirms they have taken their medication</s.FeatureText>
+                            </Col>
+                            <Col xxl={3} xl={4} lg={6}>
+                                <s.FeatureText>Wishlist for patients to save rewards they wish to claim in the future</s.FeatureText>
+                            </Col>
+                            <Col xxl={3} xl={4} lg={6}>
+                                <s.FeatureText>Congratulatory messages to positively reinforce patients for taking their medications</s.FeatureText>
+                            </Col>
+                        </Row>
+                    </Container>
+                </s.ProductContentRow>
+
+                <s.ProductContentRow style={{backgroundColor:"rgb(10,30,56)"}}>
+                    <Container>
+                        <Row>
+                            <Col>
+                                <s.ProductTitle style={{fontSize: '70px', color:"white"}}>
+                                    Product Preview
+                                </s.ProductTitle>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col xl={3} md={6} style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
+                            <ProductImage image={Pic1} />
+                            </Col>
+                            <Col xl={3} md={6} style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
+                            <ProductImage image={Pic2} />
+                            </Col>
+                            <Col xl={3} md={6} style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
+                            <ProductImage image={Pic3} />
+                            </Col>
+                            <Col xl={3} md={6} style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
+                            <ProductImage image={Pic4} />
+                            </Col>
+                        </Row>
+                        <hr style={{marginTop:'20px'}} />
+                    </Container>
+                </s.ProductContentRow>
+
+                {/* 
                 <s.ProductContentRowGradient>
                     <s.ProductContentRowInner>
                         <s.ProductContentLeft>
                             <s.ProductTitle>
-                                Product <br/> <span style={{color:"white"}}>Overview</span>
+                                <span style={{fontSize: '70px'}}>Product</span> <br/> <span style={{fontSize: '65px', color:"white"}}>Overview</span>
                             </s.ProductTitle>
-                            <s.ProductText style={{color:"white"}}>
-                                At Gopher Industries we are creating a medication management and reminder application that aims to assist those disadvantaged and disabled to access to a higher degree of healthcare. Our app, ‘MediMind’ allows patients to adhere to routine and to promote the self-management of their condition without constant doctor or nurse supervision, in the hopes of preventing unnecessary relapses and potential complications.<br/><br/> Our app will assist those suffering from the three most prevalent conditions within Australia currently, Arthritis, Diabetes and Mental Health. In order to accommodate our elderly demographic, our app utilises several features which comply with their accessibility requirements. Such as, large block writing, minimal colours, simple wireframe design and more to not overstimulate our patients.
+                            <s.ProductText>
+                                At Gopher Industries we are creating a medication management and reminder application that aims 
+                                to assist those disadvantaged and disabled to access to a higher degree of healthcare. Our app, 
+                                ‘MediMind’ allows patients to adhere to routine and to promote the self-management of their 
+                                condition without constant doctor or nurse supervision, in the hopes of preventing unnecessary 
+                                relapses and potential complications.<br/><br/> Our app will assist those suffering from the 
+                                three most prevalent conditions within Australia currently, Arthritis, Diabetes and Mental 
+                                Health. In order to accommodate our elderly demographic, our app utilises several features 
+                                which comply with their accessibility requirements. Such as, large block writing, minimal 
+                                colours, simple wireframe design and more to not overstimulate our patients.
                             </s.ProductText>
                         </s.ProductContentLeft>
                         <s.ProductContentRight>
@@ -36,6 +138,7 @@ const Medimind = () => {
                         </s.ProductContentRight>
                     </s.ProductContentRowInner>
                 </s.ProductContentRowGradient>
+                
                 <s.ProductContentRow>
                     <s.ProductContentRowInner>
                         <s.ProductContent>
@@ -86,9 +189,9 @@ const Medimind = () => {
                         </s.ProductContent>
                     </s.ProductContentRowInner>
                 </s.ProductContentRow>
-            </s.ProductInnerContainer>
+                */}
+            
         </s.ProductContainer>
-
     );
 };
 

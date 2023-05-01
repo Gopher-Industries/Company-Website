@@ -2,13 +2,12 @@ import styled from "styled-components";
 
 export const ProductContainer = styled.div`
   width:100%;
-  display:flex;
+  align-items: center;
   justify-content: center;
 `
 
 export const ProductInnerContainer = styled.div`
   width:100%;
-  display: flex;
   justify-content: center;
 `
 
@@ -43,8 +42,8 @@ export const ProductText = styled.div`
 
 export const ProductVideo = styled.video`
   width: 100%;
-  height:100vh;
-  object-fit: none;
+  height: 100vh;
+  object-fit: cover;
   position: fixed;
   left: 0;
   right: 0;
@@ -66,5 +65,8 @@ export const ProductItemsRow = styled.div`
   gap:30px;
 `
 
+export const ProductLink = styled.a`
+  text-decoration:none;
+`
 
 
