@@ -2,6 +2,9 @@ import styled from "styled-components";
 import IconButton from "@mui/material/IconButton";
 
 export const SocialsContainer = styled.div`
+  margin-top: 15px;
+  margin-bottom: 20px;
+  justify-content: center;
   display:flex;
   gap:10px;
 `
