@@ -85,12 +85,12 @@ export const Link = styled(NavLink)`
   color: ${(props) => (props.$visible ? "#5c768d" : "white")};
 
   &:hover {
-    color: ${(props) => (props.$visible ? "#334B48" : "#334B48")};
+    color: ${(props) => (props.$visible ? "#1ab4fc" : "#1ab4fc")};
     font-weight: 900;
   }
 
   &.active {
-    color: ${(props) => (props.$visible ? "#334B48" : "#334B48")};
+    color: ${(props) => (props.$visible ? "#1ab4fc" : "#1ab4fc")};
     font-weight: 900;
   }
 
@@ -109,12 +109,12 @@ export const ExternalLink = styled.a`
   color: ${(props) => (props.$visible ? "#5c768d" : "white")};
 
   &:hover {
-    color: ${(props) => (props.$visible ? "#334B48" : "#334B48")};
+    color: ${(props) => (props.$visible ? "#1ab4fc" : "#1ab4fc")};
     font-weight: 900;
   }
 
   &.active {
-    color: ${(props) => (props.$visible ? "#334B48" : "#334B48")};
+    color: ${(props) => (props.$visible ? "#1ab4fc" : "#1ab4fc")};
     font-weight: 900;
   }
 

@@ -1,5 +1,6 @@
 import React from "react";
 import * as s from "./PainAssessment.style";
+import {Container, Row, Col} from 'react-grid-system';
 import HomeVideo from "@Assets/videos/connections.mp4";
 import ProductVideoSrc from "@Assets/videos/painassessment.mp4";
 
@@ -15,6 +16,91 @@ const PainAssessment = () => {
                     </s.ProductRow>
                     <s.PageVideo src={HomeVideo} width="100%" controls={false} autoPlay={true} loop={true} muted={true}/>
                 </s.ProductTop>
+            </s.ProductInnerContainer>
+
+            <s.ProductDescGradient>
+                <Container>
+                    <Row>
+                        <Col xxl={6} xl={7} lg={12}>
+                            <s.ProductTitle>
+                                <span style={{fontSize: '70px'}}>Product</span> <br/> <span style={{fontSize: '65px', color:"white"}}>Overview</span>
+                            </s.ProductTitle>
+                            <s.ProductText>
+                                Pain as a symptom is most commonly self-assessed and verbal communication is typically the primary source of information for 
+                                medical practitioners to understand the level of discomfort a patient is experiencing, however when patients are unable to 
+                                communicate clearly issues of pain mismanagement become significant The goal for this product is to empower age care 
+                                professional to provide better care and pain management strategies for these vulnerable populations.<br/><br/>
+                                Our targeted user is the healthcare provider who is looking to improve their pain diagnostic capability and enhance 
+                                their pain tracking and diagnostic capability.
+                            </s.ProductText>
+                        </Col>
+                        <Col xxl={6} xl={5} lg={12}>
+                            <s.ProductVideo src={ProductVideoSrc} controls={true} />
+                        </Col>
+                    </Row>
+                </Container>
+            </s.ProductDescGradient>
+
+            <s.ProductContentRow>
+                <Container>
+                    <Row>
+                        <Col>
+                            <s.ProductTitle style={{fontSize: '70px', color:"rgb(92, 118, 141)"}}>
+                                Product <span style={{fontSize: '70px', color:"rgb(26, 180, 252)"}}>Features</span>
+                            </s.ProductTitle>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col xl={5}>
+                            <s.FeatureText>
+                                <strong>Our team has plans on implementing the following features over a longer-time frame:</strong><br/><br/><li>A Simple, user-friendly UI</li>
+                                <li style={{listStyleType: 'initial'}}>A Cloud-based assessment engine</li>
+                                <li style={{listStyleType: 'initial'}}>An alert system</li>
+                                <li style={{listStyleType: 'initial'}}>A guided questionnaire</li>
+                            </s.FeatureText>
+                        </Col>
+                        <Col xl={1}/>
+                        <Col xl={5}>
+                            <s.FeatureText>
+                                <strong>Our team has plans on implementing the following features over a longer-time frame:</strong><br/><br/>
+                                <li style={{listStyleType: 'initial'}}>Integration of wearable devices</li>
+                                <li style={{listStyleType: 'initial'}}>Novel technologies for additional data sources</li>
+                                <li style={{listStyleType: 'initial'}}>Facial Identification for Authentication</li>
+                            </s.FeatureText>
+                        </Col>
+                        <Col xl={1}/>
+                    </Row>
+                </Container>
+            </s.ProductContentRow>
+
+            <s.ProductContentRow style={{backgroundColor:"rgb(10,30,56)"}}>
+                <Container>
+                    <Row>
+                        <Col>
+                            <s.ProductTitle style={{fontSize: '70px', color:"white"}}>
+                                Product Benefits
+                            </s.ProductTitle>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col xl={3} md={6}>
+                            <s.BenefitsText>Through implementation of pain history tracking, providers can easily track pain history, empowering recognition of pain trends and allowing for estimation of future needs</s.BenefitsText>
+                        </Col>
+                        <Col xl={3} md={6}>
+                            <s.BenefitsText>Increase the accuracy of pain assessments, enabling more efficient pain management strategies and improving quality of life</s.BenefitsText>
+                        </Col>
+                        <Col xl={3}  md={6}>
+                            <s.BenefitsText>Guide caregivers through the process, cutting down on training time and making the pain assessment process easier to perform</s.BenefitsText>
+                        </Col>
+                        <Col xl={3} md={6}>
+                            <s.BenefitsText>Providing the data and history needed to construct and carry out a more comprehensive pain a management strategy</s.BenefitsText>
+                        </Col>
+                    </Row>
+                    <hr style={{marginTop:'60px'}} />
+                </Container>
+            </s.ProductContentRow>
+
+            {/*
                 <s.ProductContentRowGradient>
                     <s.ProductContentRowInner>
                         <s.ProductContentLeft>
@@ -90,7 +176,7 @@ const PainAssessment = () => {
                         </s.ProductContent>
                     </s.ProductContentRowInner>
                 </s.ProductContentRowBlue>
-            </s.ProductInnerContainer>
+            */}
         </s.ProductContainer>
 
     );

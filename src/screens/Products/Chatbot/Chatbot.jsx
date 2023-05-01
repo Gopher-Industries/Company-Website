@@ -1,5 +1,6 @@
 import React from "react";
 import * as s from "./Chatbot.style";
+import {Container, Row, Col} from 'react-grid-system';
 import HomeVideo from "@Assets/videos/connections.mp4";
 import ProductVideoSrc from "@Assets/videos/chatbot.mp4";
 
@@ -15,6 +16,64 @@ const Chatbot = () => {
                     </s.ProductRow>
                     <s.PageVideo src={HomeVideo} width="100%" controls={false} autoPlay={true} loop={true} muted={true}/>
                 </s.ProductTop>
+            </s.ProductInnerContainer>
+
+            <s.ProductDescGradient>
+                <Container>
+                    <Row>
+                        <Col xxl={6} xl={5} lg={12}>
+                            <s.ProductTitle>
+                                <span style={{fontSize: '70px'}}>Product</span> <br/> <span style={{fontSize: '65px', color:"white"}}>Overview</span>
+                            </s.ProductTitle>
+                            <s.ProductText>
+                                At Gopher Industries, we have created a chatbot system call “Medi” that works as a personal assistant
+                                for our intended demographic population to interact with the Gopher Suit and act as a frontage that is the
+                                introduction to the products that Gopher houses.<br/><br/>
+                                Medi allows users to chat to it as if it was a human interaction helping them with anything from pain
+                                assessments to water consumption, nutritional advice and log in with their patient ID. Medi is designed for its users being easy to use, interacts in a friendly human way and will
+                                eventually beable to be interacted with via both text and voice – making the product accessible for whoever needs to use it. <br/><br/>
+                                With future implementations and testing of GUI environments that suits our users, it is an exciting time for Medi with graphical implementations and unlimited additions available – Medi is proud to be the face
+                                of the Gopher Range!
+                            </s.ProductText>
+                        </Col>
+                        <Col xxl={6} xl={7} lg={12}>
+                            <s.ProductVideo src={ProductVideoSrc} controls={true} />
+                        </Col>
+                    </Row>
+                </Container>
+            </s.ProductDescGradient>
+
+            <s.ProductContentRow>
+                <Container>
+                    <Row>
+                        <Col>
+                            <s.ProductTitle style={{fontSize: '70px', color:"rgb(92, 118, 141)"}}>
+                                Product <span style={{fontSize: '70px', color:"rgb(26, 180, 252)"}}>Features</span>
+                            </s.ProductTitle>
+                        </Col>
+                    </Row>
+                    <Row>
+                            <Col xl={3} lg={6}>
+                                <s.FeatureText><strong>Pain Assessment Questionnaire:</strong><br/><br/>Ability for our users to log and rate their pain assessment to share with authorised health care providers</s.FeatureText>
+                            </Col>
+                            <Col xl={3} lg={6}>
+                                <s.FeatureText><strong>Water Consumption and Tracking:</strong><br/><br/>For anyone but in particular, the demographic that is using our app, tracking water consumption daily is important. Our MEDI will be able to
+                                    log a daily water goal, graphically retrieve how much their consumption and motivate them along the way to reach their goal</s.FeatureText>
+                            </Col>
+                            <Col xl={3} lg={6}>
+                                <s.FeatureText><strong>Diet Plan and Tracking:</strong><br/><br/>Users are able to plan, monitor and share their diet plan with their authorised health care providers. It will be a space where they can keep track of their nutrition and diet plans and
+                                    with a quick reference on a day to day basis of their nutritional intake</s.FeatureText>
+                            </Col>
+                            <Col xl={3} lg={6}>
+                                <s.FeatureText><strong>Data extraction and sharing: </strong><br/><br/>Exciting plans are in the works for Medi to be able to hve read and write function to our
+                                    centralised database, meaning that the information that is entered into Medi can be logged to the other Gopher logs and vice versa. Meaning that Medi
+                                    is the centralised product that users can interact with for all of their health needs</s.FeatureText>
+                            </Col>
+                    </Row>
+                </Container>
+            </s.ProductContentRow>
+
+            {/* 
                 <s.ProductContentRowGradient>
                     <s.ProductContentRowInner>
                         <s.ProductContentLeft>
@@ -66,7 +125,7 @@ const Chatbot = () => {
                         </s.ProductContent>
                     </s.ProductContentRowInner>
                 </s.ProductContentRow>
-            </s.ProductInnerContainer>
+            */}
         </s.ProductContainer>
 
     );

@@ -1,5 +1,6 @@
 import React from "react";
 import * as s from "./Apollo.style";
+import {Container, Row, Col} from 'react-grid-system';
 import HomeVideo from "@Assets/videos/connections.mp4";
 import ProductVideoSrc from "@Assets/videos/apollo.mp4";
 
@@ -15,6 +16,121 @@ const Apollo = () => {
                     </s.ProductRow>
                     <s.PageVideo src={HomeVideo} width="100%" controls={false} autoPlay={true} loop={true} muted={true}/>
                 </s.ProductTop>
+            </s.ProductInnerContainer>
+
+            <s.ProductDescGradient>
+                <Container>
+                    <Row>
+                        <Col xxl={6} xl={5} lg={12}>
+                            <s.ProductTitle>
+                                <span style={{fontSize: '70px'}}>Product</span> <br/> <span style={{fontSize: '65px', color:"white"}}>Overview</span>
+                            </s.ProductTitle>
+                            <s.ProductText>
+                                At Gopher Industries we are developing a central database, called the Apollo Database, (to host and integrate all 
+                                the company’s products and manage core services across the company. The goal of Team Peacemaker is to provide the 
+                                Apollo central database to host and integrate Gopher Industries product suite, centrally manage patient history, 
+                                provide core services company-wide and eventually enable artificial intelligence data analytics on patient data. 
+                                <br/><br/> The Apollo Database will enable the storage, access, and retrieval of sensitive personal and health 
+                                information collated through the various applications offered by Gopher Industries. The Apollo Database employs 
+                                cloud technologies and cybersecurity practices to ensure the confidentiality, integrity and availability of 
+                                sensitive health data required for the various applications developed internally within Gopher Industries.  <br/><br/>
+                                The Apollo Database enables access through APIs (Application Programming Interface) for better health outcomes for 
+                                aged persons. Additionally, the Apollo Database reduces duplication of effort for core services in Gopher Industries. 
+                                The Apollo Database will also allow the application of advance artificial intelligence analytics in the future, 
+                                to provide insights and improved services of Gopher Industries customers.<br/><br/> Apollo’s primary market are 
+                                the internal development teams within Gopher Industries.
+                            </s.ProductText>
+                        </Col>
+                        <Col xxl={6} xl={7} lg={12}>
+                            <s.ProductVideo src={ProductVideoSrc} controls={true} />
+                        </Col>
+                    </Row>
+                </Container>
+            </s.ProductDescGradient>
+
+            <s.ProductContentRow>
+                <Container>
+                    <Row>
+                        <Col>
+                            <s.ProductTitle style={{fontSize: '70px', color:"rgb(92, 118, 141)"}}>
+                                Product <span style={{fontSize: '70px', color:"rgb(26, 180, 252)"}}>Features</span>
+                            </s.ProductTitle>
+                        </Col>
+                    </Row>
+                    <Row>
+                            <Col xl={5} lg={6}>
+                                <s.FeatureText>Audit Logging to track user access and changes to data lake</s.FeatureText>
+                            </Col>
+                            <Col xl={3} lg={6}>
+                                <s.FeatureText>Data Model Management</s.FeatureText>
+                            </Col>
+                            <Col xl={3} lg={6}>
+                                <s.FeatureText>Data Security</s.FeatureText>
+                            </Col>
+                            <Col xl={5} lg={6}>
+                                <s.FeatureText>Data Ingestion (i.e., ability to extract data from various sources)</s.FeatureText>
+                            </Col>
+                            <Col xl={3} lg={6}>
+                                <s.FeatureText>Scalable Data Storage</s.FeatureText>
+                            </Col>
+                            <Col xl={3} lg={6}>
+                                <s.FeatureText>Data Retrieval</s.FeatureText>
+                            </Col>
+                            <Col xl={5} lg={6}>
+                                <s.FeatureText>Ability to store structured, semi-structured and unstructured data</s.FeatureText>
+                            </Col>
+                            <Col xl={3} lg={6}>
+                                <s.FeatureText>Data Manageability</s.FeatureText>
+                            </Col>
+                            <Col xl={3} lg={6}>
+                                <s.FeatureText>Data Analytics</s.FeatureText>
+                            </Col>
+                            <Col xl={5} lg={6}>
+                                <s.FeatureText>Authentication/Authorisation to maintain confidentiality/privacy</s.FeatureText>
+                            </Col>
+                            <Col xl={4} lg={6} />
+                            <Col xl={3} lg={6} />
+                            
+                    </Row>
+                </Container>
+            </s.ProductContentRow>
+
+            <s.ProductContentRow style={{backgroundColor:"rgb(10,30,56)"}}>
+                <Container>
+                    <Row>
+                        <Col>
+                            <s.ProductTitle style={{fontSize: '70px', color:"white"}}>
+                                Product Benefits
+                            </s.ProductTitle>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col xl={4} md={6}>
+                            <s.BenefitsText>Easy for Gopher Industries applications to collect, store and retrieve data</s.BenefitsText>
+                        </Col>
+                        <Col xl={4}  md={6}>
+                            <s.BenefitsText>Enhanced data integration enabling information to be shared between various Gopher Industries applications/services</s.BenefitsText>
+                        </Col>
+                        <Col xl={4} md={6}>
+                            <s.BenefitsText>Universal data security standards across Gopher Industries (i.e., no weak links)</s.BenefitsText>
+                        </Col>
+                        <Col xl={4} md={6}>
+                            <s.BenefitsText>Continuous access to stored data regardless of time or location</s.BenefitsText>
+                        </Col>
+                        <Col xl={4} md={6}>
+                            <s.BenefitsText>Consolidates sensitive information into a single repository, enhancing security</s.BenefitsText>
+                        </Col>
+                        <Col xl={4} md={6}>
+                            <s.BenefitsText>Increased efficiency in Gopher Industries with a reduction in data duplication</s.BenefitsText>
+                        </Col>
+                        <Col xl={4} md={6}>
+                            <s.BenefitsText>Data Ingestion (i.e., ability to extract data from various sources)</s.BenefitsText>
+                        </Col>
+                    </Row>
+                    <hr style={{marginTop:'60px'}} />
+                </Container>
+            </s.ProductContentRow>
+                {/**
                 <s.ProductContentRowGradient>
                     <s.ProductContentRowInner>
                         <s.ProductContentLeft>
@@ -93,7 +209,8 @@ const Apollo = () => {
                         </s.ProductContent>
                     </s.ProductContentRowInner>
                 </s.ProductContentRowBlue>
-            </s.ProductInnerContainer>
+                 */}
+            
         </s.ProductContainer>
 
     );
