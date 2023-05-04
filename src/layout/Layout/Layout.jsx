@@ -1,5 +1,6 @@
 import React, {useEffect} from "react";
 import { Outlet } from "react-router-dom";
+import Nav from "@Components/Nav/Nav";
 import Footer from "@Layout/Footer/Footer";
 import ScrollButton from "@Components/ScrollButton/ScrollButton";
 import { Widget, addResponseMessage } from 'react-chat-widget';
