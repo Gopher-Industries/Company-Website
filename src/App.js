@@ -16,6 +16,7 @@ import Chatbot from "@Screens/Products/Chatbot/Chatbot";
 import PainAssessment from "@Screens/Products/PainAssessment/PainAssessment";
 import DietPlanner from "@Screens/Products/DietPlanner/DietPlanner";
 
+
 function App() {
   return (
       <BrowserRouter>
@@ -40,5 +41,3 @@ function App() {
 }
 
 export default App;
-
-
