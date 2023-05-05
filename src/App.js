@@ -16,14 +16,14 @@ import Chatbot from "@Screens/Products/Chatbot/Chatbot";
 import PainAssessment from "@Screens/Products/PainAssessment/PainAssessment";
 import DietPlanner from "@Screens/Products/DietPlanner/DietPlanner";
 
-import Carousel from "./components/Carousel"
+import SimpleCarousel from './components/Carousel2/Carousel2';
 
-const slides = [
-  "https://i.ibb.co/ncrXc2V/1.png",
-  "https://i.ibb.co/B3s7v4h/2.png",
-  "https://i.ibb.co/XXR8kzF/3.png",
-  "https://i.ibb.co/yg7BSdM/4.png"
-]
+// const slides = [
+//   "Text_Placeholder_1",
+//   "Text_Placeholder_1",
+//   "Text_Placeholder_1",
+//   "Text_Placeholder_1"
+// ]
 
 // function App() {
 //   return (
@@ -50,18 +50,14 @@ const slides = [
 
 // export default App;
 
-
-export default function App() {
+function App() {
   return (
-
-    // max-w-lg | temporarily restricting size to prevent the carousel being full-window size
-    <main className="App">
-      <div className ="max-w-lg"> </div>
-      <Carousel> 
-        {slides.map((s) => (
-          <img src={s} />
-        ))}
-      </Carousel>
-    </main>
-  )
+    <div className="App">
+      <div style={{ backgroundColor: "#f5f5f5", maxWidth:'50%' }}>
+        <SimpleCarousel />
+      </div>
+    </div>
+  );
 }
+
+export default App;
