@@ -3,7 +3,7 @@ import * as s from "./ProductTile.style";
 import PropTypes from "prop-types";
 
 const ProductTile = (props) => {
-    const {icon, title, subtitle} = props;
+    const {icon, title, subtitle, link, linkTitle} = props;
     return (
         <s.ProductTile>
             <s.ProductIcon>{icon}</s.ProductIcon>
@@ -11,11 +11,9 @@ const ProductTile = (props) => {
             {subtitle && (
                 <s.ProductSubtitle>{subtitle}</s.ProductSubtitle>
             )}
-            {/*
             {link && (
                 <s.ProductLink href={link} alt={linkTitle}>{linkTitle}</s.ProductLink>
             )}
-            */}
         </s.ProductTile>
     );
 };
