@@ -52,7 +52,7 @@ const Apollo = () => {
                 <Container>
                     <Row>
                         <Col>
-                            <s.ProductTitle style={{color:"rgb(92, 118, 141)"}}>
+                            <s.ProductTitle style={{color:"rgb(92, 118, 141)", paddingBottom:"20px"}}>
                                 Product <span style={{color:"rgb(26, 180, 252)"}}>Features</span>
                             </s.ProductTitle>
                         </Col>
