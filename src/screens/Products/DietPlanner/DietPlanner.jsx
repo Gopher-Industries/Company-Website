@@ -28,16 +28,16 @@ const DietPlanner = () => {
             <s.ProductDescGradient>
                     <Container>
                         <Row>
-                            <Col xxl={6} xl={7} lg={12}>
+                            <Col xxl={6} xl={5} lg={12}>
                                 <s.ProductTitle>
-                                    <span style={{fontSize: '70px'}}>Product</span> <br/> <span style={{fontSize: '65px', color:"white"}}>Overview</span>
+                                    Product <br/> <span style={{color:"white"}}>Overview</span>
                                 </s.ProductTitle>
-                                <s.ProductText>
-                                NutriHelp is an Android application that aims to promote healthy eating habits for Australia's senior population, by 
-                                providing personalised recipes based on the user's specified health conditions and nutritional preferences.<br/><br/> 
-                                Our goal is to decrease the number of elderly people that are either malnourished or at risk of malnutrition, promote 
-                                nutritional health through food intake and increase transparency and awareness of our user’s current nutritional health.
-                            </s.ProductText>
+                                <s.ProductText style={{color:'white'}}>
+                                    NutriHelp is an Android application that aims to promote healthy eating habits for Australia's senior population, by 
+                                    providing personalised recipes based on the user's specified health conditions and nutritional preferences.<br/><br/> 
+                                    Our goal is to decrease the number of elderly people that are either malnourished or at risk of malnutrition, promote 
+                                    nutritional health through food intake and increase transparency and awareness of our user’s current nutritional health.
+                                </s.ProductText>
                             </Col>
                             <Col xxl={6} xl={5} lg={12}>
                                 <s.ProductVideo src={ProductVideoSrc} controls={true} />
@@ -50,86 +50,85 @@ const DietPlanner = () => {
                     <Container>
                         <Row>
                             <Col>
-                                <s.ProductTitle style={{fontSize: '70px', color:"rgb(92, 118, 141)"}}>
-                                    Product <span style={{fontSize: '70px', color:"rgb(26, 180, 252)"}}>Features</span>
+                                <s.ProductTitle style={{color:"rgb(92, 118, 141)"}}>
+                                    Product <span style={{color:"rgb(26, 180, 252)"}}>Features</span>
                                 </s.ProductTitle>
                             </Col>
                         </Row>
                         <Row>
                             <Col xl={4} lg={6}>
-                                <s.FeatureText>We’ll keep their family/carer and GP up to date with their nutritional health</s.FeatureText>
+                                <s.FeatureText><li>We’ll keep their family/carer and GP up to date with their nutritional health</li></s.FeatureText>
                             </Col>
                             <Col xl={4} lg={6}>
-                                <s.FeatureText>Our daily recipe plan provides flexibility, select which time of day you would like meals provided, or select your own</s.FeatureText>
+                                <s.FeatureText><li>Our daily recipe plan provides flexibility, select which time of day you would like meals provided, or select your own</li></s.FeatureText>
                             </Col>
                             <Col xl={4} lg={6}>
-                                <s.FeatureText>The user can shop online within the application using their shopping list or sent it to a family member to collect</s.FeatureText>
+                                <s.FeatureText><li>The user can shop online within the application using their shopping list or sent it to a family member to collect</li></s.FeatureText>
                             </Col>
                             <Col xl={4} lg={6}>
-                                <s.FeatureText>We support our user's health through nutrition derived from food, giving more control to the user over their nutritional health</s.FeatureText>
+                                <s.FeatureText><li>We support our user's health through nutrition derived from food, giving more control to the user over their nutritional health</li></s.FeatureText>
                             </Col>
                             <Col xl={4} lg={6}>
-                                <s.FeatureText>As the users’ health changes over time, their preferences can be updated and the application will respond to their changing health</s.FeatureText>
+                                <s.FeatureText><li>As the users’ health changes over time, their preferences can be updated and the application will respond to their changing health</li></s.FeatureText>
                             </Col>
                             <Col xl={4} lg={6}>
-                                <s.FeatureText>Users are provided with recipe steps and a convenient shopping list. We provide an abundance of recipes that can be swapped, added, deleted and favourited</s.FeatureText>
+                                <s.FeatureText><li>Users are provided with recipe steps and a convenient shopping list. We provide an abundance of recipes that can be swapped, added, deleted and favourited</li></s.FeatureText>
                             </Col>
                             <Col xl={4} lg={6}>
-                                <s.FeatureText>NutriHelp generates nutritional plans by understanding our users' needs. The user tells us their personal characteristics, mobility, nutritional requirements and nutrient-related deficiencies/diseases and we provide nutritional planning, tracking and daily recipes to support the user</s.FeatureText>
+                                <s.FeatureText><li>NutriHelp generates nutritional plans by understanding our users' needs. The user tells us their personal characteristics, mobility, nutritional requirements and nutrient-related deficiencies/diseases and we provide nutritional planning, tracking and daily recipes to support the user</li></s.FeatureText>
                             </Col>
                             <Col xl={4} lg={6}>
-                                <s.FeatureText>NutriHelp supports our users in managing their general nutritional wellbeing and the management of nutrient-related diseases and deficiencies through personalised nutritional planning</s.FeatureText>
+                                <s.FeatureText><li>NutriHelp supports our users in managing their general nutritional wellbeing and the management of nutrient-related diseases and deficiencies through personalised nutritional planning</li></s.FeatureText>
                             </Col>
                             <Col xl={4} lg={6}>
-                                <s.FeatureText>The nutritional plan makes sure the user meets and stays within their optimal nutritional targets throughout each day, assisting the user to maintain and improve their health</s.FeatureText>
+                                <s.FeatureText><li>The nutritional plan makes sure the user meets and stays within their optimal nutritional targets throughout each day, assisting the user to maintain and improve their health</li></s.FeatureText>
                             </Col>
                         </Row>
                     </Container>
                 </s.ProductContentRow>
 
-                <s.ProductDescGradient2>
+                <s.ProductDescGradient>
                     <Container>
                         <Row>
                             <Col>
                                 <s.ProductTitle>
-                                    <span style={{fontSize: '70px'}}>Product  </span> <span style={{fontSize: '65px', color:"white"}}> Overview</span>
+                                    Product <span style={{color:"white"}}> Benefits</span>
                                 </s.ProductTitle>
                             </Col>
                         </Row>
                         <Row>
                             <Col>
                                 <s.ProductText style={{color: 'white'}}>
-                                <strong>Convenient, Accurate, Tailored</strong><br/><br/>NutriHelp makes sure that our users maintain a healthy, balanced diet specific to their individual needs. It takes away the complicated guesswork and ensures that seniors stay healthy and looked after!
+                                    <strong>Convenient, Accurate, Tailored</strong><br/><br/>NutriHelp makes sure that our users maintain a healthy, balanced diet specific to their individual needs. It takes away the complicated guesswork and ensures that seniors stay healthy and looked after!
                                 </s.ProductText>
                             </Col>
                         </Row>
                     </Container>
-                </s.ProductDescGradient2>
+                </s.ProductDescGradient>
 
                 <s.ProductContentRow style={{backgroundColor:"rgb(10,30,56)"}}>
-                    <Container>
+                    <Container style={{width:'100%'}}>
                         <Row>
                             <Col>
-                                <s.ProductTitle style={{fontSize: '70px', color:"white"}}>
-                                    Product Preview
+                                <s.ProductTitle style={{color:"white"}}>
+                                    Product Images
                                 </s.ProductTitle>
                             </Col>
                         </Row>
                         <Row>
-                            <Col xl={3} md={6} style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
-                            <ProductImage image={Pic1} />
+                            <Col xl={3} md={6}>
+                                <ProductImage image={Pic1} />
                             </Col>
-                            <Col xl={3} md={6} style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
-                            <ProductImage image={Pic2} />
+                            <Col xl={3} md={6}>
+                                <ProductImage image={Pic2} />
                             </Col>
-                            <Col xl={3} md={6} style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
-                            <ProductImage image={Pic3} />
+                            <Col xl={3} md={6}>
+                                <ProductImage image={Pic3} />
                             </Col>
-                            <Col xl={3} md={6} style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
-                            <ProductImage image={Pic4} />
+                            <Col xl={3} md={6}>
+                                <ProductImage image={Pic4} />
                             </Col>
                         </Row>
-                        <hr style={{marginTop:'20px'}} />
                     </Container>
                 </s.ProductContentRow>
 
