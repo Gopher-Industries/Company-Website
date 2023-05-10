@@ -22,10 +22,10 @@ const Chatbot = () => {
                 <Container>
                     <Row>
                         <Col xxl={6} xl={5} lg={12}>
-                            <s.ProductTitle>
-                                <span style={{fontSize: '70px'}}>Product</span> <br/> <span style={{fontSize: '65px', color:"white"}}>Overview</span>
+                        <s.ProductTitle>
+                                Product <br/> <span style={{color:"white"}}>Overview</span>
                             </s.ProductTitle>
-                            <s.ProductText>
+                            <s.ProductText style={{color:'white'}}>
                                 At Gopher Industries, we have created a chatbot system call “Medi” that works as a personal assistant
                                 for our intended demographic population to interact with the Gopher Suit and act as a frontage that is the
                                 introduction to the products that Gopher houses.<br/><br/>
@@ -47,8 +47,8 @@ const Chatbot = () => {
                 <Container>
                     <Row>
                         <Col>
-                            <s.ProductTitle style={{fontSize: '70px', color:"rgb(92, 118, 141)"}}>
-                                Product <span style={{fontSize: '70px', color:"rgb(26, 180, 252)"}}>Features</span>
+                            <s.ProductTitle style={{color:"rgb(92, 118, 141)"}}>
+                                Product <span style={{color:"rgb(26, 180, 252)"}}>Features</span>
                             </s.ProductTitle>
                         </Col>
                     </Row>
