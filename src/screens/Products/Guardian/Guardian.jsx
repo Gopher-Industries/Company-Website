@@ -49,8 +49,8 @@ const Guardian = () => {
                 <Container>
                     <Row>
                         <Col>
-                            <s.ProductTitle style={{fontSize: '70px', color:"rgb(92, 118, 141)"}}>
-                                Product <span style={{fontSize: '70px', color:"rgb(26, 180, 252)"}}>Features</span>
+                            <s.ProductTitle style={{color:"rgb(92, 118, 141)"}}>
+                                Product <span style={{color:"rgb(26, 180, 252)"}}>Features</span>
                             </s.ProductTitle>
                         </Col>
                     </Row>
