@@ -30,9 +30,9 @@ const Guardian = () => {
                     <Row>
                         <Col xxl={6} xl={5} lg={12}>
                             <s.ProductTitle>
-                                <span style={{fontSize: '70px'}}>Product</span> <br/> <span style={{fontSize: '65px', color:"white"}}>Overview</span>
+                                Product <br/> <span style={{color:"white"}}>Overview</span>
                             </s.ProductTitle>
-                            <s.ProductText>
+                            <s.ProductText style={{color:'white'}}>
                                 Many health conditions go unnoticed until it is too late, particularly in the elderly population, where a decline in health is sometimes associated with ageing and thus ignored. Guardian aims to provide a solution to this ongoing problem.<br/><br/>
                                 Guardian is an activity monitoring and profiling system for the aged care sector with plans to expand to residential homes. Guardian uses a non-invasive radar technology to record a user’s activity and classify these activities over time. Guardian utilises the classified data to predict possible physical and mental health conditions associated with that behaviour. Guardian alerts the elderly person and their family members to see a health professional. Additionally, Guardian detects more urgent incidents such as fall detection.<br/><br/>
                                 Guardian’s primary customer is aged care facilities with a plan to expand our scope to carers of elderly persons in residential settings.
@@ -56,62 +56,87 @@ const Guardian = () => {
                     </Row>
                     <Row>
                         <Col xl={4}>
-                            <s.FeatureText>Monitoring and profiling patient activities</s.FeatureText>
+                            <s.FeatureText><li>Monitoring and profiling patient activities</li></s.FeatureText>
                         </Col>
                         <Col xl={4}>
-                            <s.FeatureText>Ability to define a baseline for a patient</s.FeatureText>
+                            <s.FeatureText><li>Ability to define a baseline for a patient</li></s.FeatureText>
                         </Col>
                         <Col xl={4}>
-                            <s.FeatureText>Encouraging positive activities</s.FeatureText>
+                            <s.FeatureText><li>Encouraging positive activities</li></s.FeatureText>
                         </Col>
                         <Col xl={4}>
-                            <s.FeatureText>User management allowing for defining Patient, Carer, and Admin users</s.FeatureText>
+                            <s.FeatureText><li>User management allowing for defining Patient, Carer, and Admin users</li></s.FeatureText>
                         </Col>
                         <Col xl={4}>
-                            <s.FeatureText>Providing access to accurate real-time visualisation and position of patient(s)</s.FeatureText>
+                            <s.FeatureText><li>Providing access to accurate real-time visualisation and position of patient(s)</li></s.FeatureText>
                         </Col>
                         <Col xl={4}>
-                            <s.FeatureText>Alerting caregivers and supervisors during an emergency</s.FeatureText>
+                            <s.FeatureText><li>Alerting caregivers and supervisors during an emergency</li></s.FeatureText>
                         </Col>
                         <Col xl={4}>
-                            <s.FeatureText>Predicting potential physical and mental health conditions at an early stage</s.FeatureText>
+                            <s.FeatureText><li>Predicting potential physical and mental health conditions at an early stage</li></s.FeatureText>
                         </Col>
                         <Col xl={4}>
-                            <s.FeatureText>User management allowing for defining Patient, Carer, and Admin users</s.FeatureText>
+                            <s.FeatureText><li>User management allowing for defining Patient, Carer, and Admin users</li></s.FeatureText>
                         </Col>
                         <Col xl={4}>
-                            <s.FeatureText>Providing suggestions to see a health professional based on health issue detected</s.FeatureText>
+                            <s.FeatureText><li>Providing suggestions to see a health professional based on health issue detected</li></s.FeatureText>
                         </Col>
                     </Row>
                 </Container>
             </s.ProductContentRow>
 
-            <s.ProductContentRow style={{backgroundColor:"rgb(10,30,56)"}}>
+            <s.ProductDescGradient>
                 <Container>
                     <Row>
                         <Col>
-                            <s.ProductTitle style={{fontSize: '70px', color:"white"}}>
-                                Product Benefits
+                            <s.ProductTitle>
+                                Product <span style={{color:"white"}}>Benefits</span>
                             </s.ProductTitle>
                         </Col>
                     </Row>
                     <Row>
                         <Col xl={4} md={6}>
-                            <s.BenefitsText>Early detection of physical and mental health conditions</s.BenefitsText>
+                            <s.BenefitsText><li>Early detection of physical and mental health conditions</li></s.BenefitsText>
                         </Col>
                         <Col xl={4}  md={6}>
-                            <s.BenefitsText>Easy for caregivers to monitor multiple patient activities</s.BenefitsText>
+                            <s.BenefitsText><li>Easy for caregivers to monitor multiple patient activities</li></s.BenefitsText>
                         </Col>
                         <Col xl={4} md={6}>
-                            <s.BenefitsText>Peace of mind for both users and family members who cannot physically keep an eye on their elderly family members</s.BenefitsText>
+                            <s.BenefitsText><li>Elderly people can live at home independently for longer</li></s.BenefitsText>
                         </Col>
                         <Col xl={4} md={6}>
-                            <s.BenefitsText>Elderly people can live at home independently for longer</s.BenefitsText>
+                            <s.BenefitsText><li>Peace of mind for both users and family members who cannot physically keep an eye on their elderly family members</li></s.BenefitsText>
                         </Col>
                     </Row>
-                    <hr style={{marginTop:'60px'}} />
                 </Container>
-            </s.ProductContentRow>
+            </s.ProductDescGradient>
+            <s.ProductContentRow style={{backgroundColor:"rgb(10,30,56)"}}>
+                    <Container style={{width:'100%'}}>
+                        <Row>
+                            <Col>
+                                <s.ProductTitle style={{color:"white"}}>
+                                    Product Images
+                                </s.ProductTitle>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col xl={3} md={6}>
+                                <ProductImage image={Pic1} />
+                            </Col>
+                            <Col xl={3} md={6}>
+                                <ProductImage image={Pic2} />
+                            </Col>
+                            <Col xl={3} md={6}>
+                                <ProductImage image={Pic3} />
+                            </Col>
+                            <Col xl={3} md={6}>
+                                <ProductImage image={Pic4} />
+                            </Col>
+                        </Row>
+                    </Container>
+                </s.ProductContentRow>
+
 
             {/* 
                 <s.ProductContentRowGradient>
