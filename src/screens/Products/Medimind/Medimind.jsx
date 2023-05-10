@@ -26,11 +26,11 @@ const Medimind = () => {
                 <s.ProductDescGradient>
                     <Container>
                         <Row>
-                            <Col xxl={6} xl={7} lg={12}>
+                            <Col xl={7} lg={12}>
                                 <s.ProductTitle>
-                                    <span style={{fontSize: '70px'}}>Product</span> <br/> <span style={{fontSize: '65px', color:"white"}}>Overview</span>
+                                    Product <br/> <span style={{color:"white"}}>Overview</span>
                                 </s.ProductTitle>
-                                <s.ProductText>
+                                <s.ProductText style={{color:'white'}}>
                                 At Gopher Industries we are creating a medication management and reminder application that aims 
                                 to assist those disadvantaged and disabled to access to a higher degree of healthcare. Our app, 
                                 ‘MediMind’ allows patients to adhere to routine and to promote the self-management of their 
@@ -42,7 +42,7 @@ const Medimind = () => {
                                 colours, simple wireframe design and more to not overstimulate our patients.
                             </s.ProductText>
                             </Col>
-                            <Col xxl={6} xl={5} lg={12}>
+                            <Col xl={5} lg={12}>
                                 <s.ProductVideo src={ProductVideoSrc} controls={true} />
                             </Col>
                         </Row>
@@ -53,64 +53,63 @@ const Medimind = () => {
                     <Container>
                         <Row>
                             <Col>
-                                <s.ProductTitle style={{fontSize: '70px', color:"rgb(92, 118, 141)"}}>
-                                    Product <span style={{fontSize: '70px', color:"rgb(26, 180, 252)"}}>Features</span>
+                                <s.ProductTitle style={{color:"rgb(92, 118, 141)"}}>
+                                    Product <span style={{color:"rgb(26, 180, 252)"}}>Features</span>
                                 </s.ProductTitle>
                             </Col>
                         </Row>
                         <Row>
                             <Col xxl={3} xl={4} lg={6}>
-                                <s.FeatureText>Authentication/authorisation log in page to keep patient profile confidential</s.FeatureText>
+                                <s.FeatureText><li>Authentication/authorisation log in page to keep patient profile confidential</li></s.FeatureText>
                             </Col>
                             <Col xxl={3} xl={4} lg={6}>
-                                <s.FeatureText>Reminders/notifications at the prescribed time to take medications</s.FeatureText>
+                                <s.FeatureText><li>Reminders/notifications at the prescribed time to take medications</li></s.FeatureText>
                             </Col>
                             <Col xxl={3} xl={4} lg={6}>
-                                <s.FeatureText>A point system allowing patients to claim rewards such as discounts for abiding by their schedule</s.FeatureText>
+                                <s.FeatureText><li>A point system allowing patients to claim rewards such as discounts for abiding by their schedule</li></s.FeatureText>
                             </Col>
                             <Col xxl={3} xl={4} lg={6}>
-                                <s.FeatureText>Monthly reports including a graph of completion tracking their medication intakes and treatment results</s.FeatureText>
+                                <s.FeatureText><li>Monthly reports including a graph of completion tracking their medication intakes and treatment results</li></s.FeatureText>
                             </Col>
                             <Col xxl={3} xl={4} lg={6}>
-                                <s.FeatureText>Patient profile which consists of patient’s personal details and current medications + dosages</s.FeatureText>
+                                <s.FeatureText><li>Patient profile which consists of patient’s personal details and current medications + dosages</li></s.FeatureText>
                             </Col>
                             <Col xxl={3} xl={4} lg={6}>
-                                <s.FeatureText>Interaction with the app confirms they have taken their medication</s.FeatureText>
+                                <s.FeatureText><li>Interaction with the app confirms they have taken their medication</li></s.FeatureText>
                             </Col>
                             <Col xxl={3} xl={4} lg={6}>
-                                <s.FeatureText>Wishlist for patients to save rewards they wish to claim in the future</s.FeatureText>
+                                <s.FeatureText><li>Wishlist for patients to save rewards they wish to claim in the future</li></s.FeatureText>
                             </Col>
                             <Col xxl={3} xl={4} lg={6}>
-                                <s.FeatureText>Congratulatory messages to positively reinforce patients for taking their medications</s.FeatureText>
+                                <s.FeatureText><li>Congratulatory messages to positively reinforce patients for taking their medications</li></s.FeatureText>
                             </Col>
                         </Row>
                     </Container>
                 </s.ProductContentRow>
 
                 <s.ProductContentRow style={{backgroundColor:"rgb(10,30,56)"}}>
-                    <Container>
+                    <Container style={{width:'100%'}}>
                         <Row>
                             <Col>
-                                <s.ProductTitle style={{fontSize: '70px', color:"white"}}>
-                                    Product Preview
+                                <s.ProductTitle style={{color:"white"}}>
+                                    Product Images
                                 </s.ProductTitle>
                             </Col>
                         </Row>
                         <Row>
-                            <Col xl={3} md={6} style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
-                            <ProductImage image={Pic1} />
+                            <Col xl={3} md={6}>
+                                <ProductImage image={Pic1} />
                             </Col>
-                            <Col xl={3} md={6} style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
-                            <ProductImage image={Pic2} />
+                            <Col xl={3} md={6}>
+                                <ProductImage image={Pic2} />
                             </Col>
-                            <Col xl={3} md={6} style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
-                            <ProductImage image={Pic3} />
+                            <Col xl={3} md={6}>
+                                <ProductImage image={Pic3} />
                             </Col>
-                            <Col xl={3} md={6} style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
-                            <ProductImage image={Pic4} />
+                            <Col xl={3} md={6}>
+                                <ProductImage image={Pic4} />
                             </Col>
                         </Row>
-                        <hr style={{marginTop:'20px'}} />
                     </Container>
                 </s.ProductContentRow>
 
