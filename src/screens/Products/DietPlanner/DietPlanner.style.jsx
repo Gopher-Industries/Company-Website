@@ -34,7 +34,6 @@ export const ProductPageHeader = styled.h2`
 
 export const ProductPageText = styled.div`
   color:white;
-  margin-top: 20px;
   margin-right: 15px;
   margin-left: 15px;
   font-family: "Open Sans",sans-serif;
