@@ -23,9 +23,9 @@ const Apollo = () => {
                     <Row>
                         <Col xxl={6} xl={5} lg={12}>
                             <s.ProductTitle>
-                                <span style={{fontSize: '70px'}}>Product</span> <br/> <span style={{fontSize: '65px', color:"white"}}>Overview</span>
+                                Product <br/> <span style={{color:"white"}}>Overview</span>
                             </s.ProductTitle>
-                            <s.ProductText>
+                            <s.ProductText style={{color:'white'}}>
                                 At Gopher Industries we are developing a central database, called the Apollo Database, (to host and integrate all 
                                 the company’s products and manage core services across the company. The goal of Team Peacemaker is to provide the 
                                 Apollo central database to host and integrate Gopher Industries product suite, centrally manage patient history, 
@@ -52,41 +52,41 @@ const Apollo = () => {
                 <Container>
                     <Row>
                         <Col>
-                            <s.ProductTitle style={{fontSize: '70px', color:"rgb(92, 118, 141)"}}>
-                                Product <span style={{fontSize: '70px', color:"rgb(26, 180, 252)"}}>Features</span>
+                            <s.ProductTitle style={{color:"rgb(92, 118, 141)"}}>
+                                Product <span style={{color:"rgb(26, 180, 252)"}}>Features</span>
                             </s.ProductTitle>
                         </Col>
                     </Row>
                     <Row>
                             <Col xl={5} lg={6}>
-                                <s.FeatureText>Audit Logging to track user access and changes to data lake</s.FeatureText>
+                                <s.FeatureText><li>Audit Logging to track user access and changes to data lake</li></s.FeatureText>
                             </Col>
                             <Col xl={3} lg={6}>
-                                <s.FeatureText>Data Model Management</s.FeatureText>
+                                <s.FeatureText><li>Data Model Management</li></s.FeatureText>
                             </Col>
                             <Col xl={3} lg={6}>
-                                <s.FeatureText>Data Security</s.FeatureText>
+                                <s.FeatureText><li>Data Security</li></s.FeatureText>
                             </Col>
                             <Col xl={5} lg={6}>
-                                <s.FeatureText>Data Ingestion (i.e., ability to extract data from various sources)</s.FeatureText>
+                                <s.FeatureText><li>Data Ingestion (i.e., ability to extract data from various sources)</li></s.FeatureText>
                             </Col>
                             <Col xl={3} lg={6}>
-                                <s.FeatureText>Scalable Data Storage</s.FeatureText>
+                                <s.FeatureText><li>Scalable Data Storage</li></s.FeatureText>
                             </Col>
                             <Col xl={3} lg={6}>
-                                <s.FeatureText>Data Retrieval</s.FeatureText>
+                                <s.FeatureText><li>Data Retrieval</li></s.FeatureText>
                             </Col>
                             <Col xl={5} lg={6}>
-                                <s.FeatureText>Ability to store structured, semi-structured and unstructured data</s.FeatureText>
+                                <s.FeatureText><li>Ability to store structured, semi-structured and unstructured data</li></s.FeatureText>
                             </Col>
                             <Col xl={3} lg={6}>
-                                <s.FeatureText>Data Manageability</s.FeatureText>
+                                <s.FeatureText><li>Data Manageability</li></s.FeatureText>
                             </Col>
                             <Col xl={3} lg={6}>
-                                <s.FeatureText>Data Analytics</s.FeatureText>
+                                <s.FeatureText><li>Data Analytics</li></s.FeatureText>
                             </Col>
                             <Col xl={5} lg={6}>
-                                <s.FeatureText>Authentication/Authorisation to maintain confidentiality/privacy</s.FeatureText>
+                                <s.FeatureText><li>Authentication/Authorisation to maintain confidentiality/privacy</li></s.FeatureText>
                             </Col>
                             <Col xl={4} lg={6} />
                             <Col xl={3} lg={6} />
@@ -99,35 +99,35 @@ const Apollo = () => {
                 <Container>
                     <Row>
                         <Col>
-                            <s.ProductTitle style={{fontSize: '70px', color:"white"}}>
+                            <s.ProductTitle style={{color:"white"}}>
                                 Product Benefits
                             </s.ProductTitle>
                         </Col>
                     </Row>
                     <Row>
                         <Col xl={4} md={6}>
-                            <s.BenefitsText>Easy for Gopher Industries applications to collect, store and retrieve data</s.BenefitsText>
+                            <s.BenefitsText><li>Easy for Gopher Industries applications to collect, store and retrieve data</li></s.BenefitsText>
                         </Col>
                         <Col xl={4}  md={6}>
-                            <s.BenefitsText>Enhanced data integration enabling information to be shared between various Gopher Industries applications/services</s.BenefitsText>
+                            <s.BenefitsText><li>Enhanced data integration enabling information to be shared between various Gopher Industries applications/services</li></s.BenefitsText>
                         </Col>
                         <Col xl={4} md={6}>
-                            <s.BenefitsText>Universal data security standards across Gopher Industries (i.e., no weak links)</s.BenefitsText>
+                            <s.BenefitsText><li>Universal data security standards across Gopher Industries (i.e., no weak links)</li></s.BenefitsText>
                         </Col>
                         <Col xl={4} md={6}>
-                            <s.BenefitsText>Continuous access to stored data regardless of time or location</s.BenefitsText>
+                            <s.BenefitsText><li>Continuous access to stored data regardless of time or location</li></s.BenefitsText>
                         </Col>
                         <Col xl={4} md={6}>
-                            <s.BenefitsText>Consolidates sensitive information into a single repository, enhancing security</s.BenefitsText>
+                            <s.BenefitsText><li>Consolidates sensitive information into a single repository, enhancing security</li></s.BenefitsText>
                         </Col>
                         <Col xl={4} md={6}>
-                            <s.BenefitsText>Increased efficiency in Gopher Industries with a reduction in data duplication</s.BenefitsText>
+                            <s.BenefitsText><li>Increased efficiency in Gopher Industries with a reduction in data duplication</li></s.BenefitsText>
                         </Col>
                         <Col xl={4} md={6}>
-                            <s.BenefitsText>Data Ingestion (i.e., ability to extract data from various sources)</s.BenefitsText>
+                            <s.BenefitsText><li>Data Ingestion (i.e., ability to extract data from various sources)</li></s.BenefitsText>
                         </Col>
                     </Row>
-                    <hr style={{marginTop:'60px'}} />
+                    
                 </Container>
             </s.ProductContentRow>
                 {/**
