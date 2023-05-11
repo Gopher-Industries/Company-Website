@@ -6,16 +6,6 @@ export const FooterContainer = styled.div`
   font-size: 14px;
   width:100%;
   box-sizing: border-box;
-
-  //tablet
-  @media (min-width: 768px) and (max-width: 991px) {
-    font-size: 12px;
-  }
-
-  //mobile
-  @media only screen and (max-width: 767px) {
-    font-size: 12px;
-  }
 `
 
 export const FooterTop = styled.div`
@@ -24,16 +14,6 @@ export const FooterTop = styled.div`
   box-sizing:border-box;
   display:flex;
   justify-content: center;
-
-  //tablet
-  @media (min-width: 768px) and (max-width: 991px) {
-    padding: 40px 30px 20px 30px;
-  }
-
-  //mobile
-  @media only screen and (max-width: 767px) {
-    padding: 40px 30px 20px 30px;
-  }
 `
 
 export const FooterTopContent = styled.div`
@@ -41,21 +21,6 @@ export const FooterTopContent = styled.div`
   justify-content: space-between;
   display:grid;
   grid-template-columns: repeat(2, 1fr);
-
-  //tablet
-  @media (min-width: 768px) and (max-width: 991px) {
-    display:grid;
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  //mobile
-  @media only screen and (max-width: 767px) {
-    display:grid;
-    grid-template-columns: repeat(1, 1fr);
-    align-items: center;
-    justify-items: center; 
-    grid-row-gap: 25px;
-  }
 `
 
 export const FooterTitle = styled.div`
@@ -68,44 +33,21 @@ export const FooterTitle = styled.div`
 `
 
 export const FooterSocials = styled.div`
-
 `
 
 export const FooterBottom = styled.div`
   text-align: center;
   padding:30px 0 30px 0;
   font-family: "Open Sans",sans-serif;
-
-  //tablet
-  @media (min-width: 768px) and (max-width: 991px) {
-    padding:20px 0 30px 0;
-  }
-
-  //mobile
-  @media only screen and (max-width: 767px) {
-    padding:20px 0 30px 0;
-  }
 `
 
 export const FooterTopLeft = styled.div`
-
 `
 
 export const FooterTopRight = styled.div`
   width:600px;
   text-align: center;
   font-family: "Open Sans",sans-serif;
-
-  //tablet
-  @media (min-width: 768px) and (max-width: 991px) {
-      width: 460px;
-  }
-  
-  //mobile
-  @media only screen and (max-width: 767px) {
-      width: 390px;
-  }
-
 `
 export const Logo = styled.img`
   height:55px;
