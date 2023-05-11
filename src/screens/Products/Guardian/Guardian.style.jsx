@@ -2,13 +2,12 @@ import styled from "styled-components";
 
 export const ProductContainer = styled.div`
   width:100%;
-  align-items: center;
+  display:flex;
   justify-content: center;
 `
 
 export const ProductInnerContainer = styled.div`
   width:100%;
-
 `
 
 export const ProductRow = styled.div`
@@ -34,8 +33,6 @@ export const ProductPageHeader = styled.h2`
 
 export const ProductPageText = styled.div`
   color:white;
-  margin-right: 15px;
-  margin-left: 15px;
   font-family: "Open Sans",sans-serif;
   text-align: center;
 `
@@ -50,8 +47,8 @@ export const ProductTop = styled.div`
 
 export const PageVideo = styled.video`
   width: 100%;
-  height:320px;
-  object-fit: cover;
+  height:420px;
+  object-fit: unset;
   position: fixed;
   left: 0;
   right: 0;
@@ -60,17 +57,17 @@ export const PageVideo = styled.video`
   z-index: -1;
 `
 
-export const ProductDescGradient = styled.div`
+export const ProductContentRowGradient = styled.div`
   background: linear-gradient(225deg,rgba(63,184,175,1) 0%,rgba(20,157,215,1) 100%);
-  padding: 30px 0 30px 0;
-  justify-content: space-around;
+  padding: 50px 0 50px 0;
+  justify-content: center;
   display: flex;
   flex-direction: row;
   margin:0 auto;
 `
 
 export const ProductContentRow = styled.div`
-  padding: 30px 0 30px 0;
+  padding: 50px 0 50px 0;
   justify-content: space-around;
   display: flex;
   flex-direction: row;
@@ -78,52 +75,6 @@ export const ProductContentRow = styled.div`
   background-color: white;
 `
 
-export const ProductTitle = styled.h1`
-  font-weight: 700;
-  font-size:70px;
-  font-family: "Poppins ExtraBold", sans-serif;
-  line-height:60px;
-  letter-spacing: -3px;
-  text-align: left;
-  color: rgb(10, 30, 56);
-  margin-top: 50px;
-  text-transform: uppercase;
-`
-
-export const ProductTitleWhite = styled(ProductTitle)`
-  color:white;
-  padding-bottom: 50px;
-`
-
-export const ProductText = styled.div`
-  color:black;
-  font-family: "Open Sans",sans-serif;
-  margin-bottom: 100px;
-`
-
-export const ProductVideo = styled.video`
-  max-width: 100%;
-  height: auto;
-  border-radius: 5px;
-  box-shadow: 5px 5px 24px -1px #5e5e5e;
-  display: flex;
-  margin-top: 150px;
-  margin-bottom: 150px;
-`
-
-export const FeatureText = styled.ul`
-  margin-top: 20px;
-  margin-right: 30px;
-`
-
-export const BenefitsText = styled.ul`
-  margin-top: 20px;
-  margin-right: 30px;
-  color: white;
-  padding-bottom: 
-`
-
-{/* 
 export const ProductContentRowBlue = styled(ProductContentRow)`
   background-color: rgb(10,30,56);
 `
@@ -132,41 +83,169 @@ export const ProductContentRowInner = styled.div`
   max-width:1200px;
   display: flex;
   flex-direction: row;
+
+  @media (max-width: 991px) {
+    flex-direction: column;
+  }
 `
 
 export const ProductContentLeft = styled.div`
-  max-width:55%;
+  width:50%;
+
+  @media (max-width: 991px){
+    width: 100%;
+  }
 `
 
 export const ProductContentRight = styled.div`
-  max-width:45%;
+  width:50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
   padding-left:20px;
+
+  @media (max-width: 991px){
+    width: 100%;
+  }
 `
 
 export const ProductContent = styled.div`
 `
-*/}
 
-{/*
-export const ProductSubColumns = styled.div`
-  display:flex;
-  flex-direction: row;
-  color:black;
-  gap:20px;
-  
-  > div {
-    max-width:33%;
+export const ProductTitleContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  @media (max-width: 767px) {
+    flex-direction: row;
   }
 `
 
-export const ProductSubColumnsWhite = styled(ProductSubColumns)`
+export const ProductTitleProduct = styled.h1`
+  font-weight: 700;
+  font-family: "Poppins ExtraBold", sans-serif;
+  font-size:70px;
+  line-height:60px;
+  letter-spacing: -3px;
+  text-align: left;
+  color: rgb(10, 30, 56);
+  margin-bottom: 20px;
+  text-transform: uppercase;
+
+  @media (min-width: 768px) and (max-width: 991px) {
+    margin-left: 30px;
+  }
+
+  @media (max-width: 767px){
+    width: 45%;
+    text-align: right;
+    margin-left: 7px;
+    font-size:40px;
+  }
+`
+
+export const ProductTitleOverview = styled.h1`
+  font-weight: 700;
+  font-family: "Poppins ExtraBold", sans-serif;
+  font-size:70px;
+  line-height:60px;
+  letter-spacing: -3px;
+  text-align: left;
+  color: white;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  margin-top: -20px;
+
+  @media (min-width: 768px) and (max-width: 991px) {
+    margin-left: 30px;
+    margin-top: -20px;
+  }
+
+  @media (max-width: 767px){
+    width: 50%;
+    margin-top: 27px;
+    margin-left: 10px;
+    text-align: left;
+    font-size:40px;
+  }
+`
+
+
+export const ProductTitle = styled.div`
+  font-weight: 700;
+  font-family: "Poppins ExtraBold", sans-serif;
+  font-size:70px;
+  line-height:60px;
+  letter-spacing: -3px;
+  text-align: left;
+  color: rgb(10, 30, 56);
+  margin-bottom: 20px;
+  text-transform: uppercase;
+
+  @media (min-width: 768px) and (max-width: 991px) {
+    margin-left: 30px;
+  }
+
+  @media (max-width: 767px){
+    text-align: center;
+    font-size:40px;
+  }
+`
+
+
+export const ProductTitleWhite = styled(ProductTitle)`
   color:white;
-  justify-content: space-between;
+  padding-bottom: 50px;;
+`
+
+export const ProductText = styled.div`
+  color:black;
+  font-family: "Open Sans",sans-serif;
+  padding-bottom: 40px;
+
+  @media (min-width: 768px) and (max-width: 991px) {
+    margin: 0px 30px 0px 30px;
+  }
+
+  @media (max-width: 767px){
+    margin: 0px 50px 0px 50px;
+    text-align: center;
+  }
+`
+
+export const ProductVideo = styled.video`
+  width:80%;
+  border-radius: 5px;
+  box-shadow: 5px 5px 24px -1px #5e5e5e;
+`
+
+export const InnerFeatureContainer = styled.div`
+  display:flex;
+  flex-direction: row;
+
+  @media (max-width: 767px){
+    flex-direction: column;
+  }
+`
+
+export const FeastureColumn = styled.div`
+  display:grid;
+  grid-template-columns: repeat(4, auto);
+  grid-column-gap: 10px;
+
+  @media (min-width: 768px) and (max-width: 991px){
+    margin-right: 30px;
+    grid-template-columns: repeat(2, auto);
+    grid-column-gap: 10px;
+  }  
+  
+  @media only screen and (max-width: 767px) {
+    margin-right: 0px;
+    grid-template-columns: repeat(1, auto);
+    grid-column-gap: 10px;
+  }
 `
 
 export const FeatureList = styled.ul`
@@ -175,7 +254,7 @@ export const FeatureList = styled.ul`
   list-style:none;
   
   > li {
-    padding-bottom:15px;
+    padding: 0px 20px 30px 0;
   }
   
   > li::before {
@@ -186,15 +265,24 @@ export const FeatureList = styled.ul`
     width: 1em;
     margin-left: -1em;
   }
+
+  @media (min-width: 768px) and (max-width: 991px) {
+    margin-left: 30px;
+  }
+
+  @media (max-width: 767px){
+    margin: 0px 50px 0px 50px;
+    text-align: left;
+  }
 `
 
-export const FeatureListWhite = styled.ul`
+export const BenefitList = styled.ul`
   margin:0;
   padding-inline-start: 20px;
   list-style:none;
   
   > li {
-    padding-bottom:15px;
+    padding: 0px 20px 30px 0;
     color:white;
   }
   
@@ -206,5 +294,37 @@ export const FeatureListWhite = styled.ul`
     width: 1em;
     margin-left: -1em;
   }
+
+  @media (min-width: 768px) and (max-width: 991px) {
+    margin-left: 30px;
+  }
+
+  @media (max-width: 767px){
+    margin: 0px 50px 0px 50px;
+    text-align: left;
+  }
 `
-*/}
+
+export const ImageColumn = styled.div`
+  display:grid;
+  grid-template-columns: repeat(4, auto);
+  grid-column-gap: 10px;
+
+  @media (min-width: 768px) and (max-width: 991px){
+    margin-right: 0px;
+    grid-column-gap: 40px;
+    transform: scale(0.8);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }  
+
+  @media only screen and (max-width: 767px) {
+    margin-top: -100px;
+    transform: scale(0.5);
+    justify-content: center;
+    grid-column-gap: 30px;
+    align-items: center;
+    display: flex;
+  }
+`
