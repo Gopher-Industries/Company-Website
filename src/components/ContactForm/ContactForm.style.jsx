@@ -10,6 +10,7 @@ export const ContactFormContainer = styled.div`
   flex-direction: row;
   font-family: "Open Sans", sans-serif;
   box-shadow: 5px 5px 24px -1px #5e5e5e;
+  max-height: 443px;
 `
 
 export const Row = styled.div`
@@ -35,6 +36,7 @@ export const ContactFormRight = styled.div`
   display: flex;
   flex-direction: column;
   color:white;
+
   
   > div:first-child {
     margin-bottom:20px;
@@ -42,6 +44,14 @@ export const ContactFormRight = styled.div`
     padding:0;
     font-weight: bold;
   }
+`
+
+export const ContactFormEmail = styled.div`
+flex: 1;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}
 `
 
 export const FormTitle = styled.div`
@@ -60,8 +70,23 @@ export const ColItemIcon = styled.div`
   padding-right:10px;
 `
 
+// ADDED @media queries to dynamically change text size in order to completely fit on the form
 export const ColItemText = styled.div`
-    
+  @media (max-width: 1000px) {
+    font-size: 15px;
+  }
+  @media (max-width: 600px) {
+    font-size: 13px;
+  }  
+  @media (max-width: 500px) {
+    font-size: 11.5px;
+  }  
+  @media (max-width: 450px) {
+    font-size: 11px;
+  }  
+  @media (max-width: 400px) {
+    font-size: 10px;
+  }  
 `
 
 export const FormStatus = styled.div`

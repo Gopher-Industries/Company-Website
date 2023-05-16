@@ -16,47 +16,26 @@ import Chatbot from "@Screens/Products/Chatbot/Chatbot";
 import PainAssessment from "@Screens/Products/PainAssessment/PainAssessment";
 import DietPlanner from "@Screens/Products/DietPlanner/DietPlanner";
 
-import SimpleCarousel from './components/Carousel2/Carousel2';
-
-// const slides = [
-//   "Text_Placeholder_1",
-//   "Text_Placeholder_1",
-//   "Text_Placeholder_1",
-//   "Text_Placeholder_1"
-// ]
-
-// function App() {
-//   return (
-//       <BrowserRouter>
-//           <Routes>
-//               <Route element={<Layout />}>
-//                   <Route path={"/"} element={<Home />} />
-//                   <Route path={"/contact-us"} element={<ContactUs />} />
-//                   <Route path={"/products"} element={<Products />} />
-//                     <Route path={"/products/medimind"} element={<Medimind />} />
-//                     <Route path={"/products/apollo"} element={<Apollo />} />
-//                     <Route path={"/products/guardian"} element={<Guardian />} />
-//                     <Route path={"/products/chatbot"} element={<Chatbot />} />
-//                     <Route path={"/products/painassessment"} element={<PainAssessment />} />
-//                     <Route path={"/products/dietplanner"} element={<DietPlanner />} />
-//                   <Route path={"/company-timeline"} element={<CompanyTimeline />} />
-//                   <Route path={"/student-timeline"} element={<StudentTimeline />} />
-//                   <Route path={"*"} element={<NotFound />} />
-//               </Route>
-//           </Routes>
-//       </BrowserRouter>
-//   );
-// }
-
-// export default App;
-
 function App() {
   return (
-    <div className="App">
-      <div style={{ backgroundColor: "#f5f5f5", maxWidth:'50%' }}>
-        <SimpleCarousel />
-      </div>
-    </div>
+      <BrowserRouter>
+          <Routes>
+              <Route element={<Layout />}>
+                  <Route path={"/"} element={<Home />} />
+                  <Route path={"/contact-us"} element={<ContactUs />} />
+                  <Route path={"/products"} element={<Products />} />
+                    <Route path={"/products/medimind"} element={<Medimind />} />
+                    <Route path={"/products/apollo"} element={<Apollo />} />
+                    <Route path={"/products/guardian"} element={<Guardian />} />
+                    <Route path={"/products/chatbot"} element={<Chatbot />} />
+                    <Route path={"/products/painassessment"} element={<PainAssessment />} />
+                    <Route path={"/products/dietplanner"} element={<DietPlanner />} />
+                  <Route path={"/company-timeline"} element={<CompanyTimeline />} />
+                  <Route path={"/student-timeline"} element={<StudentTimeline />} />
+                  <Route path={"*"} element={<NotFound />} />
+              </Route>
+          </Routes>
+      </BrowserRouter>
   );
 }
 
