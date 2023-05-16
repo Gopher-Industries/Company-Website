@@ -4,10 +4,7 @@ import HomeVideo from "@Assets/videos/connections.mp4";
 
 import ContactForm from "@Components/ContactForm/ContactForm";
 
-
 const ContactUs = () => {
-
-
     return (
         <s.ContactUsContainer>
             <s.ContactUsInnerContainer>
@@ -30,5 +27,5 @@ const ContactUs = () => {
 
     );
 };
-
 export default ContactUs;
+
