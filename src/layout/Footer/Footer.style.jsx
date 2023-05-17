@@ -6,6 +6,7 @@ export const FooterContainer = styled.div`
   font-size: 14px;
   width:100%;
   box-sizing: border-box;
+  position:absolute;  
 
   //tablet
   @media (min-width: 768px) and (max-width: 991px) {
@@ -41,7 +42,7 @@ export const FooterTopContent = styled.div`
   justify-content: space-between;
   display:grid;
   grid-template-columns: repeat(2, 1fr);
-
+  
   //tablet
   @media (min-width: 768px) and (max-width: 991px) {
     display:grid;
@@ -103,7 +104,7 @@ export const FooterTopRight = styled.div`
   
   //mobile
   @media only screen and (max-width: 767px) {
-      width: 390px;
+      width: 330px;
   }
 
 `
