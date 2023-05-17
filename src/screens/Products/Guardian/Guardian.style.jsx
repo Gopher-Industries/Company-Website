@@ -62,7 +62,6 @@ export const ProductContentRowGradient = styled.div`
   padding: 30px 0 30px 0;
   justify-content: space-around;
   display: flex;
-  flex-direction: row;
   margin:0 auto;
 `
 
@@ -70,7 +69,7 @@ export const ProductContentRow = styled.div`
   padding: 30px 0 30px 0;
   justify-content: space-around;
   display: flex;
-  flex-direction: row;
+
   margin:0 auto;
   background-color: white;
 `
@@ -82,7 +81,6 @@ export const ProductContentRowBlue = styled(ProductContentRow)`
 export const ProductContentRowInner = styled.div`
   max-width:1200px;
   display: flex;
-  flex-direction: row;
 `
 
 export const ProductContentLeft = styled.div`

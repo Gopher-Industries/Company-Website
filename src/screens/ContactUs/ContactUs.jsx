@@ -12,11 +12,11 @@ const ContactUs = () => {
         <s.ContactUsContainer>
             <s.ContactUsInnerContainer>
                 <s.ContactUsTop>
-                    <s.ContactUsRow>
-                        <s.ContactPageHeader>Contact Us</s.ContactPageHeader>
-                        <s.ContactPageText>Our team will be happy to answer all your questions. <br/> Fill out the form below and
+                    <s.ContactUsRow className="ContactUsRow">
+                        <s.ContactPageHeader className="pageTitle">Contact Us</s.ContactPageHeader>
+                        <s.ContactPageText className="pageText" >Our team will be happy to answer all your questions. <br/> Fill out the form below and
                             we’ll be in touch as soon as possible</s.ContactPageText>
-                        <s.ContactPageForm>
+                        <s.ContactPageForm id="ContactPageForm">
                             <s.FloatingRow>
                                 <ContactForm />
                             </s.FloatingRow>

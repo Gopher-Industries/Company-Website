@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 const ProductTile = (props) => {
     const {icon, title, subtitle, link, linkTitle} = props;
     return (
-        <s.ProductTile>
+        <s.ProductTile className="ProductTile">
             <s.ProductIcon>{icon}</s.ProductIcon>
             <s.ProductTitle>{title}</s.ProductTitle>
             {subtitle && (

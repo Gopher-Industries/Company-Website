@@ -34,7 +34,7 @@ const ContactForm = () => {
     };
 
     return (
-        <s.ContactFormContainer>
+        <s.ContactFormContainer id="ContactFormContainer">
             <s.ContactFormLeft>
                 <form ref={form} onSubmit={handleSubmit}>
                     <s.Row items={2} style={{justifyContent:'left'}}>
@@ -60,7 +60,7 @@ const ContactForm = () => {
                     </s.Row>
                 </form>
             </s.ContactFormLeft>
-            <s.ContactFormRight>
+            <s.ContactFormRight id="ContactFormRight">
                 <s.ContactColItem>
                     Contact Information
                 </s.ContactColItem>

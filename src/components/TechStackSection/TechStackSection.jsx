@@ -10,13 +10,13 @@ import LogoDotnet from "@Assets/images/service-logo/netcore.png";
 
 const TechStackSection = () => {
     return (
-        <s.HomeLogoContainer>
-            <img src={LogoDocker} alt={"Docker Logo"} />
-            <img src={LogoGCP} alt={"GCP Logo"} />
-            <img src={LogoHTML5} alt={"HTML5 Logo"} />
-            <img src={LogoJS} alt={"JS Logo"} />
-            <img src={LogoReact} alt={"React Logo"} />
-            <img src={LogoDotnet} alt={"Dot Net Logo"} />
+        <s.HomeLogoContainer className="TechStackSection">
+            <img className="TechStackImage" src={LogoDocker} alt={"Docker Logo"} />
+            <img className="TechStackImage"  src={LogoGCP} alt={"GCP Logo"} />
+            <img className="TechStackImage"  src={LogoHTML5} alt={"HTML5 Logo"} />
+            <img className="TechStackImage" src={LogoJS} alt={"JS Logo"} />
+            <img className="TechStackImage" src={LogoReact} alt={"React Logo"} />
+            <img className="TechStackImage" src={LogoDotnet} alt={"Dot Net Logo"} />
         </s.HomeLogoContainer>
     );
 };

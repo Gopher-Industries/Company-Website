@@ -9,7 +9,7 @@ const ProductImage = (props) => {
 
     return (
         <s.ProductImage>
-            <s.ProductImageContainer background={image} onClick={() => setOpen(true)} />
+            <s.ProductImageContainer  className="ProductImage"  background={image} onClick={() => setOpen(true)} />
 
             <Lightbox
                 open={open}

@@ -82,7 +82,7 @@ export const ProductContentRowBlue = styled(ProductContentRow)`
 export const ProductContentRowInner = styled.div`
   max-width:1200px;
   display: flex;
-  flex-direction: row;
+
 `
 
 export const ProductContentLeft = styled.div`
