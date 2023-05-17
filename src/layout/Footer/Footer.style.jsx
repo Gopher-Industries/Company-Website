@@ -6,7 +6,6 @@ export const FooterContainer = styled.div`
   font-size: 14px;
   width:100%;
   box-sizing: border-box;
-  position:absolute;  
 
   //tablet
   @media (min-width: 768px) and (max-width: 991px) {
