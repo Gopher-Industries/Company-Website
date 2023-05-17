@@ -11,8 +11,8 @@ const CompanyTimeline = () => {
             <s.CompanyTimelineVideo src={HomeVideo} width="100%" controls={false} autoPlay={true} loop={true} muted={true}/>
             <s.CompanyTimelineInnerContainer>
                 <s.CompanyTimelineRow>
-                    <s.CompanyTimelineHeader>Company Timeline</s.CompanyTimelineHeader>
-                    <s.CompanyTimelineText>The team at Gopher Industries continues to work hard to create products that build healthier communities.<br/>Checkout the timeline of the company's achievements.</s.CompanyTimelineText>
+                    <s.CompanyTimelineHeader className="pageTitle">Company Timeline</s.CompanyTimelineHeader>
+                    <s.CompanyTimelineText className="pageText">The team at Gopher Industries continues to work hard to create products that build healthier communities.<br/>Checkout the timeline of the company's achievements.</s.CompanyTimelineText>
                     <s.CompanyTimelineForm>
                         <s.FloatingRow>
                             <s.TimelineGraphicContainer>

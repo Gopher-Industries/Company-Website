@@ -5,7 +5,7 @@ export const ProductTile = styled.div`
   color: #444;
   text-align: center;
   margin-bottom: 30px;
-  width:100%;
+  width: 80vw;
   padding:20px 20px 30px 20px;
   background-color: white;
   transition: all ease 0.4s;

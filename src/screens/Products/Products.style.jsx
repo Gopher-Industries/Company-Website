@@ -4,6 +4,7 @@ export const ProductContainer = styled.div`
   width:100%;
   display:flex;
   justify-content: center;
+  
 `
 
 export const ProductInnerContainer = styled.div`
@@ -62,7 +63,6 @@ export const ProductItemsContainer = styled.div`
 
 export const ProductItemsRow = styled.div`
   display:flex;
-  flex-direction: row;
   gap:30px;
 `
 
