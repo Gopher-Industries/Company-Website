@@ -1,7 +1,6 @@
 import React from "react";
 import * as s from "./Apollo.style";
-import HomeVideo from "@Assets/videos/connections.mp4";
-import ProductVideoSrc from "@Assets/videos/apollo.mp4";
+import {VIDEO_SRC} from "@Assets/videos";
 
 const Apollo = () => {
 
@@ -13,7 +12,7 @@ const Apollo = () => {
                         <s.ProductPageHeader>Apollo</s.ProductPageHeader>
                         <s.ProductPageText>Standardised Patient History Database</s.ProductPageText>
                     </s.ProductRow>
-                    <s.PageVideo src={HomeVideo} width="100%" controls={false} autoPlay={true} loop={true} muted={true}/>
+                    <s.PageVideo src={VIDEO_SRC.connections} width="100%" controls={false} autoPlay={true} loop={true} muted={true}/>
                 </s.ProductTop>
                 <s.ProductContentRowGradient>
                     <s.ProductContentRowInner>
@@ -26,7 +25,7 @@ const Apollo = () => {
                             </s.ProductText>
                         </s.ProductContentLeft>
                         <s.ProductContentRight>
-                            <s.ProductVideo src={ProductVideoSrc} controls={true} />
+                            <s.ProductVideo src={VIDEO_SRC.apollo} controls={true} />
                         </s.ProductContentRight>
                     </s.ProductContentRowInner>
                 </s.ProductContentRowGradient>

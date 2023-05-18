@@ -1,5 +1,5 @@
 import React from "react";
-import HomeVideo from "@Assets/videos/connections.mp4";
+import {VIDEO_SRC} from "@Assets/videos";
 import * as s from "./Products.style";
 import ProductTile from "./ProductTile/ProductTile";
 
@@ -13,7 +13,7 @@ import SpaIcon from '@mui/icons-material/Spa';
 const Products = () => {
     return (
         <s.ProductContainer>
-            <s.ProductVideo src={HomeVideo} width="100%" controls={false} autoPlay={true} loop={true} muted={true}/>
+            <s.ProductVideo src={VIDEO_SRC.connections} width="100%" controls={false} autoPlay={true} loop={true} muted={true}/>
             <s.ProductInnerContainer>
                 <s.ProductRow>
                     <s.ProductHeader>Products</s.ProductHeader>

@@ -1,7 +1,6 @@
 import React from "react";
 import * as s from "./Medimind.style";
-import HomeVideo from "@Assets/videos/connections.mp4";
-import ProductVideoSrc from "@Assets/videos/medimind.mp4";
+import {VIDEO_SRC} from "@Assets/videos";
 import ProductImage from "@Components/ProductImage/ProductImage";
 
 import Pic1 from "@Assets/images/products/medimind/MediMind-1.jpeg";
@@ -19,7 +18,7 @@ const Medimind = () => {
                         <s.ProductPageHeader>Medimind</s.ProductPageHeader>
                         <s.ProductPageText>Medication Management and Reminder App</s.ProductPageText>
                     </s.ProductRow>
-                    <s.PageVideo src={HomeVideo} width="100%" controls={false} autoPlay={true} loop={true} muted={true}/>
+                    <s.PageVideo src={VIDEO_SRC.connections} width="100%" controls={false} autoPlay={true} loop={true} muted={true}/>
                 </s.ProductTop>
                 <s.ProductContentRowGradient>
                     <s.ProductContentRowInner>
@@ -32,7 +31,7 @@ const Medimind = () => {
                             </s.ProductText>
                         </s.ProductContentLeft>
                         <s.ProductContentRight>
-                            <s.ProductVideo src={ProductVideoSrc} controls={true} />
+                            <s.ProductVideo src={VIDEO_SRC.medimind} controls={true} />
                         </s.ProductContentRight>
                     </s.ProductContentRowInner>
                 </s.ProductContentRowGradient>

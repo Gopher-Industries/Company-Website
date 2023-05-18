@@ -1,8 +1,7 @@
 import React from "react";
-import HomeVideo from "@Assets/videos/connections.mp4";
-import AboutVideo from "@Assets/videos/about.mp4";
 import LogoAnimate from "@Assets/images/logo-2.png";
 
+import {VIDEO_SRC} from "@Assets/videos";
 
 import * as s from "./Home.style";
 import Button from "@Components/Button/Button";
@@ -13,7 +12,7 @@ const Home = () => {
     return (
         <s.HomeContainer>
             <s.HomeVideo>
-                <video src={HomeVideo} width="100%" controls={false} autoPlay={true} loop={true} muted={true}></video>
+                <video src={VIDEO_SRC.connections} width="100%" controls={false} autoPlay={true} loop={true} muted={true}></video>
                 <s.VideoOverlay initial={{y:"-300px", opacity:0}} animate={{y:0, opacity:1, transform:"translate(-50%,0)"}} transition={{duration:0.8, delay:0.3, ease: [0, 0.71, 0.2, 1.01]}}>
                     <s.VideoOverlayText>
                         Building healthier communities through enabling technologies.
@@ -51,7 +50,7 @@ const Home = () => {
                     </s.HomeColAlign>
                 </s.HomeCol>
                 <s.HomeCol>
-                    <s.AboutVideo src={AboutVideo} controls={true} />
+                    <s.AboutVideo src={VIDEO_SRC.about} controls={true} />
                 </s.HomeCol>
             </s.HomeContentWideGradient>
         </s.HomeContainer>

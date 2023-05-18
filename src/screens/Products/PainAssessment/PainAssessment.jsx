@@ -1,7 +1,6 @@
 import React from "react";
 import * as s from "./PainAssessment.style";
-import HomeVideo from "@Assets/videos/connections.mp4";
-import ProductVideoSrc from "@Assets/videos/painassessment.mp4";
+import {VIDEO_SRC} from "@Assets/videos";
 
 const PainAssessment = () => {
 
@@ -13,7 +12,7 @@ const PainAssessment = () => {
                         <s.ProductPageHeader>Pain Assessment</s.ProductPageHeader>
                         <s.ProductPageText>AI powered pain assessor</s.ProductPageText>
                     </s.ProductRow>
-                    <s.PageVideo src={HomeVideo} width="100%" controls={false} autoPlay={true} loop={true} muted={true}/>
+                    <s.PageVideo src={VIDEO_SRC.connections} width="100%" controls={false} autoPlay={true} loop={true} muted={true}/>
                 </s.ProductTop>
                 <s.ProductContentRowGradient>
                     <s.ProductContentRowInner>
@@ -27,7 +26,7 @@ const PainAssessment = () => {
                             </s.ProductText>
                         </s.ProductContentLeft>
                         <s.ProductContentRight>
-                            <s.ProductVideo src={ProductVideoSrc} controls={true} />
+                            <s.ProductVideo src={VIDEO_SRC.painassessment} controls={true} />
                         </s.ProductContentRight>
                     </s.ProductContentRowInner>
                 </s.ProductContentRowGradient>
