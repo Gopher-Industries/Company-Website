@@ -7,7 +7,7 @@ export const VIDEO_SRC = {
     "about": "https://storage.googleapis.com/projectx-videos/about.mp4",
     "apollo": "https://storage.googleapis.com/projectx-videos/apollo.mp4",
     "chatbot": "https://storage.googleapis.com/projectx-videos/chatbot.mp4",
-    "connections": "https://storage.googleapis.com/projectx-videos/chatbot.mp4",
+    "connections": "https://storage.googleapis.com/projectx-videos/connections.mp4",
     "dietplanapplication": "https://storage.googleapis.com/projectx-videos/dietplanapplication.mp4",
     "guardian": "https://storage.googleapis.com/projectx-videos/dietplanapplication.mp4",
     "medimind": "https://storage.googleapis.com/projectx-videos/medimind.mp4",
