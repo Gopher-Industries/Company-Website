@@ -14,6 +14,8 @@ export const NavContainer = styled.div`
   }
 `;
 
+// ADDED | "padding-right: 25px;"
+// ADDED | "align-items: right;"
 export const NavList = styled.ul`
   list-style-type: none;
   display: flex;

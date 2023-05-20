@@ -33,11 +33,12 @@ const ContactForm = () => {
 
     };
 
+    // Changed "<s.Row items={2} style={{justifyContent:'left'}}>" to "<s.Row items={1} style={{justifyContent:'left'}}>"
     return (
         <s.ContactFormContainer>
             <s.ContactFormLeft>
                 <form ref={form} onSubmit={handleSubmit}>
-                    <s.Row items={2} style={{justifyContent:'left'}}>
+                    <s.Row items={1} style={{justifyContent:'left'}}>
                         <s.FormTitle>Send us a Message</s.FormTitle>
                     </s.Row>
                     <s.Row items={2}>
@@ -70,7 +71,9 @@ const ContactForm = () => {
                 </s.ContactColItem>
                 <s.ContactColItem>
                     <s.ColItemIcon><EmailOutlinedIcon /></s.ColItemIcon>
-                    <s.ColItemText>bahar.nakisa@deakin.edu.au<br/>karmakar@deakin.edu.au</s.ColItemText>
+                    <s.ContactFormEmail>
+                        <s.ColItemText>bahar.nakisa@deakin.edu.au<br/>karmakar@deakin.edu.au</s.ColItemText>
+                    </s.ContactFormEmail>
                 </s.ContactColItem>
                 <s.ContactColItem>
                     <s.ColItemIcon><PhoneCallbackOutlinedIcon /></s.ColItemIcon>

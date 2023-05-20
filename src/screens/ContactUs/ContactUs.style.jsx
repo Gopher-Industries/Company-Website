@@ -16,6 +16,7 @@ export const ContactUsRow = styled.div`
   width:100%;
   max-width:1140px;
   flex-direction: column;
+  
 `
 
 export const ContactPageHeader = styled.h2`
@@ -29,11 +30,13 @@ export const ContactPageHeader = styled.h2`
   line-height:60px;
   letter-spacing: -2px;
   text-align: left;
+  padding-left: 15px; 
 `
 
 export const ContactPageText = styled.div`
   color:white;
   font-family: "Open Sans",sans-serif;
+  padding-left: 15px; 
 `
 
 export const ContactUsTop = styled.div`
@@ -71,4 +74,13 @@ export const ContactUsVideo = styled.video`
   top: 0;
   bottom: 0;
   z-index: -1;
+`
+
+export const mobileContainer = styled.div`
+  max-width: 480px;
+  margin: auto;
+  background-color: #555;
+  height: 500px;
+  color: white;
+  border-radius: 10px;
 `

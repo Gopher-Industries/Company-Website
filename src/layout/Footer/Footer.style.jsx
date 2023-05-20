@@ -17,7 +17,6 @@ export const FooterContainer = styled.div`
     font-size: 12px;
   }
 `
-
 export const FooterTop = styled.div`
   background: #0a1e38;
   padding: 60px 0 30px 0;
@@ -35,7 +34,6 @@ export const FooterTop = styled.div`
     padding: 40px 30px 20px 30px;
   }
 `
-
 export const FooterTopContent = styled.div`
   width:1140px;
   justify-content: space-between;
@@ -57,7 +55,6 @@ export const FooterTopContent = styled.div`
     grid-row-gap: 25px;
   }
 `
-
 export const FooterTitle = styled.div`
   font-size: 24px;
   margin: 0 0 20px 0;
@@ -65,16 +62,30 @@ export const FooterTitle = styled.div`
   line-height: 1;
   font-weight: 700;
   font-family: "Raleway", sans-serif;
-`
+  `
 
 export const FooterSocials = styled.div`
 
 `
-
 export const FooterBottom = styled.div`
   text-align: center;
   padding:30px 0 30px 0;
   font-family: "Open Sans",sans-serif;
+  display: flex;
+  justify-content: center;
+`
+
+export const FooterTopLeft = styled.div`
+  @media (max-width: 5000px) {
+    justify-content: center;
+  }
+  @media (max-width: 840px) {
+    padding-top: 50px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+  }
 
   //tablet
   @media (min-width: 768px) and (max-width: 991px) {
@@ -88,7 +99,6 @@ export const FooterBottom = styled.div`
 `
 
 export const FooterTopLeft = styled.div`
-
 `
 
 export const FooterTopRight = styled.div`
@@ -105,9 +115,9 @@ export const FooterTopRight = styled.div`
   @media only screen and (max-width: 767px) {
       width: 330px;
   }
-
 `
+
 export const Logo = styled.img`
   height:55px;
   padding-bottom:20px;
-`
+  `
