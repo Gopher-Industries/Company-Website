@@ -137,7 +137,7 @@ position: sticky;
   justify-content: center;
   box-sizing: border-box;
   z-index: 9999;
-  transition: all 0.2s ease;
+  transition: all 0.05s ease;
 
   @media (max-width: 768px) {
     background-color: ${(props) => (!props.$isOpen && props.$isVisible ? "white" : "transparent")};
@@ -146,8 +146,7 @@ position: sticky;
 `;
 
 export const InnerHeader = styled.div`
-  max-width: 1140px;
-  width: 1140px;
+  width: 90vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
