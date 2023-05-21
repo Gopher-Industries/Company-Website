@@ -1,7 +1,6 @@
 import React from "react";
 import * as s from "./Apollo.style";
-import HomeVideo from "@Assets/videos/connections.mp4";
-import ProductVideoSrc from "@Assets/videos/apollo.mp4";
+import {VIDEO_SRC} from "@Assets/videos";
 
 const Apollo = () => {
 
@@ -13,7 +12,7 @@ const Apollo = () => {
                         <s.ProductPageHeader>Apollo</s.ProductPageHeader>
                         <s.ProductPageText>Standardised Patient History Database</s.ProductPageText>
                     </s.ProductRow>
-                    <s.PageVideo src={HomeVideo} width="100%" controls={false} autoPlay={true} loop={true} muted={true}/>
+                    <s.PageVideo src={VIDEO_SRC.connections} width="100%" controls={false} autoPlay={true} loop={true} muted={true}/>
                 </s.ProductTop>
 
                 <s.ProductContentRowGradient>
@@ -21,32 +20,32 @@ const Apollo = () => {
                         <s.ProductContentLeft>
                             <s.ProductTitleContainer>
                                 <s.ProductTitleProduct>
-                                    Product 
+                                    Product
                                 </s.ProductTitleProduct>
                                 <s.ProductTitleOverview>
                                     Overview
                                 </s.ProductTitleOverview>
                             </s.ProductTitleContainer>
                             <s.ProductText style={{color:"white"}}>
-                                At Gopher Industries we are developing a central database, called the Apollo Database, 
-                                (to host and integrate all the company’s products and manage core services across the company. 
-                                The goal of Team Peacemaker is to provide the Apollo central database to host and integrate 
-                                Gopher Industries product suite, centrally manage patient history, provide core services 
-                                company-wide and eventually enable artificial intelligence data analytics on patient data. <br/><br/> 
-                                The Apollo Database will enable the storage, access, and retrieval of sensitive personal and 
-                                health information collated through the various applications offered by Gopher Industries. 
-                                The Apollo Database employs cloud technologies and cybersecurity practices to ensure the 
-                                confidentiality, integrity and availability of sensitive health data required for the various 
-                                applications developed internally within Gopher Industries.  <br/><br/>The Apollo Database enables 
-                                access through APIs (Application Programming Interface) for better health outcomes for aged persons. 
-                                Additionally, the Apollo Database reduces duplication of effort for core services in Gopher Industries. 
-                                The Apollo Database will also allow the application of advance artificial intelligence analytics in the 
-                                future, to provide insights and improved services of Gopher Industries customers.<br/><br/> Apollo’s 
+                                At Gopher Industries we are developing a central database, called the Apollo Database,
+                                (to host and integrate all the company’s products and manage core services across the company.
+                                The goal of Team Peacemaker is to provide the Apollo central database to host and integrate
+                                Gopher Industries product suite, centrally manage patient history, provide core services
+                                company-wide and eventually enable artificial intelligence data analytics on patient data. <br/><br/>
+                                The Apollo Database will enable the storage, access, and retrieval of sensitive personal and
+                                health information collated through the various applications offered by Gopher Industries.
+                                The Apollo Database employs cloud technologies and cybersecurity practices to ensure the
+                                confidentiality, integrity and availability of sensitive health data required for the various
+                                applications developed internally within Gopher Industries.  <br/><br/>The Apollo Database enables
+                                access through APIs (Application Programming Interface) for better health outcomes for aged persons.
+                                Additionally, the Apollo Database reduces duplication of effort for core services in Gopher Industries.
+                                The Apollo Database will also allow the application of advance artificial intelligence analytics in the
+                                future, to provide insights and improved services of Gopher Industries customers.<br/><br/> Apollo’s
                                 primary market are the internal development teams within Gopher Industries.
                             </s.ProductText>
                         </s.ProductContentLeft>
                         <s.ProductContentRight>
-                            <s.ProductVideo src={ProductVideoSrc} controls={true} />
+                            <s.ProductVideo src={VIDEO_SRC.apollo} controls={true} />
                         </s.ProductContentRight>
                     </s.ProductContentRowInner>
                 </s.ProductContentRowGradient>
@@ -64,13 +63,13 @@ const Apollo = () => {
                                         <li>Audit Logging to track user access and changes to data lake</li>
                                         <li>Data Ingestion (i.e., ability to extract data from various sources)</li>
                                     </s.FeatureList>
-       
+
                                     <s.FeatureList>
                                         <li>Scalable Data Storage</li>
                                         <li>Ability to store structured, semi-structured and unstructured data</li>
                                         <li>Data Manageability</li>
                                     </s.FeatureList>
- 
+
                                     <s.FeatureList>
                                         <li>Data Security</li>
                                         <li>Data Analytics</li>
@@ -96,12 +95,12 @@ const Apollo = () => {
                                         <li>Continuous access to stored data regardless of time or location</li>
                                         <li>Advanced analytics to provide insights to improve services to Gopher Industries customers </li>
                                     </s.BenefitList>
-                                
+
                                     <s.BenefitList>
                                         <li>Enhanced data integration enabling information to be shared between various Gopher Industries applications/services</li>
                                         <li>Consolidates sensitive information into a single repository, enhancing security</li>
                                     </s.BenefitList>
-                                
+
                                     <s.BenefitList>
                                         <li>Universal data security standards across Gopher Industries (i.e., no weak links)</li>
                                         <li>Increased efficiency in Gopher Industries with a reduction in data duplication.</li>
