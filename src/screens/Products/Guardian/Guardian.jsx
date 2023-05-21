@@ -1,7 +1,6 @@
 import React from "react";
 import * as s from "./Guardian.style";
-import HomeVideo from "@Assets/videos/connections.mp4";
-import ProductVideoSrc from "@Assets/videos/guardian.mp4";
+import {VIDEO_SRC} from "@Assets/videos";
 import ProductImage from "@Components/ProductImage/ProductImage";
 
 import Pic1 from "@Assets/images/products/guardian/Guardians-1.jpg";
@@ -21,7 +20,7 @@ const Guardian = () => {
                         <s.ProductPageHeader>Guardian</s.ProductPageHeader>
                         <s.ProductPageText>Elderly Assistance App</s.ProductPageText>
                     </s.ProductRow>
-                    <s.PageVideo src={HomeVideo} width="100%" controls={false} autoPlay={true} loop={true} muted={true}/>
+                    <s.PageVideo src={VIDEO_SRC.connections} width="100%" controls={false} autoPlay={true} loop={true} muted={true}/>
                 </s.ProductTop>
 
                 <s.ProductContentRowGradient>
@@ -29,7 +28,7 @@ const Guardian = () => {
                         <s.ProductContentLeft>
                             <s.ProductTitleContainer>
                                 <s.ProductTitleProduct>
-                                    Product 
+                                    Product
                                 </s.ProductTitleProduct>
                                 <s.ProductTitleOverview>
                                     Overview
@@ -42,7 +41,7 @@ const Guardian = () => {
                             </s.ProductText>
                         </s.ProductContentLeft>
                         <s.ProductContentRight>
-                            <s.ProductVideo src={ProductVideoSrc} controls={true} />
+                            <s.ProductVideo src={VIDEO_SRC.guardian} controls={true} />
                         </s.ProductContentRight>
                     </s.ProductContentRowInner>
                 </s.ProductContentRowGradient>
@@ -60,7 +59,7 @@ const Guardian = () => {
                                         <li>Alerting caregivers and supervisors during an emergency.</li>
                                         <li>Predicting potential physical and mental health conditions at an early stage.</li>
                                     </s.FeatureList>
-            
+
                                     <s.FeatureList>
                                         <li>Providing suggestions to see a health professional based on health issue detected.</li>
                                         <li>Encouraging positive activities.</li>
@@ -90,7 +89,7 @@ const Guardian = () => {
                                         <li>Early detection of physical and mental health conditions.</li>
                                         <li>Peace of mind for both users and family members who cannot physically keep an eye on their elderly family members.</li>
                                     </s.BenefitList>
-            
+
                                     <s.BenefitList>
                                         <li>Elderly people can live at home independently for longer.</li>
                                         <li>Easy for caregivers to monitor multiple patient activities.</li>
