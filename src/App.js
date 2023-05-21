@@ -15,6 +15,7 @@ import Guardian from "@Screens/Products/Guardian/Guardian";
 import Chatbot from "@Screens/Products/Chatbot/Chatbot";
 import PainAssessment from "@Screens/Products/PainAssessment/PainAssessment";
 import DietPlanner from "@Screens/Products/DietPlanner/DietPlanner";
+import MedsOne from "@Screens/Products/MedsOne/MedsOne";
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
                     <Route path={"/products/chatbot"} element={<Chatbot />} />
                     <Route path={"/products/painassessment"} element={<PainAssessment />} />
                     <Route path={"/products/dietplanner"} element={<DietPlanner />} />
+                    <Route path={"/products/medsone"} element={<MedsOne />} />
                   <Route path={"/company-timeline"} element={<CompanyTimeline />} />
                   <Route path={"/student-timeline"} element={<StudentTimeline />} />
                   <Route path={"*"} element={<NotFound />} />
