@@ -98,9 +98,6 @@ export const FooterTopLeft = styled.div`
   }
 `
 
-export const FooterTopLeft = styled.div`
-`
-
 export const FooterTopRight = styled.div`
   width:600px;
   text-align: center;
