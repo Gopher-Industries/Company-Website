@@ -11,6 +11,10 @@ export const ContactFormContainer = styled.div`
   font-family: "Open Sans", sans-serif;
   box-shadow: 5px 5px 24px -1px #5e5e5e;
   max-height: 443px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `
 
 export const Row = styled.div`
@@ -26,6 +30,10 @@ export const Row = styled.div`
 export const ContactFormLeft = styled.div`
   width:100%;
   padding:30px 30px 30px 30px;
+
+  @media (max-width: 768px) {
+    width:unset;
+  }
 `
 
 export const ContactFormRight = styled.div`
@@ -44,14 +52,17 @@ export const ContactFormRight = styled.div`
     padding:0;
     font-weight: bold;
   }
+
+  @media (max-width: 768px) {
+    width:unset;
+  }
 `
 
 export const ContactFormEmail = styled.div`
-flex: 1;
-white-space: nowrap;
-overflow: hidden;
-text-overflow: ellipsis;
-}
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 `
 
 export const FormTitle = styled.div`
