@@ -56,7 +56,7 @@ export const StudentTimelineForm = styled.div`
 export const StudentTimelineVideo = styled.video`
   width: 100%;
   height:100vh;
-  object-fit: unset;
+  object-fit: cover;
   position: fixed;
   left: 0;
   right: 0;

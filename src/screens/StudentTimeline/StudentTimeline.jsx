@@ -1,5 +1,5 @@
 import React from "react";
-import HomeVideo from "@Assets/videos/connections.mp4";
+import {VIDEO_SRC} from "@Assets/videos";
 import * as s from "./StudentTimeline.style";
 import StudentTimelineData from"./StudentData";
 import StudentTimelineItem from "./StudentTimelineItem/StudentTimelineItem";
@@ -8,7 +8,7 @@ import StudentTimelineItem from "./StudentTimelineItem/StudentTimelineItem";
 const StudentTimeline = () => {
     return (
         <s.StudentTimelineContainer>
-            <s.StudentTimelineVideo src={HomeVideo} width="100%" controls={false} autoPlay={true} loop={true} muted={true}/>
+            <s.StudentTimelineVideo src={VIDEO_SRC.connections} width="100%" controls={false} autoPlay={true} loop={true} muted={true}/>
             <s.StudentTimelineInnerContainer>
                 <s.StudentTimelineRow>
                     <s.StudentTimelineHeader>Student Timeline</s.StudentTimelineHeader>
