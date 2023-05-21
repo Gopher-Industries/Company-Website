@@ -1,5 +1,5 @@
 import React from "react";
-import HomeVideo from "@Assets/videos/connections.mp4";
+import {VIDEO_SRC} from "@Assets/videos";
 import * as s from "./CompanyTimeline.style";
 import CompanyTimelineData from"./CompanyData";
 import CompanyTimelineItem from "./CompanyTimelineItem/CompanyTimelineItem";
@@ -8,7 +8,7 @@ import CompanyTimelineItem from "./CompanyTimelineItem/CompanyTimelineItem";
 const CompanyTimeline = () => {
     return (
         <s.CompanyTimelineContainer>
-            <s.CompanyTimelineVideo src={HomeVideo} width="100%" controls={false} autoPlay={true} loop={true} muted={true}/>
+            <s.CompanyTimelineVideo src={VIDEO_SRC.connections} width="100%" controls={false} autoPlay={true} loop={true} muted={true}/>
             <s.CompanyTimelineInnerContainer>
                 <s.CompanyTimelineRow>
                     <s.CompanyTimelineHeader>Company Timeline</s.CompanyTimelineHeader>
