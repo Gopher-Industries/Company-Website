@@ -1,5 +1,5 @@
 import React from "react";
-import HomeVideo from "@Assets/videos/connections.mp4";
+import {VIDEO_SRC} from "@Assets/videos";
 import * as s from "./Products.style";
 import ProductTile from "./ProductTile/ProductTile";
 
@@ -9,11 +9,13 @@ import CollectionsBookmarkIcon from '@mui/icons-material/CollectionsBookmark';
 import HeadsetMicIcon from '@mui/icons-material/HeadsetMic';
 import SickIcon from '@mui/icons-material/Sick';
 import SpaIcon from '@mui/icons-material/Spa';
+import LocalPharmacyIcon from '@mui/icons-material/LocalPharmacy';
+
 
 const Products = () => {
     return (
         <s.ProductContainer>
-            <s.ProductVideo src={HomeVideo} width="100%" controls={false} autoPlay={true} loop={true} muted={true}/>
+            <s.ProductVideo src={VIDEO_SRC.connections} width="100%" controls={false} autoPlay={true} loop={true} muted={true}/>
             <s.ProductInnerContainer>
                 <s.ProductRow>
                     <s.ProductHeader>Products</s.ProductHeader>
@@ -28,6 +30,9 @@ const Products = () => {
                             <ProductTile icon={<HeadsetMicIcon />} title={"Medi"} subtitle={"Chatbot System for Remote Health Monitoring"} link={"products/chatbot"} linkTitle={"View More"} />
                             <ProductTile icon={<SickIcon />} title={"Pain Assessment"} subtitle={"AI powered pain assessor"} link={"products/painassessment"} linkTitle={"View More"} />
                             <ProductTile icon={<SpaIcon />} title={"NutriHelp"} subtitle={"Personalised diet planning Android app"} link={"products/dietplanner"} linkTitle={"View More"} />
+                        </s.ProductItemsRow>
+                        <s.ProductItemsRow>
+                            <ProductTile icon={<LocalPharmacyIcon />} title={"MedsOne"} subtitle={"Medication and Prescription Scan App"} link={"products/medsone"} linkTitle={"View More"} />
                         </s.ProductItemsRow>
                     </s.ProductItemsContainer>
                 </s.ProductRow>
