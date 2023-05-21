@@ -17,8 +17,6 @@ export const StyledButton = styled.input`
   }
 
   @media (max-width: 768px) {
-    width: 95px !important;
-    font-size: 12px !important;
-    height: 35px !important;
+    width: 100%;
   }
 `
