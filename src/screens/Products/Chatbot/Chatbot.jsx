@@ -1,7 +1,6 @@
 import React from "react";
 import * as s from "./Chatbot.style";
-import HomeVideo from "@Assets/videos/connections.mp4";
-import ProductVideoSrc from "@Assets/videos/chatbot.mp4";
+import {VIDEO_SRC} from "@Assets/videos";
 
 const Chatbot = () => {
 
@@ -13,7 +12,7 @@ const Chatbot = () => {
                         <s.ProductPageHeader>Medi</s.ProductPageHeader>
                         <s.ProductPageText>Chatbot System for Remote Health Monitoring</s.ProductPageText>
                     </s.ProductRow>
-                    <s.PageVideo src={HomeVideo} width="100%" controls={false} autoPlay={true} loop={true} muted={true}/>
+                    <s.PageVideo src={VIDEO_SRC.connections} width="100%" controls={false} autoPlay={true} loop={true} muted={true}/>
                 </s.ProductTop>
 
                 <s.ProductContentRowGradient>
@@ -21,7 +20,7 @@ const Chatbot = () => {
                         <s.ProductContentLeft>
                             <s.ProductTitleContainer>
                                 <s.ProductTitleProduct>
-                                    Product 
+                                    Product
                                 </s.ProductTitleProduct>
                                 <s.ProductTitleOverview>
                                     Overview
@@ -39,7 +38,7 @@ const Chatbot = () => {
                             </s.ProductText>
                         </s.ProductContentLeft>
                         <s.ProductContentRight>
-                            <s.ProductVideo src={ProductVideoSrc} controls={true} />
+                            <s.ProductVideo src={VIDEO_SRC.chatbot} controls={true} />
                         </s.ProductContentRight>
                     </s.ProductContentRowInner>
                 </s.ProductContentRowGradient>
@@ -58,7 +57,7 @@ const Chatbot = () => {
                                         Ability for our users to log and rate their pain assessment to share with authorised health care providers
                                         </li>
                                     </s.FeatureList>
-       
+
                                     <s.FeatureList>
                                     <li>
                                     <strong>Diet Plan and Tracking:</strong>
@@ -67,7 +66,7 @@ const Chatbot = () => {
                                     with a quick reference on a day to day basis of their nutritional intake
                                     </li>
                                     </s.FeatureList>
- 
+
                                     <s.FeatureList>
                                     <li>
                                     <strong>Water Consumption and Tracking:</strong>
