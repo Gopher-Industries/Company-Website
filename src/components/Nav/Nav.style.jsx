@@ -3,10 +3,9 @@ import { NavLink } from "react-router-dom";
 
 export const NavContainer = styled.div`
   @media (max-width: 768px) {
-    height: 800px;
-    width: 170px;
+    height: 100vh;
+    width: 100%;
     flex-direction: column;
-    border-radius: 20px;
     box-shadow: ${(props) =>
       props.$isOpen ? "0 8px 10px -1px rgba(0, 0, 0, 0.3)" : "none"};
     background-color: ${(props) => (props.$isOpen ? "white" : "transparent")};
@@ -24,11 +23,11 @@ export const NavList = styled.ul`
   @media (max-width: 768px) {
     display: ${(props) => (props.$isOpen ? "flex" : "none")};
     flex-direction: column;
-    position: absolute;
-    top: 50px;
-    left: 0;
-    gap: 15px;
+    gap: 30px;
     padding: 0;
+    padding-top: 75px;
+    width:80%;
+    margin:0 auto;
   }
 `;
 
@@ -36,10 +35,8 @@ export const NavListItem = styled.li`
   text-decoration: none;
 
   @media (max-width: 768px) {
-    margin-left: 10px;
     padding-bottom: 10px;
-    padding-right: 40px;
-    border-bottom: 1px solid black;
+    text-align: center;
   }
 `;
 
@@ -98,7 +95,7 @@ export const Link = styled(NavLink)`
 
   @media (max-width: 768px) {
     color: #283642;
-    font-size: 12px;
+    font-size: 1.25rem;
   }
 `;
 
@@ -122,7 +119,7 @@ export const ExternalLink = styled.a`
 
   @media (max-width: 768px) {
     color: #283642;
-    font-size: 12px;
+    font-size: 1.25rem;
   }
 `;
 
@@ -144,6 +141,7 @@ position: sticky;
   @media (max-width: 768px) {
     background-color: ${(props) => (!props.$isOpen && props.$isVisible ? "white" : "transparent")};
     box-shadow: ${(props) => (!props.$isOpen && props.$isVisible ? "0 6px 10px -2px rgb(0 0 0 / 30%)" : "0 0 0 0")};
+    padding-top: 0;
   }
 `;
 
@@ -152,6 +150,12 @@ export const InnerHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: ${(props) => (props.$isOpen ? "100vh" : "0")};
+
+  }
 `;
 
 export const Logo = styled.img`
@@ -171,7 +175,7 @@ export const MobileLogo = styled.img`
 
   @media (max-width: 768px) {
     display: ${(props) => (props.$isOpen ? "block" : "none")};
-    width: 93px;
-    margin-left: 8px;
+    width: 70%;
+    margin:0 auto;
   }
 `;
