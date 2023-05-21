@@ -1,7 +1,6 @@
 import React from "react";
 import * as s from "./DietPlanner.style";
-import HomeVideo from "@Assets/videos/connections.mp4";
-import ProductVideoSrc from "@Assets/videos/dietplanapplication.mp4";
+import {VIDEO_SRC} from "@Assets/videos";
 import ProductImage from "@Components/ProductImage/ProductImage";
 
 import Pic1 from "@Assets/images/products/dietplanner/nutrihelp-1.png";
@@ -20,7 +19,7 @@ const DietPlanner = () => {
                         <s.ProductPageHeader>NutriHelp</s.ProductPageHeader>
                         <s.ProductPageText>Personalised diet planning Android app</s.ProductPageText>
                     </s.ProductRow>
-                    <s.PageVideo src={HomeVideo} width="100%" controls={false} autoPlay={true} loop={true} muted={true}/>
+                    <s.PageVideo src={VIDEO_SRC.connections} width="100%" controls={false} autoPlay={true} loop={true} muted={true}/>
                 </s.ProductTop>
 
                 <s.ProductContentRowGradient>
@@ -28,22 +27,22 @@ const DietPlanner = () => {
                         <s.ProductContentLeft>
                             <s.ProductTitleContainer>
                                 <s.ProductTitleProduct>
-                                    Product 
+                                    Product
                                 </s.ProductTitleProduct>
                                 <s.ProductTitleOverview>
                                     Overview
                                 </s.ProductTitleOverview>
                             </s.ProductTitleContainer>
                             <s.ProductText style={{color:"white"}}>
-                                NutriHelp is an Android application that aims to promote healthy eating habits for Australia's 
-                                senior population, by providing personalised recipes based on the user's specified health 
-                                conditions and nutritional preferences.<br/><br/> Our goal is to decrease the number of elderly 
-                                people that are either malnourished or at risk of malnutrition, promote nutritional health through 
+                                NutriHelp is an Android application that aims to promote healthy eating habits for Australia's
+                                senior population, by providing personalised recipes based on the user's specified health
+                                conditions and nutritional preferences.<br/><br/> Our goal is to decrease the number of elderly
+                                people that are either malnourished or at risk of malnutrition, promote nutritional health through
                                 food intake and increase transparency and awareness of our user’s current nutritional health.
                             </s.ProductText>
                         </s.ProductContentLeft>
                         <s.ProductContentRight>
-                            <s.ProductVideo src={ProductVideoSrc} controls={true} />
+                            <s.ProductVideo src={VIDEO_SRC.dietplanapplication} controls={true} />
                         </s.ProductContentRight>
                     </s.ProductContentRowInner>
                 </s.ProductContentRowGradient>
@@ -61,13 +60,13 @@ const DietPlanner = () => {
                                         <li>We support our user's health through nutrition derived from food, giving more control to the user over their nutritional health.</li>
                                         <li>The user can shop online within the application using their shopping list or sent it to a family member to collect.</li>
                                     </s.FeatureList>
-            
+
                                     <s.FeatureList>
                                         <li>NutriHelp generates nutritional plans by understanding our users' needs. The user tells us their personal characteristics, mobility, nutritional requirements and nutrient-related deficiencies/diseases and we provide nutritional planning, tracking and daily recipes to support the user.</li>
                                         <li>Users are provided with recipe steps and a convenient shopping list. We provide an abundance of recipes that can be swapped, added, deleted and favourited. </li>
                                         <li>Our daily recipe plan provides flexibility, select which time of day you would like meals provided, or select your own. </li>
                                     </s.FeatureList>
- 
+
                                     <s.FeatureList>
                                         <li>The nutritional plan makes sure the user meets and stays within their optimal nutritional targets throughout each day, assisting the user to maintain and improve their health.</li>
                                         <li>As the users’ health changes over time, their preferences can be updated and the application will respond to their changing health.</li>
@@ -92,7 +91,7 @@ const DietPlanner = () => {
                                 NutriHelp makes sure that our users maintain a healthy, balanced diet specific to their individual needs. It takes away the complicated guesswork and ensures that seniors stay healthy and looked after!
                                 </s.ProductText>
                             </s.FeastureColumn>
-                        </s.ProductContent>.    
+                        </s.ProductContent>.
                     </s.ProductContentRowInner>
                 </s.ProductContentRowGradient>
 
@@ -110,7 +109,7 @@ const DietPlanner = () => {
                             </s.ImageColumn>
                         </s.ProductContent>
                     </s.ProductContentRowInner>
-                
+
                 </s.ProductContentRow>
 
 
