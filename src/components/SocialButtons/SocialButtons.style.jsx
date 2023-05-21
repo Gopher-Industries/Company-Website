@@ -4,6 +4,10 @@ import IconButton from "@mui/material/IconButton";
 export const SocialsContainer = styled.div`
   display:flex;
   gap:10px;
+
+  @media (max-width: 767px){
+    justify-content: center;
+  }
 `
 
 export const StyledIcon = styled(IconButton)`
