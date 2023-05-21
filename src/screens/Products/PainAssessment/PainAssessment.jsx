@@ -1,7 +1,6 @@
 import React from "react";
 import * as s from "./PainAssessment.style";
-import HomeVideo from "@Assets/videos/connections.mp4";
-import ProductVideoSrc from "@Assets/videos/painassessment.mp4";
+import {VIDEO_SRC} from "@Assets/videos";
 
 const PainAssessment = () => {
 
@@ -13,7 +12,7 @@ const PainAssessment = () => {
                         <s.ProductPageHeader>Pain Assessment</s.ProductPageHeader>
                         <s.ProductPageText>AI powered pain assessor</s.ProductPageText>
                     </s.ProductRow>
-                    <s.PageVideo src={HomeVideo} width="100%" controls={false} autoPlay={true} loop={true} muted={true}/>
+                    <s.PageVideo src={VIDEO_SRC.connections} width="100%" controls={false} autoPlay={true} loop={true} muted={true}/>
                 </s.ProductTop>
 
                 <s.ProductContentRowGradient>
@@ -21,7 +20,7 @@ const PainAssessment = () => {
                         <s.ProductContentLeft>
                             <s.ProductTitleContainer>
                                 <s.ProductTitleProduct>
-                                    Product 
+                                    Product
                                 </s.ProductTitleProduct>
                                 <s.ProductTitleOverview>
                                     Overview
@@ -33,7 +32,7 @@ const PainAssessment = () => {
                             </s.ProductText>
                         </s.ProductContentLeft>
                         <s.ProductContentRight>
-                            <s.ProductVideo src={ProductVideoSrc} controls={true} />
+                            <s.ProductVideo src={VIDEO_SRC.painassessment} controls={true} />
                         </s.ProductContentRight>
                     </s.ProductContentRowInner>
                 </s.ProductContentRowGradient>
@@ -80,11 +79,11 @@ const PainAssessment = () => {
                                     <s.BenefitList>
                                         <li>Increase the accuracy of pain assessments, enabling more efficient pain management strategies and improving quality of life</li>
                                     </s.BenefitList>
-                                
+
                                     <s.BenefitList>
                                         <li>Guide caregivers through the process, cutting down on training time and making the pain assessment process easier to perform</li>
                                     </s.BenefitList>
-                                
+
                                     <s.BenefitList>
                                         <li>Through implementation of pain history tracking, providers can easily track pain history, empowering recognition of pain trends and allowing for estimation of future needs.</li>
                                     </s.BenefitList>
@@ -94,9 +93,9 @@ const PainAssessment = () => {
                                     </s.BenefitList>
                                 </s.FeastureColumn>
                             </s.InnerFeatureContainer>
-                        </s.ProductContent>   
+                        </s.ProductContent>
                     </s.ProductContentRowInner>
-                </s.ProductContentRowBlue> 
+                </s.ProductContentRowBlue>
 
             </s.ProductInnerContainer>
         </s.ProductContainer>

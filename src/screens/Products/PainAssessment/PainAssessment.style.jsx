@@ -48,7 +48,7 @@ export const ProductTop = styled.div`
 export const PageVideo = styled.video`
   width: 100%;
   height:420px;
-  object-fit: unset;
+  object-fit: cover;
   position: fixed;
   left: 0;
   right: 0;
@@ -118,8 +118,9 @@ export const ProductTitleContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+
   @media (max-width: 767px) {
-    flex-direction: row;
+    flex-direction: column;
   }
 `
 
@@ -139,10 +140,9 @@ export const ProductTitleProduct = styled.h1`
   }
 
   @media (max-width: 767px){
-    width: 45%;
-    text-align: right;
-    margin-right: 7px;
+    text-align: center;
     font-size:40px;
+    margin:0;
   }
 `
 
@@ -164,10 +164,7 @@ export const ProductTitleOverview = styled.h1`
   }
 
   @media (max-width: 767px){
-    width: 50%;
-    margin-top: 27px;
-    margin-left: 10px;
-    text-align: left;
+    text-align: center;
     font-size:40px;
   }
 `
@@ -201,16 +198,16 @@ export const ProductTitleWhite = styled(ProductTitle)`
 `
 
 export const ProductText = styled.div`
-  color:black;
-  font-family: "Open Sans",sans-serif;
+  color: black;
+  font-family: "Open Sans", sans-serif;
   padding-bottom: 40px;
 
   @media (min-width: 768px) and (max-width: 991px) {
-    margin: 0px 30px 0px 30px;
+    margin: 0 30px 0 30px;
   }
 
-  @media (max-width: 767px){
-    margin: 0px 50px 0px 50px;
+  @media (max-width: 767px) {
+    margin: 0 50px 0 50px;
     text-align: center;
   }
 `
@@ -242,7 +239,7 @@ export const FeastureColumn = styled.div`
   }  
   
   @media only screen and (max-width: 767px) {
-    margin-right: 0px;
+    margin-right: 0;
     grid-template-columns: repeat(1, auto);
     grid-column-gap: 10px;
   }
@@ -254,7 +251,7 @@ export const FeatureList = styled.ul`
   list-style:none;
   
   > li {
-    padding: 0px 20px 30px 0;
+    padding: 0 20px 30px 0;
   }
   
   > li::before {
@@ -271,7 +268,7 @@ export const FeatureList = styled.ul`
   }
 
   @media (max-width: 767px){
-    margin: 0px 50px 0px 50px;
+    margin: 0 50px 0 50px;
     text-align: left;
   }
 `
@@ -282,7 +279,7 @@ export const BenefitList = styled.ul`
   list-style:none;
   
   > li {
-    padding: 0px 20px 30px 0;
+    padding: 0 20px 30px 0;
     color:white;
   }
   
@@ -300,7 +297,7 @@ export const BenefitList = styled.ul`
   }
 
   @media (max-width: 767px){
-    margin: 0px 50px 0px 50px;
+    margin: 0 50px 0 50px;
     text-align: left;
   }
 `
