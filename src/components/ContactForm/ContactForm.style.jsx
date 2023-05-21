@@ -14,6 +14,7 @@ export const ContactFormContainer = styled.div`
 
   @media (max-width: 768px) {
     flex-direction: column;
+    max-height: unset;
   }
 `
 
@@ -86,18 +87,6 @@ export const ColItemText = styled.div`
   @media (max-width: 1000px) {
     font-size: 15px;
   }
-  @media (max-width: 600px) {
-    font-size: 13px;
-  }  
-  @media (max-width: 500px) {
-    font-size: 11.5px;
-  }  
-  @media (max-width: 450px) {
-    font-size: 11px;
-  }  
-  @media (max-width: 400px) {
-    font-size: 10px;
-  }  
 `
 
 export const FormStatus = styled.div`

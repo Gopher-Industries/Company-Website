@@ -45,6 +45,10 @@ export const ContactUsTop = styled.div`
   display: flex;
   justify-content: center;
   height:350px;
+
+  @media (max-width: 768px) {
+    height: unset;
+  }
 `
 
 export const ContactUsBottom = styled.div`
@@ -52,6 +56,10 @@ export const ContactUsBottom = styled.div`
   background-color: rgb(10, 30, 56);
   height:300px;
   padding-bottom: 30px;
+
+  @media (max-width: 768px) {
+    display:none;
+  }
 `
 
 export const FloatingRow = styled.div`
@@ -67,7 +75,7 @@ export const ContactPageForm = styled.div`
 export const ContactUsVideo = styled.video`
   width: 100%;
   height:420px;
-  object-fit: unset;
+  object-fit: cover;
   position: fixed;
   left: 0;
   right: 0;
