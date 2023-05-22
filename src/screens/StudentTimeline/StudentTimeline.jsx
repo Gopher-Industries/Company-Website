@@ -2,9 +2,9 @@ import React, {useState} from "react";
 import {VIDEO_SRC} from "@Assets/videos";
 import * as s from "./StudentTimeline.style";
 import StudentTimelineItem from "./StudentTimelineItem/StudentTimelineItem";
+
 import axios from "axios";
 import {BASE_API_URL} from "@Settings/api";
-
 const timelineurl = BASE_API_URL + "/timeline/student";
 
 const StudentTimeline = () => {
