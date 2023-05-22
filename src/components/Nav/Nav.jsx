@@ -12,9 +12,9 @@ const Nav = (props) => {
 
     const toggleVisible = () => {
         const scrolled = document.documentElement.scrollTop;
-        if (scrolled > 400) {
+        if (scrolled > 300) {
             setIsVisible(true);
-        } else if (scrolled <= 400) {
+        } else if (scrolled <= 300) {
             setIsVisible(false);
         }
     };
