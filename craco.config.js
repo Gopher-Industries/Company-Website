@@ -8,6 +8,7 @@ module.exports = {
             '@Layout': path.resolve(__dirname, 'src/layout'),
             '@Assets': path.resolve(__dirname, 'src/assets'),
             '@Screens': path.resolve(__dirname, 'src/screens'),
+            '@Settings': path.resolve(__dirname, 'src/settings'),
         }
     },
 };
