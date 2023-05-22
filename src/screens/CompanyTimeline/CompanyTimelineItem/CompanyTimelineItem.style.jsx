@@ -113,7 +113,7 @@ export const CompanyTimeline_Item_Content = styled.div`
     border-radius: 50%;
     position: absolute;
     top: calc(50% - 10px);
-    right: -50px;
+    right: -53px;
     width: 20px;
     height: 20px;
     z-index: 100;
@@ -185,7 +185,7 @@ export const CompanyTimeline_Item = styled.div`
       
       > .circle {
         right: auto;
-        left: -50px;
+        left: -52px;
 
         @media (max-width: 768px) {
           display:none;
