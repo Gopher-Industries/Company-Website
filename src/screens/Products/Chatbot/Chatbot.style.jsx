@@ -117,7 +117,7 @@ export const ProductContent = styled.div`
 export const ProductTitleContainer = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 
   @media (max-width: 767px) {
     flex-direction: column;
