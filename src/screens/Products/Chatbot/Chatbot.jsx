@@ -56,6 +56,16 @@ const Chatbot = () => {
                                         <br/><br/>
                                         Ability for our users to log and rate their pain assessment to share with authorised health care providers
                                         </li>
+                                        <li>
+                                            <strong>Appointment Management:</strong>
+                                            <br/><br/>
+                                            To allow User to book appointment, cancel and even reschedule their appointment through Medi.
+                                        </li>
+                                        <li>
+                                            <strong>Find A Doctor</strong>
+                                            <br/><br/>
+                                            To allow User to find the Doctor or any specialist near by.
+                                        </li>
                                     </s.FeatureList>
 
                                     <s.FeatureList>
