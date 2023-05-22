@@ -59,6 +59,7 @@ const DietPlanner = () => {
                                         <li>NutriHelp supports our users in managing their general nutritional wellbeing and the management of nutrient-related diseases and deficiencies through personalised nutritional planning.</li>
                                         <li>We support our user's health through nutrition derived from food, giving more control to the user over their nutritional health.</li>
                                         <li>The user can shop online within the application using their shopping list or sent it to a family member to collect.</li>
+                                        <li>Users are able to scan ingredient lists on packaged food products and instantly know if the product is suitable for them to consume based on their predefined restrictions such as allergies, diseases, or personal preferences.</li>
                                     </s.FeatureList>
 
                                     <s.FeatureList>
