@@ -1,11 +1,24 @@
-import React from "react";
+import React, {useState} from "react";
 import {VIDEO_SRC} from "@Assets/videos";
 import * as s from "./StudentTimeline.style";
-import StudentTimelineData from"./StudentData";
 import StudentTimelineItem from "./StudentTimelineItem/StudentTimelineItem";
+import axios from "axios";
 
+const baseURL = "https://projectx-api-dot-sit-22t3-gopher-websit-a242043.ts.r.appspot.com/api/v1/timeline/student";
 
 const StudentTimeline = () => {
+    const [isLoading, setLoading] = useState(true);
+    const [data, setData] = useState([]);
+
+    React.useEffect(() => {
+        axios.get(baseURL, { crossdomain: true }).then((response) => {
+            setData(response.data);
+            setLoading(false);
+        });
+    }, []);
+
+    console.log(data);
+
     return (
         <s.StudentTimelineContainer>
             <s.StudentTimelineVideo src={VIDEO_SRC.connections} width="100%" controls={false} autoPlay={true} loop={true} muted={true}/>
@@ -16,7 +29,7 @@ const StudentTimeline = () => {
                     <s.StudentTimelineForm>
                         <s.FloatingRow>
                             <s.TimelineGraphicContainer>
-                                {StudentTimelineData.map((data, idx) => (
+                                {!isLoading && data.map((data, idx) => (
                                     <StudentTimelineItem data={data} key={idx} />
                                 ))}
                             </s.TimelineGraphicContainer>

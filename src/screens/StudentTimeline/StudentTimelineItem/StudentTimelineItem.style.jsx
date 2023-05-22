@@ -10,6 +10,10 @@ export const time = styled.time`
 export const p = styled.p`
 `
 
+export const StudentTimeline_Item_Title = styled.p`
+  font-weight: bold;
+`
+
 export const a = styled.a`
 `
 
