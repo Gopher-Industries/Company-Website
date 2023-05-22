@@ -33,11 +33,19 @@ export const StudentTimelineHeader = styled.h2`
   line-height:60px;
   letter-spacing: -2px;
   text-align: left;
+
+  @media (max-width: 768px) {
+    margin:0 30px 0 30px;
+  }
 `
 
 export const StudentTimelineText = styled.div`
   color:white;
   font-family: "Open Sans",sans-serif;
+  
+  @media (max-width: 768px) {
+    margin:0 30px 0 30px;
+  }
 `
 
 
@@ -47,6 +55,10 @@ export const FloatingRow = styled.div`
   box-sizing: border-box;
   padding:30px 0 30px 0;
   min-height:400px;
+
+  @media (max-width: 768px) {
+    padding:0 30px 0 30px;
+  }
 `
 
 export const StudentTimelineForm = styled.div`
