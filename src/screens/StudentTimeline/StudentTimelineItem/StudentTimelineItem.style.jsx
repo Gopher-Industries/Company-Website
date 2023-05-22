@@ -38,8 +38,6 @@ export const StudentTimeline_Item_Content = styled.div`
     text-align: center;
     align-items: center;
   }
-
-  
   
   &::after {
     content: ' ';
@@ -83,7 +81,7 @@ export const StudentTimeline_Item_Content = styled.div`
     font-size: 12px;
 
     @media (max-width: 768px) {
-      padding-top:20px;
+      padding-top:10px;
       margin: 0 auto;
     }
     
