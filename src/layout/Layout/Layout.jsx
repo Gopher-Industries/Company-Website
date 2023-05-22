@@ -19,7 +19,7 @@ const Layout = () => {
     };
 
     return (
-        <div className="Layout-Container">
+        <div className="Layout-Container" style={{display:"flex", flexDirection:"column", height: "100vh", justifyContent: "space-between"}}>
             <Nav />
             <Outlet />
             <Footer />
