@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import * as s from "./Nav.style";
 import logoSrc from "@Assets/images/full-white-2.png";
 import logoSrcBlack from "@Assets/images/full-black-2.png";
+import {SSO_LINK} from "@Settings/links";
 
 const Nav = (props) => {
     const [isVisible, setIsVisible] = useState(false);
@@ -74,7 +75,7 @@ const Nav = (props) => {
                         <s.NavListItem>
                             <s.ExternalLink
                                 $barsolid={barsolid}
-                                href={"https://gorgeous-dragon-4d0ca6.netlify.app/"}
+                                href={SSO_LINK}
                                 target="_blank"
                             >
                                 Login
