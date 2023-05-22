@@ -3,7 +3,8 @@ import { NavLink } from "react-router-dom";
 
 export const NavContainer = styled.div`
   @media (max-width: 768px) {
-    height: 100vh;
+    height: ${(props) =>
+            props.$isOpen ? "100vh" : "50px"};
     width: 100%;
     flex-direction: column;
     box-shadow: ${(props) =>
