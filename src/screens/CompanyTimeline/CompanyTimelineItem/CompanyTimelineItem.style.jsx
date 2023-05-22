@@ -13,6 +13,10 @@ export const p = styled.p`
 export const a = styled.a`
 `
 
+export const CompanyTimeline_Item_Title = styled.p`
+  font-weight: bold;
+`
+
 export const circle = styled.span`
 `
 

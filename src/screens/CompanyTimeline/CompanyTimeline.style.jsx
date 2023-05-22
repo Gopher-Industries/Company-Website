@@ -45,8 +45,8 @@ export const FloatingRow = styled.div`
   width:100%;
   margin-top:50px;
   box-sizing: border-box;
-  padding:30px;
-  
+  padding:30px 0 30px 0;
+  min-height:400px;
 `
 
 export const CompanyTimelineForm = styled.div`
@@ -78,4 +78,9 @@ export const TimelineGraphicContainer = styled.div`
     width: 4px;
     height: 100%;
   }
+`
+
+export const NoItems = styled.p`
+  color:white;
+  font-weight:bold;
 `
