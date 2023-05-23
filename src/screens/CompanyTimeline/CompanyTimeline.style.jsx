@@ -33,11 +33,19 @@ export const CompanyTimelineHeader = styled.h2`
   line-height:60px;
   letter-spacing: -2px;
   text-align: left;
+
+  @media (max-width: 768px) {
+    margin:0 30px 0 30px;
+  }
 `
 
 export const CompanyTimelineText = styled.div`
   color:white;
   font-family: "Open Sans",sans-serif;
+  
+  @media (max-width: 768px) {
+    margin:0 30px 0 30px;
+  }
 `
 
 
@@ -45,8 +53,12 @@ export const FloatingRow = styled.div`
   width:100%;
   margin-top:50px;
   box-sizing: border-box;
-  padding:30px;
-  
+  padding:30px 0 30px 0;
+  min-height:400px;
+
+  @media (max-width: 768px) {
+    padding:0 30px 0 30px;
+  }
 `
 
 export const CompanyTimelineForm = styled.div`
@@ -56,7 +68,7 @@ export const CompanyTimelineForm = styled.div`
 export const CompanyTimelineVideo = styled.video`
   width: 100%;
   height:100vh;
-  object-fit: unset;
+  object-fit: cover;
   position: fixed;
   left: 0;
   right: 0;
@@ -78,4 +90,9 @@ export const TimelineGraphicContainer = styled.div`
     width: 4px;
     height: 100%;
   }
+`
+
+export const NoItems = styled.p`
+  color:white;
+  font-weight:bold;
 `

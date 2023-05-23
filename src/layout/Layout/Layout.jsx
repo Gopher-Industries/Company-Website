@@ -15,11 +15,11 @@ const Layout = () => {
     const handleNewUserMessage = (newMessage) => {
         console.log(`New message incoming! ${newMessage}`);
         // Now send the message throught the backend API
-        addResponseMessage("test");
+        addResponseMessage("This chatbot is not yet implemented");
     };
 
     return (
-        <div className="Layout-Container">
+        <div className="Layout-Container" style={{display:"flex", flexDirection:"column", height: "100vh", justifyContent: "space-between"}}>
             <Nav />
             <Outlet />
             <Footer />

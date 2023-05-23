@@ -1,6 +1,5 @@
 import React from "react";
-import HomeVideo from "@Assets/videos/connections.mp4";
-import AboutVideo from "@Assets/videos/about.mp4";
+import {VIDEO_SRC} from "@Assets/videos";
 import LogoAnimate from "@Assets/images/logo-2.png";
 
 
@@ -13,7 +12,7 @@ const Home = () => {
     return (
         <s.HomeContainer>
             <s.HomeVideoContainer>
-                <s.HomeVideo src={HomeVideo} width="100%" controls={false} autoPlay={true} loop={true} muted={true}></s.HomeVideo>
+                <s.HomeVideo src={VIDEO_SRC.connections} width="100%" controls={false} autoPlay={true} loop={true} muted={true}></s.HomeVideo>
                 <s.VideoOverlay initial={{y:"-300px", opacity:0}} animate={{y:0, opacity:1, transform:"translate(-50%,0)"}} transition={{duration:0.8, delay:0.3, ease: [0, 0.71, 0.2, 1.01]}}>
                     <s.VideoOverlayText>
                         Building healthier communities through enabling technologies.
@@ -42,21 +41,21 @@ const Home = () => {
                     <s.HomeColAlign>
                         <s.HomeTitle style={{color:"#0a1e38", marginBottom:"20px"}}><span style={{color:"white"}}>WHO IS</span><br/>GROPHER<br/>INDUSTRIES?</s.HomeTitle>
                         <s.SubtitleContainer>
-                        <s.HomeSubTitle>
-                            Gopher Industries is a Deakin University-owned company dedicated to providing consultancy and software solutions that make people's lives easier.
-                        </s.HomeSubTitle>
-                        <s.HomeSubTitle>
-                            <strong>Our vision</strong> is to build healthier communities through enabling technologies.
-                        </s.HomeSubTitle>
-                        <s.HomeSubTitle>
-                            <strong>Our mission</strong> is to develop innovative products to monitor, diagnose and manage health and well-being using state-of-the-art wearable technology, IoT and AI solutions to improve people's health and enable better access to healthcare for the elderly, disadvantaged and disabled.
-                        </s.HomeSubTitle>
+                            <s.HomeSubTitle>
+                                Gopher Industries is a Deakin University-owned company dedicated to providing consultancy and software solutions that make people's lives easier.
+                            </s.HomeSubTitle>
+                            <s.HomeSubTitle>
+                                <strong>Our vision</strong> is to build healthier communities through enabling technologies.
+                            </s.HomeSubTitle>
+                            <s.HomeSubTitle>
+                                <strong>Our mission</strong> is to develop innovative products to monitor, diagnose and manage health and well-being using state-of-the-art wearable technology, IoT and AI solutions to improve people's health and enable better access to healthcare for the elderly, disadvantaged and disabled.
+                            </s.HomeSubTitle>
                         </s.SubtitleContainer>
                     </s.HomeColAlign>
                 </s.HomeCol>
                 <s.HomeCol>
                     <s.VideoContainer>
-                    <s.AboutVideo src={AboutVideo} controls={true} />
+                    <s.AboutVideo src={VIDEO_SRC.about} controls={true} />
                     </s.VideoContainer>
                 </s.HomeCol>
             </s.HomeContentWideGradient>

@@ -1,19 +1,17 @@
 import React from "react";
 import * as s from "./CompanyTimelineItem.style";
-
+import {DateTime} from "luxon";
 const CompanyTimelineItem = ({ data }) => (
     <s.CompanyTimeline_Item className="Companytimeline-item">
         <s.CompanyTimeline_Item_Content className="CompanyTimeline_Item_Content">
-            <s.spanTag className="spanTag" style={{ background: data.category.color}}>
-                {data.category.tag}
+            <s.spanTag className="spanTag" style={{background: "rgb(77, 146, 226)"}}>
+                {data.teamName}
             </s.spanTag>
-            <s.time>{data.date}</s.time>
-            <s.p>{data.text}</s.p>
-            {data.link && (
-            <s.a className="styled-link" href={data.link.url} target="_blank" rel="noopener noreferrer">
-                {data.link.text}
-            </s.a>
-            )}
+            <s.time>{DateTime.fromJSDate(new Date(data.date)).toFormat(
+                "EEEE, dd/MM/yy - hh:mm a"
+            )}</s.time>
+            <s.CompanyTimeline_Item_Title>{data.title}</s.CompanyTimeline_Item_Title>
+            <s.p>{data.description}</s.p>
             <s.circle className="circle"></s.circle>
         </s.CompanyTimeline_Item_Content>
     </s.CompanyTimeline_Item>

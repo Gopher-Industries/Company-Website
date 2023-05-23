@@ -10,6 +10,10 @@ export const time = styled.time`
 export const p = styled.p`
 `
 
+export const StudentTimeline_Item_Title = styled.p`
+  font-weight: bold;
+`
+
 export const a = styled.a`
 `
 
@@ -29,6 +33,11 @@ export const StudentTimeline_Item_Content = styled.div`
   max-width: 100%;
   width: 700px;
   text-align: right;
+
+  @media (max-width: 768px) {
+    text-align: center;
+    align-items: center;
+  }
   
   &::after {
     content: ' ';
@@ -40,6 +49,10 @@ export const StudentTimeline_Item_Content = styled.div`
     top: calc(50% - 7.5px);
     width: 15px;
     height: 15px;
+    
+    @media (max-width: 768px) {
+      display: none;
+    }
   }
   
   > .spanTag {
@@ -52,17 +65,36 @@ export const StudentTimeline_Item_Content = styled.div`
     top: 5px;
     left: 5px;
     text-transform: capitalize;
+
+    @media (max-width: 768px) {
+      left: unset;
+      top: unset;
+      text-align: center;
+      border-radius: 5px;
+      width:100%;
+      position: relative;
+    }
   }
 
   > time {
     color: #777;
     font-size: 12px;
+
+    @media (max-width: 768px) {
+      padding-top:10px;
+      margin: 0 auto;
+    }
+    
   }
 
   > p {
     font-size: 16px;
     line-height: 24px;
     margin: 15px 0;
+
+    @media (max-width: 768px) {
+      margin: 5px 0;
+    }
   }
 
   > .styled-link {
@@ -82,10 +114,14 @@ export const StudentTimeline_Item_Content = styled.div`
     border-radius: 50%;
     position: absolute;
     top: calc(50% - 10px);
-    right: -50px;
+    right: -53px;
     width: 20px;
     height: 20px;
     z-index: 100;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
   }
 `
 
@@ -95,31 +131,68 @@ export const StudentTimeline_Item = styled.div`
   padding-right: 30px;
   margin: 10px 0;
   width: 46.5%;
+
+  @media (max-width: 768px) {
+    z-index:9998;
+    padding-right:0;
+    width:100%;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
   
   &:nth-child(odd) {
     align-self: flex-end;
     justify-content: flex-start;
     padding-right: 0;
     padding-left: 30px;
+
+    @media (max-width: 768px) {
+      padding-left: 0;
+      justify-content: center;
+    }
+    
     
     > .StudentTimeline_Item_Content {
       align-items: flex-start;
       text-align: left;
+
+      @media (max-width: 768px) {
+        justify-content: center;
+        align-items: center;
+      }
       
       &::after {
         box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.2);
         right: auto;
         left: -7.5px;
+
+        @media (max-width: 768px) {
+          display:none;
+        }
       }
       
       > .spanTag {
         left: auto;
         right: 5px;
+
+        @media (max-width: 768px) {
+          left: unset;
+          right: unset;
+          text-align: center;
+          border-radius: 5px;
+          width:100%;
+          position: relative;
+        }
+
       }
       
       > .circle {
         right: auto;
-        left: -50px;
+        left: -52px;
+        
+        @media (max-width: 768px) {
+          display:none;
+        }
       }
       
     }

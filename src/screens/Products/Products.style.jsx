@@ -20,15 +20,7 @@ export const ProductRow = styled.div`
   flex-direction: column;
   z-index:100;
   position: relative;
-
-  //mobile
-  @media only screen and (max-width: 767px) {
-  width:100%;
-  max-width: 720px;
-  flex-direction: column;
-  z-index:100;
-  position: relative;
-  }
+  
 `
 
 export const ProductHeader = styled.h2`
@@ -43,51 +35,26 @@ export const ProductHeader = styled.h2`
   letter-spacing: -2px;
   text-align: left;
 
-  //tablet
-  @media (min-width: 768px) and (max-width: 991px) {
-    font-size: 33px;
-    line-height: 40px;
-    text-align: center;
-  }
-
-  //mobile
-  @media only screen and (max-width: 767px) {
-    font-size: 28px;
-    line-height: 34px;
-    text-align: center;
+  @media (max-width: 768px) {
+    margin-left:30px;
+    margin-right:30px;
   }
 `
 
 export const ProductText = styled.div`
   color:white;
   font-family: "Open Sans",sans-serif;
-
-  //tablet
-  @media (min-width: 768px) and (max-width: 991px) {
-    padding-top: 15px;
-    padding-left: 105px;
-    padding-right: 105px;
-    font-size: 16px;
-    line-height: 22px;
-    text-align: center;
-  }
-
-  //mobile
-  @media only screen and (max-width: 767px) {
-    padding-top: 15px;
-    padding-left: 75px;
-    padding-right: 75px;
-    font-size: 14px;
-    line-height: 20px;
-    text-align: center;
+  @media (max-width: 768px) {
+    margin-left:30px;
+    margin-right:30px;
   }
 `
 
 
 export const ProductVideo = styled.video`
   width: 100%;
-  height:100%;
-  object-fit: none;
+  height:100vh;
+  object-fit: cover;
   position: fixed;
   left: 0;
   right: 0;
@@ -95,58 +62,28 @@ export const ProductVideo = styled.video`
   bottom: 0;
   z-index: -1;
 
-  //tablet
-  @media (min-width: 768px) and (max-width: 991px){
-    object-fit: cover;
-  }
-
-  //mobile
-  @media only screen and (max-width: 767px) {
+  @media (max-width: 768px) {
+    height:100%;
     object-fit: cover;
   }
 `
 
 export const ProductItemsContainer = styled.div`
+  display:flex;
+  flex-direction: column;
   margin-top:45px;
   margin-bottom:40px;
-
-  //tablet
-  @media (min-width: 768px) and (max-width: 991px){
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    margin-top: 30px; 
-    margin-bottom: 30px;
-  }
-
-  //mobile
-  @media only screen and (max-width: 767px) {
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    margin-top: 30px; 
-    margin-bottom: 30px;
-  }
 `
 
 export const ProductItemsRow = styled.div`
-  display:grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-column-gap: 75px;
+  display:flex;
+  flex-direction: row;
+  gap:30px;
+  justify-content: center;
 
-  //tablet
-  @media (min-width: 768px) and (max-width: 991px){
-    margin-right: 40px;
-    grid-template-columns: repeat(2, 0.75fr);
-    grid-column-gap: 75px;
-  }
-
-  //mobile
-  @media only screen and (max-width: 767px) {
-    margin-left: 10px;
-    grid-template-columns: repeat(1, 0.85fr);
+  @media (max-width: 768px) {
+    flex-direction: column;
   }
 `
-
 
 

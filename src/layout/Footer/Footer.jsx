@@ -24,7 +24,7 @@ const Footer = () => {
                </s.FooterTopContent>
            </s.FooterTop>
             <s.FooterBottom>
-                © Copyright Gopher Industries 2022. All Rights Reserved
+                © Copyright Gopher Industries 2023. All Rights Reserved
             </s.FooterBottom>
         </s.FooterContainer>
     );

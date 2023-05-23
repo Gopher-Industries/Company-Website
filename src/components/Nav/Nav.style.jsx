@@ -3,10 +3,10 @@ import { NavLink } from "react-router-dom";
 
 export const NavContainer = styled.div`
   @media (max-width: 768px) {
-    height: 800px;
-    width: 170px;
+    height: ${(props) =>
+            props.$isOpen ? "100vh" : "50px"};
+    width: 100%;
     flex-direction: column;
-    border-radius: 20px;
     box-shadow: ${(props) =>
       props.$isOpen ? "0 8px 10px -1px rgba(0, 0, 0, 0.3)" : "none"};
     background-color: ${(props) => (props.$isOpen ? "white" : "transparent")};
@@ -14,6 +14,8 @@ export const NavContainer = styled.div`
   }
 `;
 
+// ADDED | "padding-right: 25px;"
+// ADDED | "align-items: right;"
 export const NavList = styled.ul`
   list-style-type: none;
   display: flex;
@@ -22,11 +24,11 @@ export const NavList = styled.ul`
   @media (max-width: 768px) {
     display: ${(props) => (props.$isOpen ? "flex" : "none")};
     flex-direction: column;
-    position: absolute;
-    top: 50px;
-    left: 0;
-    gap: 15px;
+    gap: 30px;
     padding: 0;
+    padding-top: 75px;
+    width:80%;
+    margin:0 auto;
   }
 `;
 
@@ -34,10 +36,8 @@ export const NavListItem = styled.li`
   text-decoration: none;
 
   @media (max-width: 768px) {
-    margin-left: 10px;
     padding-bottom: 10px;
-    padding-right: 40px;
-    border-bottom: 1px solid black;
+    text-align: center;
   }
 `;
 
@@ -85,16 +85,18 @@ export const Link = styled(NavLink)`
   color: ${(props) => (props.$isVisible ? "#5c768d" : "white")};
 
   &:hover {
-    color: ${(props) => (props.$isVisible ? "#1ab4fc" : "#1ab4fc")};
+    color: ${(props) => (props.$visible ? "#1ab4fc" : "#1ab4fc")};
+    font-weight: 900;
   }
 
   &.active {
-    color: ${(props) => (props.$isVisible ? "#1ab4fc" : "#1ab4fc")};
+    color: ${(props) => (props.$visible ? "#1ab4fc" : "#1ab4fc")};
+    font-weight: 900;
   }
 
   @media (max-width: 768px) {
     color: #283642;
-    font-size: 12px;
+    font-size: 1.25rem;
   }
 `;
 
@@ -107,16 +109,18 @@ export const ExternalLink = styled.a`
   color: ${(props) => (props.$isVisible ? "#5c768d" : "white")};
 
   &:hover {
-    color: ${(props) => (props.$isVisible ? "#1ab4fc" : "#1ab4fc")};
+    color: ${(props) => (props.$visible ? "#1ab4fc" : "#1ab4fc")};
+    font-weight: 900;
   }
 
   &.active {
-    color: ${(props) => (props.$isVisible ? "#1ab4fc" : "#1ab4fc")};
+    color: ${(props) => (props.$visible ? "#1ab4fc" : "#1ab4fc")};
+    font-weight: 900;
   }
 
   @media (max-width: 768px) {
     color: #283642;
-    font-size: 12px;
+    font-size: 1.25rem;
   }
 `;
 
@@ -133,20 +137,26 @@ position: sticky;
   justify-content: center;
   box-sizing: border-box;
   z-index: 9999;
-  transition: all 0.2s ease;
+  transition: all 0.05s ease;
 
   @media (max-width: 768px) {
     background-color: ${(props) => (!props.$isOpen && props.$isVisible ? "white" : "transparent")};
     box-shadow: ${(props) => (!props.$isOpen && props.$isVisible ? "0 6px 10px -2px rgb(0 0 0 / 30%)" : "0 0 0 0")};
+    padding-top: 0;
   }
 `;
 
 export const InnerHeader = styled.div`
-  max-width: 1140px;
-  width: 1140px;
+  width: 90vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: ${(props) => (props.$isOpen ? "100vh" : "0")};
+
+  }
 `;
 
 export const Logo = styled.img`
@@ -166,7 +176,7 @@ export const MobileLogo = styled.img`
 
   @media (max-width: 768px) {
     display: ${(props) => (props.$isOpen ? "block" : "none")};
-    width: 93px;
-    margin-left: 8px;
+    width: 70%;
+    margin:0 auto;
   }
 `;

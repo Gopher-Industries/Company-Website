@@ -9,14 +9,24 @@
     "@mui/icons-material": "^5.10.14",
     "@mui/material": "^5.10.14",
     "@mui/styles": "^5.10.14",
+    "axios": "^1.4.0",
     "framer-motion": "6.2.4",
     "hero-slider": "^3.1.0",
+    "luxon": "^3.3.0",
     "prop-types": "^15.8.1",
+    "python-shell": "^5.0.0",
     "react": "^17.0.0",
+    "react-bootstrap": "^2.7.4",
     "react-chat-widget": "^3.1.4",
     "react-dom": "^17.0.0",
+    "react-feather": "^2.0.10",
+    "react-grid-system": "^8.1.9",
+    "react-icons": "^4.8.0",
     "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
+    "react-slick": "^0.29.0",
+    "react-spring": "^9.7.1",
+    "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.6",
     "web-vitals": "^2.1.4",
     "yet-another-react-lightbox": "^2.2.3"
@@ -25,7 +35,8 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "postinstall": "npx patch-package"
+    "postinstall": "npx patch-package",
+    "deploy": "npm install && npm run build && gcloud app deploy --quiet"
   },
   "eslintConfig": {
     "extends": [

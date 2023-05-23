@@ -9,6 +9,14 @@ export const ProductTile = styled.div`
   padding:20px 20px 30px 20px;
   background-color: white;
   transition: all ease 0.4s;
+  max-width: 320px;
+
+  @media (max-width: 768px) {
+    box-sizing: border-box;
+    width:unset !important;
+    margin-left:30px;
+    margin-right:30px;
+  }
   
   &:hover {
     scale:0.95;

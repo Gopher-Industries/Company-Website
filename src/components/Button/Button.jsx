@@ -13,7 +13,7 @@ const Button = (props) => {
 
     const handleClick = event => {
         event.preventDefault();
-        anchorTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        anchorTarget.scrollIntoView({ behavior: 'smooth', block: 'start', inline: "nearest"});
     };
 
 

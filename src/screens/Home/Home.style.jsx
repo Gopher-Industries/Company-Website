@@ -9,22 +9,18 @@ export const HomeContainer = styled.div`
 
 const breatheAnimation = keyframes`
   0% {
-    -webkit-transform: scale(0.9);
     transform: scale(0.9);
   }
 
   25% {
-    -webkit-transform: scale(1);
     transform: scale(1);
   }
 
   60% {
-    -webkit-transform: scale(0.9);
     transform: scale(0.9);
   }
 
   100% {
-    -webkit-transform: scale(0.9);
     transform: scale(0.9);
   }
 `
@@ -60,9 +56,10 @@ export const HomeContentWide = styled.div`
   display: flex;
   flex-direction: row;
   margin:0 auto;
+  height:500px;
 
   @media (max-width: 768px) {
-    display: block;
+    flex-direction: column;
   }
 `
 
@@ -81,14 +78,21 @@ export const HomeContentWideImage2 = styled(HomeContentWide)`
     height: 220px;
   }
 
-  @media (min-width: 768px, max-width: 959px) {
+  @media (min-width: 768px) and (max-width: 959px) {
     height: 340px;
   }
 `
 
 export const HomeContentWideGradient = styled(HomeContentWide)`
   background: linear-gradient(50deg, rgba(63,184,175,1) 0%, rgba(20,157,215,1) 100%);
-  padding:30px 0 30px 0;
+  padding:30px 100px 30px 100px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding:0;
+    height:unset;
+  }
+  
 `
 
 export const HomeCol = styled.div`
@@ -121,9 +125,12 @@ export const HomeTitle = styled.h1`
   line-height:60px;
   letter-spacing: -3px;
   text-align: left;
+  margin:0;
 
   @media (max-width: 768px) {
     font-size: 36px;
+    line-height:36px;
+    margin-top:20px;
   }
 
   @media (min-width: 769px) and (max-width: 959px) {
@@ -136,7 +143,7 @@ export const HomeSubTitle = styled.h4`
   color:white;
   font-weight: lighter;
   margin:10px;
-  margin-inline-start: 0px;
+  margin-inline-start: 0;
 `
 
 export const AnimatedLogoContainer = styled.div`
@@ -213,6 +220,9 @@ export const VideoContainer = styled.div `
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  @media (max-width: 768px) {
+    margin-bottom: 20px;
+  }
 `
 
 export const AboutVideo = styled.video`
@@ -220,8 +230,8 @@ width: 530px;
   border-radius: 5px;
   box-shadow: 5px 5px 24px -1px #5E5E5E;
 
-  @media (max-width: 959px) {
-    width: 400px;
+  @media (max-width: 768px) {
+    width: 80%;
   }
 `
 
@@ -230,16 +240,17 @@ margin-left: 30px;
 width: 90%;
 
 @media (max-width: 768px) {
-  width: 70%;
   flex-wrap: wrap;
 }
 `
 
 
 export const HomeColAlign = styled.div`
+  max-width:1500px;
+  
 @media (max-width: 768px) {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
 }
 

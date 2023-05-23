@@ -18,4 +18,9 @@ export const ProductImageContainer = styled.div`
     scale:0.95;
     cursor:pointer;
   }
+
+  @media (max-width: 767px){
+    width:150px;
+    height:150px;
+  }
 `

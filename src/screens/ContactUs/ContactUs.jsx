@@ -1,13 +1,10 @@
 import React from "react";
 import * as s from "./ContactUs.style";
-import HomeVideo from "@Assets/videos/connections.mp4";
+import {VIDEO_SRC} from "@Assets/videos";
 
 import ContactForm from "@Components/ContactForm/ContactForm";
 
-
 const ContactUs = () => {
-
-
     return (
         <s.ContactUsContainer>
             <s.ContactUsInnerContainer>
@@ -22,7 +19,7 @@ const ContactUs = () => {
                             </s.FloatingRow>
                         </s.ContactPageForm>
                     </s.ContactUsRow>
-                    <s.ContactUsVideo src={HomeVideo} width="100%" controls={false} autoPlay={true} loop={true} muted={true}/>
+                    <s.ContactUsVideo src={VIDEO_SRC.connections} width="100%" controls={false} autoPlay={true} loop={true} muted={true}/>
                 </s.ContactUsTop>
                 <s.ContactUsBottom />
             </s.ContactUsInnerContainer>
@@ -30,5 +27,5 @@ const ContactUs = () => {
 
     );
 };
-
 export default ContactUs;
+

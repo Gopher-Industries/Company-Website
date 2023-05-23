@@ -16,6 +16,7 @@ export const ContactUsRow = styled.div`
   width:100%;
   max-width:1140px;
   flex-direction: column;
+  
 `
 
 export const ContactPageHeader = styled.h2`
@@ -29,11 +30,13 @@ export const ContactPageHeader = styled.h2`
   line-height:60px;
   letter-spacing: -2px;
   text-align: left;
+  padding-left: 15px; 
 `
 
 export const ContactPageText = styled.div`
   color:white;
   font-family: "Open Sans",sans-serif;
+  padding-left: 15px; 
 `
 
 export const ContactUsTop = styled.div`
@@ -42,6 +45,10 @@ export const ContactUsTop = styled.div`
   display: flex;
   justify-content: center;
   height:350px;
+
+  @media (max-width: 768px) {
+    height: unset;
+  }
 `
 
 export const ContactUsBottom = styled.div`
@@ -49,6 +56,10 @@ export const ContactUsBottom = styled.div`
   background-color: rgb(10, 30, 56);
   height:300px;
   padding-bottom: 30px;
+
+  @media (max-width: 768px) {
+    display:none;
+  }
 `
 
 export const FloatingRow = styled.div`
@@ -64,11 +75,20 @@ export const ContactPageForm = styled.div`
 export const ContactUsVideo = styled.video`
   width: 100%;
   height:420px;
-  object-fit: unset;
+  object-fit: cover;
   position: fixed;
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
   z-index: -1;
+`
+
+export const mobileContainer = styled.div`
+  max-width: 480px;
+  margin: auto;
+  background-color: #555;
+  height: 500px;
+  color: white;
+  border-radius: 10px;
 `
